@@ -18,3 +18,16 @@ function findElement ( needle, haystack ) {
 }
 
 // console.log( findElement( 3, [1, 2, 3, 4, 5] ) ); // Answer: true as 3 is in the array
+
+
+function makeTuples ( input ) {
+   let answer = []
+   for ( let i = 0; i < input.length; i++ ) {
+      for ( let j = 0; j < input.length; j++ ) {
+         answer.push( [input[i], input[j]] )
+      }
+   }
+   return answer
+}
+
+console.log( makeTuples( ['Junaid', 'Hassan', 'Khan'] ) );
