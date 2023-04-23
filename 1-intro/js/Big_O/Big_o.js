@@ -30,4 +30,4 @@ function makeTuples ( input ) {
    return answer
 }
 
-console.log( makeTuples( ['Junaid', 'Hassan', 'Khan'] ) );
+// console.log( makeTuples( ['Junaid', 'Hassan', 'Khan'] ) );
