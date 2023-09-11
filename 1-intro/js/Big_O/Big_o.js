@@ -8,7 +8,7 @@ function crossAdd ( input ) {
    return answer
 }
 
-// console.log( crossAdd( [2, 2, 3, 4, 1] ) ); // Answer: [3, 6, 6, 6, 3]
+console.log( crossAdd( [2, 2, 3, 4, 1] ) ); // Answer: [3, 6, 6, 6, 3]
 
 // Find Element in Array
 function findElement ( needle, haystack ) {
@@ -17,7 +17,7 @@ function findElement ( needle, haystack ) {
    }
 }
 
-// console.log( findElement( 3, [1, 2, 3, 4, 5] ) ); // Answer: true as 3 is in the array
+console.log( findElement( 3, [1, 2, 3, 4, 5] ) ); // Answer: true as 3 is in the array
 
 
 function makeTuples ( input ) {
