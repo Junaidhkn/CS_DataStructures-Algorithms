@@ -7,8 +7,10 @@ function crossAdd ( input ) {
    }
    return answer
 }
+// THe above example is O(n) as it is linear,because we go through all the inputs once in a loop
+// console.log( crossAdd( [2, 2, 3, 4, 1] ) ); // Answer: [3, 6, 6, 6, 3]
 
-console.log( crossAdd( [2, 2, 3, 4, 1] ) ); // Answer: [3, 6, 6, 6, 3]
+
 
 // Find Element in Array
 function findElement ( needle, haystack ) {
@@ -16,8 +18,8 @@ function findElement ( needle, haystack ) {
       if ( haystack[i] === needle ) return true;
    }
 }
-
-console.log( findElement( 3, [1, 2, 3, 4, 5] ) ); // Answer: true as 3 is in the array
+// The above example is O(n) as it is linear,because we go through all the inputs once in a loop, and the worst case is that the element is not in the array
+// console.log( findElement( 3, [1, 2, 3, 4, 5] ) ); // Answer: true as 3 is in the array
 
 
 function makeTuples ( input ) {
@@ -31,3 +33,4 @@ function makeTuples ( input ) {
 }
 
 // console.log( makeTuples( ['Junaid', 'Hassan', 'Khan'] ) );
+// The O(n^2) as it is quadratic, because we go through all the inputs twice in a loop
