@@ -2,7 +2,7 @@ function addItems ( input ) {
    return input + input
 }
 
-// O(1) as it is constant, because it does not matter how big the input is, it will always be 1
+// O(1) as it is constant, because it does not matter how big the input is, it will always be 1, this is the most efficient way big O, also referred to as constant time
 // console.log( addItems( 5 ) ); // Answer: 10 
 
 
@@ -42,3 +42,14 @@ function makeTuples ( input ) {
 
 // console.log( makeTuples( ['Junaid', 'Hassan', 'Khan'] ) );
 // The O(n^2) as it is quadratic, because we go through all the inputs twice in a loop
+
+
+//  Common Big O Notations
+// O(1) Constant - no loops
+// O(log N) Logarithmic - usually searching algorithms have log n if they are sorted (Binary Search)
+// O(n) Linear - for loops, while loops through n items
+// O(n log(n)) Log Linear - usually sorting operations
+// O(n^2) Quadratic - every element in a collection needs to be compared to ever other element. Two nested loops
+// O(2^n) Exponential - recursive algorithms that solves a problem of size N
+// O(n!) Factorial - you are adding a loop for every element
+
