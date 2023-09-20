@@ -1,3 +1,11 @@
+function addItems ( input ) {
+   return input + input
+}
+
+// O(1) as it is constant, because it does not matter how big the input is, it will always be 1
+// console.log( addItems( 5 ) ); // Answer: 10 
+
+
 function crossAdd ( input ) {
    let answer = []
    for ( let i = 0; i < input.length; i++ ) {
