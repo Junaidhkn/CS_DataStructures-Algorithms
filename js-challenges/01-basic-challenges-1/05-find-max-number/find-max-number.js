@@ -10,6 +10,5 @@ function findMaxNumber ( arr ) {
    return max;
 }
 
-console.log( 'Answer:--', findMaxNumber( [13, 5, 12, 9] ) )
 
 module.exports = findMaxNumber;
