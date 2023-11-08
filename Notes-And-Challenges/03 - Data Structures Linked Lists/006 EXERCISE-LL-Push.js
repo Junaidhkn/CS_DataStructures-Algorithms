@@ -1,73 +1,87 @@
 class Node {
-    constructor(value){
+    constructor( value ) {
         this.value = value;
         this.next = null;
     }
 }
- 
+
 class LinkedList {
-    constructor(value) {
-        const newNode = new Node(value);
+    constructor( value ) {
+        const newNode = new Node( value );
         this.head = newNode;
         this.tail = this.head;
         this.length = 1;
     }
 
-    printList() {
+    printList () {
         let temp = this.head;
-        while (temp !== null) {
-            console.log(temp.value);
+        while ( temp !== null ) {
+            console.log( temp.value );
             temp = temp.next;
         }
     }
 
-    getHead() {
-        if (this.head === null) {
-            console.log("Head: null");
+    getHead () {
+        if ( this.head === null ) {
+            console.log( "Head: null" );
         } else {
-            console.log("Head: " + this.head.value);
+            console.log( "Head: " + this.head.value );
         }
     }
 
-    getTail() {
-        if (this.tail === null) {
-            console.log("Tail: null");
+    getTail () {
+        if ( this.tail === null ) {
+            console.log( "Tail: null" );
         } else {
-            console.log("Tail: " + this.tail.value);
+            console.log( "Tail: " + this.tail.value );
         }
     }
 
-    getLength() {
-        console.log("Length: " + this.length);
+    getLength () {
+        console.log( "Length: " + this.length );
     }
 
-    makeEmpty() {
+    makeEmpty () {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
- 
-	/// WRITE PUSH METHOD HERE ///
-	//                          //
-	//                          //
-	//                          //
-	//                          //
-	//////////////////////////////
 
+    /// WRITE PUSH METHOD HERE ///
+    //                          //
+    //                          //
+    //                          //
+    //                          //
+    //////////////////////////////
+    push ( value ) {
+        const newNode = new Node( value );
+        if ( !this.head ) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+        this.length++;
+        return this;
+    }
 }
- 
 
-function test() {
-    let myLinkedList = new LinkedList(1);
+
+function test () {
+    let myLinkedList = new LinkedList( 1 );
     myLinkedList.makeEmpty();
-    myLinkedList.push(1);
-    myLinkedList.push(2);
-    
-    
+    console.log( myLinkedList )
+
+    myLinkedList.push( 1 );
+    myLinkedList.push( 2 );
+
+    console.log( myLinkedList )
+
     myLinkedList.getHead();
     myLinkedList.getTail();
     myLinkedList.getLength();
-    console.log("\nLinked List:");
+    console.log( "\nLinked List:" );
     myLinkedList.printList();
 }
 
