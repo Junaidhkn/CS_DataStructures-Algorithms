@@ -103,7 +103,7 @@ class LinkedList {
         if ( this.length === 0 ) {
             this.tail = null
         }
-        return this
+        return temp
     }
 
     /// WRITE SHIFT METHOD HERE ///
