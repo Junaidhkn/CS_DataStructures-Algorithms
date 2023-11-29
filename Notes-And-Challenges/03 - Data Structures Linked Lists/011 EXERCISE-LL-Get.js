@@ -103,6 +103,7 @@ class LinkedList {
         return temp;
     }
     get ( index ) {
+        let temp = this.head
         if ( index < 0 || index >= this.length ) {
             return undefined
         }
