@@ -113,6 +113,7 @@ class LinkedList {
     }
 
     set ( index, value ) {
+        // Or Just put temp = this.get(index)
         let temp = this.head
         if ( index < 0 || index >= this.length ) { return undefined }
         for ( let i = 0; i < index; i++ ) {
