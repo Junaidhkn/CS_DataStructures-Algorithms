@@ -160,6 +160,7 @@ class LinkedList {
             prev = temp;
             temp = next;
         }
+        return this
     }
 
     /// WRITE REVERSE METHOD HERE ///
