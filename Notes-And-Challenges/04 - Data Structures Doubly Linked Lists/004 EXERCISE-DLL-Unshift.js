@@ -78,8 +78,18 @@ class DoublyLinkedList {
     }
 
     /// WRITE UNSHIFT METHOD HERE ///
-    unshift () {
-
+    unshift ( value ) {
+        const newNode = new Node( value );
+        const temp = this.head
+        if ( this.length === 0 ) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            this.head.prev = newNode
+            newNode.next = temp
+        }
+        this.length++;
+        return this;
     }
     /////////////////////////////////
 
