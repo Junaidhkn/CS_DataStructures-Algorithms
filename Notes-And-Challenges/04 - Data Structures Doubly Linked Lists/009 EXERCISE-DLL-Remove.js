@@ -1,56 +1,56 @@
 class Node {
-    constructor(value){
+    constructor( value ) {
         this.value = value;
         this.next = null;
         this.prev = null;
     }
 }
- 
+
 class DoublyLinkedList {
-    constructor(value) {
-        const newNode = new Node(value);
+    constructor( value ) {
+        const newNode = new Node( value );
         this.head = newNode;
         this.tail = newNode;
         this.length = 1;
     }
 
-    printList() {
+    printList () {
         let temp = this.head;
-        while (temp !== null) {
-            console.log(temp.value);
+        while ( temp !== null ) {
+            console.log( temp.value );
             temp = temp.next;
         }
     }
 
-    getHead() {
-        if (this.head === null) {
-            console.log("Head: null");
+    getHead () {
+        if ( this.head === null ) {
+            console.log( "Head: null" );
         } else {
-            console.log("Head: " + this.head.value);
+            console.log( "Head: " + this.head.value );
         }
     }
 
-    getTail() {
-        if (this.tail === null) {
-            console.log("Tail: null");
+    getTail () {
+        if ( this.tail === null ) {
+            console.log( "Tail: null" );
         } else {
-            console.log("Tail: " + this.tail.value);
+            console.log( "Tail: " + this.tail.value );
         }
     }
 
-    getLength() {
-        console.log("Length: " + this.length);
+    getLength () {
+        console.log( "Length: " + this.length );
     }
 
-    makeEmpty() {
+    makeEmpty () {
         this.head = null;
         this.tail = null;
         this.length = 0;
     }
- 
-    push(value){
-        const newNode = new Node(value);
-        if (this.length === 0) {
+
+    push ( value ) {
+        const newNode = new Node( value );
+        if ( this.length === 0 ) {
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -62,10 +62,10 @@ class DoublyLinkedList {
         return this;
     }
 
-    pop() {
-        if (this.length === 0) return undefined;
+    pop () {
+        if ( this.length === 0 ) return undefined;
         let temp = this.tail;
-        if (this.length === 1) {
+        if ( this.length === 1 ) {
             this.head = null;
             this.tail = null;
         } else {
@@ -77,9 +77,9 @@ class DoublyLinkedList {
         return temp;
     }
 
-    unshift(value) {
-        const newNode = new Node(value);
-        if (this.length === 0) {
+    unshift ( value ) {
+        const newNode = new Node( value );
+        if ( this.length === 0 ) {
             this.head = newNode;
             this.tail = newNode;
         } else {
@@ -91,10 +91,10 @@ class DoublyLinkedList {
         return this;
     }
 
-    shift() {
-        if (this.length === 0) return undefined;
+    shift () {
+        if ( this.length === 0 ) return undefined;
         let temp = this.head;
-        if (this.length === 1) {
+        if ( this.length === 1 ) {
             this.head = null;
             this.tail = null;
         } else {
@@ -105,39 +105,39 @@ class DoublyLinkedList {
         this.length--;
         return temp;
     }
-    
-    get(index) {
-        if (index < 0 || index >= this.length) return undefined;
+
+    get ( index ) {
+        if ( index < 0 || index >= this.length ) return undefined;
         let temp = this.head;
-        if (index < this.length/2) {
-            for (let i = 0; i < index; i++) { 
+        if ( index < this.length / 2 ) {
+            for ( let i = 0; i < index; i++ ) {
                 temp = temp.next;
             }
         } else {
             temp = this.tail;
-            for (let i = this.length - 1; i > index; i--) { 
+            for ( let i = this.length - 1; i > index; i-- ) {
                 temp = temp.prev;
             }
         }
         return temp;
     }
 
-    set(index, value) {
-        let temp = this.get(index);
-        if (temp) {
+    set ( index, value ) {
+        let temp = this.get( index );
+        if ( temp ) {
             temp.value = value;
             return true;
         }
         return false;
     }
 
-    insert(index, value) {
-        if (index < 0 || index > this.length) return false;
-        if (index === this.length) return this.push(value);
-        if (index === 0) return this.unshift(value);
-        
-        const newNode = new Node(value);
-        const before = this.get(index - 1);
+    insert ( index, value ) {
+        if ( index < 0 || index > this.length ) return false;
+        if ( index === this.length ) return this.push( value );
+        if ( index === 0 ) return this.unshift( value );
+
+        const newNode = new Node( value );
+        const before = this.get( index - 1 );
         const after = before.next;
         before.next = newNode;
         newNode.prev = before;
@@ -147,39 +147,38 @@ class DoublyLinkedList {
         return true;
     }
 
-	/// WRITE REMOVE METHOD HERE ///
-	//                            //
-	//                            //
-	//                            //
-	//                            //
-	////////////////////////////////
+    /// WRITE REMOVE METHOD HERE ///
+    remove ( index ) {
 
- }
+    }
+    ////////////////////////////////
 
- 
- function test() {
-    let myDLL = new DoublyLinkedList(1);
-    myDLL.push(2);
-    myDLL.push(3);
-    myDLL.push(4);
-    myDLL.push(5);
+}
 
-    console.log("DLL before remove():");
+
+function test () {
+    let myDLL = new DoublyLinkedList( 1 );
+    myDLL.push( 2 );
+    myDLL.push( 3 );
+    myDLL.push( 4 );
+    myDLL.push( 5 );
+
+    console.log( "DLL before remove():" );
     myDLL.printList();
 
-    console.log("\nRemoved node:");
-    console.log(myDLL.remove(2).value);
-    console.log("DLL after remove() in middle:");
+    console.log( "\nRemoved node:" );
+    console.log( myDLL.remove( 2 ).value );
+    console.log( "DLL after remove() in middle:" );
     myDLL.printList();
 
-    console.log("\nRemoved node:");
-    console.log(myDLL.remove(0).value);
-    console.log("DLL after remove() of first node:");
+    console.log( "\nRemoved node:" );
+    console.log( myDLL.remove( 0 ).value );
+    console.log( "DLL after remove() of first node:" );
     myDLL.printList();
 
-    console.log("\nRemoved node:");
-    console.log(myDLL.remove(2).value);
-    console.log("DLL after remove() of last node:");
+    console.log( "\nRemoved node:" );
+    console.log( myDLL.remove( 2 ).value );
+    console.log( "DLL after remove() of last node:" );
     myDLL.printList();
 }
 
