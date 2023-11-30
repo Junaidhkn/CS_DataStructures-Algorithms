@@ -64,7 +64,22 @@ class DoublyLinkedList {
 
     /// WRITE POP METHOD HERE ///
     pop () {
-
+        let temp = this.tail
+        if ( this.length === 0 ) {
+            return undefined
+        }
+        if ( this.length === 1 ) {
+            this.head = null
+            this.tail = null
+            this.length = 0
+            return temp
+        } else {
+            this.tail = this.tail.prev
+            this.tail.next = null
+            temp.prev = null
+        }
+        this.length--
+        return temp
     }
     /////////////////////////////
 
