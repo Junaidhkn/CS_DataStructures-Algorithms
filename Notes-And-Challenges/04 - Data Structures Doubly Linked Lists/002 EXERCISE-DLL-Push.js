@@ -50,7 +50,18 @@ class DoublyLinkedList {
 
     /// WRITE PUSH METHOD HERE ///
     push ( value ) {
-
+        const newNode = new Node( value )
+        if ( !this.head ) {
+            this.head = newNode
+            this.tail = newNode
+            this.prev = null
+        } else {
+            newNode.prev = this.tail
+            this.tail.next = newNode
+            this.tail = newNode
+        }
+        this.length++
+        return this
     }
     //////////////////////////////
 
