@@ -1,72 +1,81 @@
 class Node {
-    constructor(value) {
+    constructor( value ) {
         this.value = value;
         this.next = null;
     }
 }
 
 class Stack {
-    constructor(value) {
-        const newNode = new Node(value);
+    constructor( value ) {
+        const newNode = new Node( value );
         this.top = newNode;
         this.length = 1;
     }
 
-    printStack() {
+    printStack () {
         let temp = this.top;
-        while (temp !== null) {
-            console.log(temp.value);
+        while ( temp !== null ) {
+            console.log( temp.value );
             temp = temp.next;
         }
     }
 
-    getTop() {
-        if (this.top === null) {
-            console.log("Top: null");
+    getTop () {
+        if ( this.top === null ) {
+            console.log( "Top: null" );
         } else {
-            console.log("Top: " + this.top.value);
+            console.log( "Top: " + this.top.value );
         }
     }
 
-    getLength() {
-        console.log("Length: " + this.length);
+    getLength () {
+        console.log( "Length: " + this.length );
     }
 
-    makeEmpty() {
+    makeEmpty () {
         this.top = null;
         this.height = 0;
     }
- 
-	/// WRITE PUSH METHOD HERE ///
-	//                          //
-	//                          //
-	//                          //
-	//                          //
-	//////////////////////////////
-     
+
+    /// WRITE PUSH METHOD HERE ///
+
+    push ( value ) {
+        const newNode = new Node( value );
+        if ( this.length === 0 ) {
+            this.top = newNode
+        } else {
+            newNode.next = this.top
+            this.top = newNode
+        }
+        this.length++
+        return this
+    }
+
+    //////////////////////////////
+
 }
- 
 
 
-function test() {
-    let myStack = new Stack(2);
 
-    console.log("Before push():");
-    console.log("--------------");
+function test () {
+    let myStack = new Stack( 2 );
+
+    console.log( "Before push():" );
+    console.log( "--------------" );
     myStack.getTop();
     myStack.getLength();
 
-    console.log("\nStack:");
+    console.log( "\nStack:" );
     myStack.printStack();
 
-    myStack.push(1);
+    myStack.push( 1 );
 
-    console.log("\n\nAfter push():");
-    console.log("-------------");
+    console.log( "\n\nAfter push():" );
+    console.log( "-------------" );
     myStack.getTop();
     myStack.getLength();
 
-    console.log("\nStack:");
+    console.log( "\nStack:" );
     myStack.printStack();
 }
 
