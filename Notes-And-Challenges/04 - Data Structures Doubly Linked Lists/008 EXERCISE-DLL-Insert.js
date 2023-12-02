@@ -133,6 +133,22 @@ class DoublyLinkedList {
 
     /// WRITE INSERT METHOD HERE ///
     insert ( index, value ) {
+        if ( index < 0 || index > this.length ) return false;
+        if ( index === this.length ) return this.push( value );
+        if ( index === 0 ) return this.unshift( value );
+
+
+        const newNode = new Node( value )
+        const before = this.get( index - 1 )
+        const after = before.next
+
+        before.next = newNode
+        newNode.prev = before
+        newNode.next = after
+        after.prev = newNode
+
+        this.length++
+        return this
 
     }
     ////////////////////////////////
