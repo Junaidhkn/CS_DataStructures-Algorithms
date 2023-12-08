@@ -1,64 +1,72 @@
 // WRITE NODE CLASS HERE //
-//                       //
-//                       //
-//                       //
-//                       //
+
+class Node {
+    constructor( value ) {
+        this.value = value
+        this.next = null
+    }
+}
+
 ///////////////////////////
 
 class Queue {
-	// WRITE QUEUE CONSTRUCTOR HERE //
-	//                              //
-	//                              //
-	//                              //
-	//                              //
-	//////////////////////////////////
+    // WRITE QUEUE CONSTRUCTOR HERE //
 
-    printQueue() {
+    constructor( value ) {
+        const newNode = new Node( value )
+        this.first = newNode
+        this.last = newNode
+        this.length = 1
+    }
+
+    //////////////////////////////////
+
+    printQueue () {
         let temp = this.first;
-        while (temp !== null) {
-            console.log(temp.value);
+        while ( temp !== null ) {
+            console.log( temp.value );
             temp = temp.next;
         }
     }
 
-    getFirst() {
-        if (this.first === null) {
-            console.log("First: null");
+    getFirst () {
+        if ( this.first === null ) {
+            console.log( "First: null" );
         } else {
-            console.log("First: " + this.first.value);
+            console.log( "First: " + this.first.value );
         }
     }
 
-    getLast() {
-        if (this.last === null) {
-            console.log("Last: null");
+    getLast () {
+        if ( this.last === null ) {
+            console.log( "Last: null" );
         } else {
-            console.log("Last: " + this.last.value);
+            console.log( "Last: " + this.last.value );
         }
     }
 
-    getLength() {
-        console.log("Length: " + this.length);
+    getLength () {
+        console.log( "Length: " + this.length );
     }
 
-    makeEmpty() {
+    makeEmpty () {
         this.first = null;
         this.last = null;
         this.length = 0;
     }
 
 }
- 
- 
 
-function test() {
-    let myQueue = new Queue(4);
+
+
+function test () {
+    let myQueue = new Queue( 4 );
 
     myQueue.getFirst();
     myQueue.getLast();
     myQueue.getLength();
 
-    console.log("\nQueue:");
+    console.log( "\nQueue:" );
     myQueue.printQueue();
 }
 
