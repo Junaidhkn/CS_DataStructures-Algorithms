@@ -1,28 +1,26 @@
 // WRITE NODE CLASS HERE //
-//                       //
-//                       //
-//                       //
-//                       //
+
+
+
 ///////////////////////////
- 
+
 class BST {
-	// WRITE BST CONSTRUCTOR HERE //
-	//                            //
-	//                            //
-	//                            //
-	//                            //
-	////////////////////////////////
+    // WRITE BST CONSTRUCTOR HERE //
+
+
+
+    ////////////////////////////////
 }
 
- 
- 
-function test() {
-    let myBST = new BST();   
-    
-    if (myBST.root === null) {
-        console.log("Root: null");
+
+
+function test () {
+    let myBST = new BST();
+
+    if ( myBST.root === null ) {
+        console.log( "Root: null" );
     } else {
-        console.log("Root:", myBST.root.value);
+        console.log( "Root:", myBST.root.value );
     }
 }
 

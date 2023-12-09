@@ -1,34 +1,33 @@
 class Node {
-    constructor(value) {
+    constructor( value ) {
         this.value = value;
         this.left = null;
         this.right = null;
     }
 }
- 
+
 class BST {
     constructor() {
         this.root = null;
     }
 
-	/// WRITE INSERT METHOD HERE ///
-	//                            //
-	//                            //
-	//                            //
-	//                            //
-	////////////////////////////////
+    /// WRITE INSERT METHOD HERE ///
+
+
+
+    ////////////////////////////////
 
 }
 
 
 
-function test() {
+function test () {
 
     let myBST = new BST();
 
-    myBST.insert(2);
-    myBST.insert(1);
-    myBST.insert(3);
+    myBST.insert( 2 );
+    myBST.insert( 1 );
+    myBST.insert( 3 );
 
     /*
         THE LINES ABOVE CREATE THIS TREE:
@@ -38,9 +37,9 @@ function test() {
     */
 
 
-    console.log("Root:", myBST.root.value);
-    console.log("\nRoot->Left:", myBST.root.left.value);
-    console.log("\nRoot->Right:", myBST.root.right.value);
+    console.log( "Root:", myBST.root.value );
+    console.log( "\nRoot->Left:", myBST.root.left.value );
+    console.log( "\nRoot->Right:", myBST.root.right.value );
 }
 
 
@@ -57,4 +56,4 @@ test();
     Root->Right: 3
 
 */
-      
+
