@@ -13,6 +13,22 @@ class BST {
 }
 
 
+// //  Object Perspective
+
+// {
+//     value: 4,
+//         left: {
+//                  value: 3,
+//                  left: null,
+//                  right: null
+//     },
+//     right: {
+//                  value: 3,
+//                  left: null,
+//                  right: null
+//     },
+// }
+
 
 function test () {
     let myBST = new BST();
