@@ -14,6 +14,7 @@ class BST {
     // WRITE BST CONSTRUCTOR HERE //
 
     constructor( value ) {
+        const newNode = new Node( value )
         this.root = null
     }
 
