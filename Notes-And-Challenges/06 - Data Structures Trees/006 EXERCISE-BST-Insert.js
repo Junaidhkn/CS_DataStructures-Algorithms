@@ -6,6 +6,21 @@ class Node {
     }
 }
 
+// // Notes
+
+// Check to see if the root is null, if null then root is newNode
+// Declare a Variable for root
+//  ie; let temp = this.root
+
+//  Also note that we might have a node value being a dupicate, thus additional property count would be added, in the Node class, the following example ignores this scenerio
+
+// While Loop:
+//      if newNode = temp return undefined
+//      if < Left else > Right
+//      if null insert newNode else move to next
+// 
+
+
 class BST {
     constructor() {
         this.root = null;
