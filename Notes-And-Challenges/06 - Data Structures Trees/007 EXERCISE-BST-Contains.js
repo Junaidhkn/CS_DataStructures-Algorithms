@@ -10,6 +10,19 @@ class BST {
     constructor() {
         this.root = null;
     }
+    // // Notes
+
+    // Check to see if the root is null, if null then root is newNode
+    // Declare a Variable for root
+    //  ie; let temp = this.root
+
+    //  Also note that we might have a node value being a dupicate, thus additional property count would be added, in the Node class, the following example ignores this scenerio
+
+    // While Loop:
+    //      if newNode = temp return undefined
+    //      if < Left else > Right
+    //      if null insert newNode else move to next
+    // 
 
     insert ( value ) {
         const newNode = new Node( value );
@@ -35,6 +48,16 @@ class BST {
             }
         }
     }
+
+    // // Contains Notes 
+    // First check to see if root == null then return false
+    // if tree does have items, then let temp = this.root
+    // While (temp): Because Binary Search Trees are null terminated lists,untill temp = null, the loop goes on finding the value
+    // Conditions
+    //      if < then; Left
+    //      else if > then; Right
+    //      else  = return true 
+
 
     /// WRITE CONTAINS METHOD HERE ///
 
