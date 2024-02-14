@@ -1,5 +1,6 @@
 // WRITE NODE CLASS HERE //
 //  Note that Binary Search trees are O(Log(n)), often called - Divide and Conquor
+// Worst case scenerio, if the item that we are looking for ie; consider a number that is the greatest number positioned at leaf and all of its parent nodes are also to the furthest right being larger number, that would turn it to a linked list then its - O(n)
 
 
 class Node {
