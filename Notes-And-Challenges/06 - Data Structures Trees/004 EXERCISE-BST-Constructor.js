@@ -1,4 +1,6 @@
 // WRITE NODE CLASS HERE //
+//  Note that Binary Search trees are O(Log(n)), often called - Divide and Conquor
+
 
 class Node {
     constructor( value ) {
