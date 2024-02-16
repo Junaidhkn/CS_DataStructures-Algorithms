@@ -1,47 +1,45 @@
 class HashTable {
-	// CREATE HASHTABLE CONSTRUCTOR HERE//
-	//                                  //
-	//                                  //
-	//                                  //
-	//                                  //
-	//////////////////////////////////////
-   
-    _hash(key) {
+    // CREATE HASHTABLE CONSTRUCTOR HERE//
+    constructor( size = 7 ) {
+        this.dataMap = new Array( size )
+    }
+    //////////////////////////////////////
+
+    _hash ( key ) {
         let hash = 0;
-        for (let i = 0; i < key.length; i++) {
-            hash = (hash + key.charCodeAt(i) * 23) % this.dataMap.length;
+        for ( let i = 0; i < key.length; i++ ) {
+            hash = ( hash + key.charCodeAt( i ) * 23 ) % this.dataMap.length;
+            console.log( hash )
         }
         return hash;
     }
 
-    printTable() {
-        for (let i = 0; i < this.dataMap.length; i++) {
-            console.log(i, ": ", this.dataMap[i]);
+    printTable () {
+        for ( let i = 0; i < this.dataMap.length; i++ ) {
+            console.log( i, ": ", this.dataMap[i] );
         }
     }
 
 }
 
-
-
-function test() {
+function test () {
     let myHashTable = new HashTable();
-    myHashTable.printTable();  
+    myHashTable.printTable()
 }
 
 
 test();
 
-    
-    /*
-        EXPECTED OUTPUT:
-        ----------------
-        0 :  undefined
-        1 :  undefined
-        2 :  undefined
-        3 :  undefined
-        4 :  undefined
-        5 :  undefined
-        6 :  undefined
 
-    */
+/*
+    EXPECTED OUTPUT:
+    ----------------
+    0 :  undefined
+    1 :  undefined
+    2 :  undefined
+    3 :  undefined
+    4 :  undefined
+    5 :  undefined
+    6 :  undefined
+
+*/
