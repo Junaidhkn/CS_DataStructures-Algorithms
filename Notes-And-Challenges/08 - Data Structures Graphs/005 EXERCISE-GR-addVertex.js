@@ -33,10 +33,15 @@ class Graph {
     }
 
     /// WRITE ADDVERTEX METHOD HERE ///
-    //                               //
-    //                               //
-    //                               //
-    //                               //
+
+    addVertex ( vertex ) {
+        if ( !this.adjacencyList[vertex] ) {
+            this.adjacencyList[vertex] = []
+            return true
+        }
+        return false
+    }
+
     ///////////////////////////////////
 
 }
