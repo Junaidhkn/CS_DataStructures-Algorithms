@@ -48,6 +48,7 @@ class HashTable {
                 }
             }
         }
+        return allKeys
     }
 
     ////////////////////////////////
