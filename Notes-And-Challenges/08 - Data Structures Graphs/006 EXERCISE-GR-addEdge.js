@@ -3,43 +3,47 @@ class Graph {
         this.adjacencyList = {};
     }
 
-    printGraph() {
-        if (Object.keys(this.adjacencyList).length !== 0) {
-            console.log("{");
-            for (const [key, value] of Object.entries(this.adjacencyList)) {
-                console.log(" ", `${key}: ${value}`);
+    printGraph () {
+        if ( Object.keys( this.adjacencyList ).length !== 0 ) {
+            console.log( "{" );
+            for ( const [key, value] of Object.entries( this.adjacencyList ) ) {
+                console.log( " ", `${key}: ${value}` );
             }
-            console.log("}");
+            console.log( "}" );
         } else {
-            console.log("{}");
+            console.log( "{}" );
         }
     }
 
-    addVertex(vertex) {
-        if(!this.adjacencyList[vertex]) {
+    addVertex ( vertex ) {
+        if ( !this.adjacencyList[vertex] ) {
             this.adjacencyList[vertex] = [];
             return true;
         }
         return false;
     }
 
-	/// WRITE ADDEDGE METHOD HERE ///
-	//                             //
-	//                             //
-	//                             //
-	//                             //
-	/////////////////////////////////
+    /// WRITE ADDEDGE METHOD HERE ///
+
+    addEdge ( vertex1, vertex2 ) {
+        if ( this.adjacencyList[vertex1] && this.adjacencyList[vertex2] ) {
+            this.adjacencyList[vertex1].push( vertex2 )
+            this.adjacencyList[vertex2].push( vertex1 )
+        }
+    }
+
+    /////////////////////////////////
 
 }
 
 
 
-function test() {
+function test () {
     let myGraph = new Graph();
 
-    myGraph.addVertex(1);
-    myGraph.addVertex(2);
-    myGraph.addEdge("1", "2");
+    myGraph.addVertex( 1 );
+    myGraph.addVertex( 2 );
+    myGraph.addEdge( "1", "2" );
 
     myGraph.printGraph();
 }
@@ -56,4 +60,4 @@ test();
       2: 1
     }
 
-*/  
+*/

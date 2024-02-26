@@ -3,55 +3,54 @@ class Graph {
         this.adjacencyList = {};
     }
 
-    printGraph() {
-        if (Object.keys(this.adjacencyList).length !== 0) {
-            console.log("{");
-            for (const [key, value] of Object.entries(this.adjacencyList)) {
-                console.log(" ", `${key}: ${value}`);
+    printGraph () {
+        if ( Object.keys( this.adjacencyList ).length !== 0 ) {
+            console.log( "{" );
+            for ( const [key, value] of Object.entries( this.adjacencyList ) ) {
+                console.log( " ", `${key}: ${value}` );
             }
-            console.log("}");
+            console.log( "}" );
         } else {
-            console.log("{}");
+            console.log( "{}" );
         }
     }
 
-    addVertex(vertex) {
-        if(!this.adjacencyList[vertex]) {
+    addVertex ( vertex ) {
+        if ( !this.adjacencyList[vertex] ) {
             this.adjacencyList[vertex] = [];
             return true;
         }
         return false;
     }
 
-    addEdge(vertex1, vertex2) {
-        if (this.adjacencyList[vertex1] && this.adjacencyList[vertex2]) {
-            this.adjacencyList[vertex1].push(vertex2);
-            this.adjacencyList[vertex2].push(vertex1);
+    addEdge ( vertex1, vertex2 ) {
+        if ( this.adjacencyList[vertex1] && this.adjacencyList[vertex2] ) {
+            this.adjacencyList[vertex1].push( vertex2 );
+            this.adjacencyList[vertex2].push( vertex1 );
             return true;
         }
         return false;
     }
 
-	/// WRITE REMOVEEDGE METHOD HERE ///
-	//                                //
-	//                                //
-	//                                //
-	//                                //
-	////////////////////////////////////
+    /// WRITE REMOVEEDGE METHOD HERE ///
+
+
+
+    ////////////////////////////////////
 
 }
 
 
 
-function test() {
+function test () {
     let myGraph = new Graph();
 
-    myGraph.addVertex("A");
-    myGraph.addVertex("B");
-    myGraph.addVertex("C");
-    myGraph.addEdge("A", "B");
-    myGraph.addEdge("B", "C");
-    myGraph.addEdge("C", "A");
+    myGraph.addVertex( "A" );
+    myGraph.addVertex( "B" );
+    myGraph.addVertex( "C" );
+    myGraph.addEdge( "A", "B" );
+    myGraph.addEdge( "B", "C" );
+    myGraph.addEdge( "C", "A" );
 
     myGraph.printGraph();
 }
