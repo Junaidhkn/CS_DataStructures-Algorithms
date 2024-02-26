@@ -37,6 +37,8 @@ class Graph {
     addVertex ( vertex ) {
         if ( !this.adjacencyList[vertex] ) {
             this.adjacencyList[vertex] = []
+            console.log( this.adjacencyList )
+            console.log( this.adjacencyList[vertex] )
             return true
         }
         return false
@@ -51,6 +53,7 @@ class Graph {
 function test () {
     let myGraph = new Graph();
     myGraph.printGraph();
+    myGraph.addVertex( 'aa' )
 }
 
 
