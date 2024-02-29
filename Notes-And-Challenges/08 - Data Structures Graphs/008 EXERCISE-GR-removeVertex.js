@@ -75,6 +75,8 @@ function test () {
     myGraph.addEdge( "B", "D" );
     myGraph.addEdge( "C", "D" );
 
+    myGraph.removeVertex( 'D' )
+
     myGraph.printGraph();
 }
 
