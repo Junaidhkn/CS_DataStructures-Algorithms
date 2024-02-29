@@ -1,15 +1,17 @@
-function funcThree() {
-    console.log('Three')
+// A function that calls itself ...  ,   ...until it doesn't
+
+function funcThree () {
+    console.log( 'Three' )
 }
-    
-function funcTwo() {
+
+function funcTwo () {
     funcThree()
-    console.log('Two')
+    console.log( 'Two' )
 }
-    
-function funcOne() {
+
+function funcOne () {
     funcTwo()
-    console.log('One') 
+    console.log( 'One' )
 }
-    
+
 funcOne()
