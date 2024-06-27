@@ -1,2 +1,1 @@
-Repository Contains Computer Science Notes followed by the Frontend Masters
-Computer Science Courses:
+The following repository contains Computer Science Notes mainly Data structures and Algorithms code and practice Questions
