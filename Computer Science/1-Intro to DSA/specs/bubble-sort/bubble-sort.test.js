@@ -12,13 +12,11 @@
 
 function bubbleSort ( nums ) {
   for ( i = 0; i < nums.length; i++ ) {
-    for ( i = 0; i < nums.length; i++ ) {
-      if ( nums[i] > nums[i + 1] ) {
-        let temp = nums[i + 1]
-        nums[i + 1] = nums[i]
-        nums[i] = temp
-      } else if ( nums[i] < nums[i + 1] || nums[i] == nums[i + 1] ) {
-
+    for ( j = 0; j < nums.length - i - 1; j++ ) {
+      if ( nums[j] > nums[j + 1] ) {
+        let temp = nums[j]
+        nums[j] = nums[j + 1]
+        nums[j + 1] = temp
       }
     }
 
@@ -31,8 +29,8 @@ console.log( bubbleSort( array ) )
 
 // // unit tests
 // // do not modify the below code
-// test.skip( "bubble sort", function () {
-//   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
-//   const sortedNums = bubbleSort( nums );
-//   expect( sortedNums ).toEqual( [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] );
-// } );
+test.skip( "bubble sort", function () {
+  const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
+  const sortedNums = bubbleSort( nums );
+  expect( sortedNums ).toEqual( [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] );
+} );
