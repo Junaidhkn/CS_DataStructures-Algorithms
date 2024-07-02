@@ -11,8 +11,8 @@
 */
 
 function bubbleSort ( nums ) {
-  for ( i = 0; i < nums.length; i++ ) {
-    for ( j = 0; j < nums.length - i - 1; j++ ) {
+  for ( let i = 0; i < nums.length; i++ ) {
+    for ( let j = 0; j < nums.length - i - 1; j++ ) {
       if ( nums[j] > nums[j + 1] ) {
         let temp = nums[j]
         nums[j] = nums[j + 1]
