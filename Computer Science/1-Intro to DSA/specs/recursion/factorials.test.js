@@ -24,6 +24,8 @@
 
 // }
 
+
+// Iterative Approach:
 function fibonacci ( n ) {
   if ( n === 0 ) return 0;
   if ( n === 1 ) return 1;
@@ -37,6 +39,37 @@ function fibonacci ( n ) {
   return curr;
 }
 
+// Recursive Approach with Memoization:
+function fibonacciRecursive ( n, memo = {} ) {
+  if ( n in memo ) return memo[n];
+  if ( n === 0 ) return 0;
+  if ( n === 1 ) return 1;
+
+  memo[n] = fibonacciRecursive( n - 1, memo ) + fibonacciRecursive( n - 2, memo );
+  return memo[n];
+}
+
+console.log( fibonacciRecursive( 100 ) ); // Outputs the 100th Fibonacci number
+
+
+
+/**
+
+// Iterative Approach:
+
+Initialize two variables, prev (previous Fibonacci number) and curr (current Fibonacci number), to 0 and 1 respectively.
+Use a loop to iterate from 2 to n, updating the prev and curr variables to get the next Fibonacci number.
+Return curr as the n-th Fibonacci number.
+
+// Recursive Approach with Memoization:
+
+Use an object memo to store previously calculated Fibonacci numbers.
+Check if the result for the current n is already in memo. If so, return the stored value.
+If n is 0 or 1, return 0 or 1 respectively.
+Recursively calculate the Fibonacci number by summing the results of fibonacciRecursive(n - 1, memo) and fibonacciRecursive(n - 2, memo), and store the result in memo before returning it.
+Both implementations efficiently compute the Fibonacci sequence, but the iterative approach is typically more straightforward and faster for large values of n.
+
+ */
 
 
 
