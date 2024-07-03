@@ -1,14 +1,4 @@
-/*
-  Make a function that computes a factorial recursively.
-  A factorial is when you take a number n and multiply by each preceding integer until you hit one.
-  n * (n-1) * (n-2) ... * 3 * 2 * 1
-  
-  Call the function factorial
-  
-  factorial(1) = 1
-  factorial(2) = 2
-  factorial(3) = 6 
-*/
+
 
 // Fibonacci Sequence
 
@@ -49,7 +39,7 @@ function fibonacciRecursive ( n, memo = {} ) {
   return memo[n];
 }
 
-console.log( fibonacciRecursive( 100 ) ); // Outputs the 100th Fibonacci number
+// console.log( fibonacciRecursive( 100 ) ); // Outputs the 100th Fibonacci number
 
 
 
@@ -78,9 +68,35 @@ function fibonacci ( n ) {
   }
   return sequence[n];
 }
+/*
+  Make a function that computes a factorial recursively.
+  A factorial is when you take a number n and multiply by each preceding integer until you hit one.
+  n * (n-1) * (n-2) ... * 3 * 2 * 1
+  
+  Call the function factorial
+  
+  factorial(1) = 1
+  factorial(2) = 2
+  factorial(3) = 6 
+*/
 
+function factorial ( n ) {
+  let ans = n
+  for ( i = 1; i < n; i++ ) {
+    ans = ans * ( n - i )
+  }
+  return ans
+}
 
-function factorial ( n ) { }
+// Recursion
+
+function factorialRecursion ( n ) {
+  if ( n < 2 ) return 1
+  return n * factorialRecursion( n - 1 )
+}
+
+console.log( factorial( 4 ) )
+console.log( factorialRecursion( 4 ) )
 
 // unit tests
 // do not modify the below code
