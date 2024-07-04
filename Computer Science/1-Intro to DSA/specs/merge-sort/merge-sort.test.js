@@ -46,13 +46,13 @@ const merge = ( left, right ) => {
 }
 
 
-console.log( mergeSort( [10, 5, 3, 8, 2, 6, 4, 7, 9, 1] ) )
+// console.log( mergeSort( [10, 5, 3, 8, 2, 6, 4, 7, 9, 1] ) )
 
 
 // unit tests
 // do not modify the below code
-// test.skip( "merge sort", function () {
-//   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
-//   const ans = mergeSort( nums );
-//   expect( ans ).toEqual( [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] );
-// } );
+test( "merge sort", function () {
+  const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
+  const ans = mergeSort( nums );
+  expect( ans ).toEqual( [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] );
+} );

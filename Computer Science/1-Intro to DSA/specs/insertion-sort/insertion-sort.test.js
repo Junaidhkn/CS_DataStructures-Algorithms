@@ -26,14 +26,14 @@ function insertionSort ( nums ) {
   return nums;
 }
 
-let array = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
+// let array = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
 
-console.log( insertionSort( array ) )
+// console.log( insertionSort( array ) )
 
 // unit tests
 // do not modify the below code
-// test.skip( "insertion sort", function () {
-//   const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
-//   insertionSort( nums );
-//   expect( nums ).toEqual( [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] );
-// } );
+test( "insertion sort", function () {
+  const nums = [10, 5, 3, 8, 2, 6, 4, 7, 9, 1];
+  insertionSort( nums );
+  expect( nums ).toEqual( [1, 2, 3, 4, 5, 6, 7, 8, 9, 10] );
+} );
