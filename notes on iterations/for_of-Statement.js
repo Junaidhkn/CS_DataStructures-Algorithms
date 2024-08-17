@@ -9,7 +9,7 @@ for (variable of iterable)
 */
 
 
-
+// The following example shows the difference between a for...of loop and a for...in loop.While for...in iterates over property names, for...of iterates over property values:
 
 const arr = [3, 5, 7];
 arr.foo = "hello";
@@ -24,7 +24,7 @@ for ( const i of arr ) {
 }
 // Logs: 3 5 7
 
-
+// The for...of and for...in statements can also be used with destructuring.For example, you can simultaneously loop over the keys and values of an object using Object.entries().
 
 const obj = { foo: 1, bar: 2 };
 
