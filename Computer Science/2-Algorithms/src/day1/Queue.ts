@@ -43,6 +43,9 @@ export default class Queue<T> {
         let temp = this.head;
         this.head = temp.next;
         temp.next = undefined;
+        if (this.length === 0) {
+            this.tail = undefined;
+        }
         return temp.value;
     }
 
