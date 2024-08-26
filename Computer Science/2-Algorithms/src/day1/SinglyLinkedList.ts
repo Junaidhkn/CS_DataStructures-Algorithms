@@ -20,27 +20,50 @@ export default class SinglyLinkedList<T> {
         this.length = 1;
     }
 
-    prepend(item: T): void {
-        // Implementation here
+    prepend(item: T): SinglyLinkedList<T> {
+        const newNode = new Node(item);
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+            return this;
+        }
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
     }
-
     insertAt(item: T, idx: number): void {
         // Implementation here
     }
 
-    append(item: T): void {
-        // Implementation here
+    append(item: T): SinglyLinkedList<T> {
+        const newNode = new Node(item);
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else if (this.tail) {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+
+        this.length++;
+        return this;
     }
 
     remove(item: T): T | undefined {
         // Implementation here
+        return;
     }
 
     get(idx: number): T | undefined {
         // Implementation here
+        return;
     }
 
     removeAt(idx: number): T | undefined {
         // Implementation here
+        return;
     }
 }
