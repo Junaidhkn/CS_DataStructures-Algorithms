@@ -10,14 +10,25 @@
 */
 // number = 1391 , place = 0 , longestNumber = 4
 // returns 1
-function getDigit ( number, place, longestNumber ) { }
+function getDigit ( number, place, longestNumber ) {
+  const string = number.toString();
+  const size = string.length;
 
-function getLongestNumber () {
+  const mod = longestNumber - size;
+  return string[place - mod] || 0;
+}
 
+function findLongestNumber ( array ) {
+  let longest = 0;
+  for ( let i = 0; i < array.length; i++ ) {
+    const currentLength = array[i].toString().length;
+    longest = currentLength > longest ? currentLength : longest;
+  }
+  return longest;
 }
 
 function radixSort ( array ) {
-  // code goes here
+  // code goes here 
 }
 
 // unit tests
