@@ -8,15 +8,22 @@
   it ends up being a lot more simple to implement.
 
 */
+// number = 1391 , place = 0 , longestNumber = 4
+// returns 1
+function getDigit ( number, place, longestNumber ) { }
 
-function radixSort(array) {
+function getLongestNumber () {
+
+}
+
+function radixSort ( array ) {
   // code goes here
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("radix sort", function () {
-  it("should sort correctly", () => {
+describe.skip( "radix sort", function () {
+  it( "should sort correctly", () => {
     const nums = [
       20,
       51,
@@ -40,8 +47,8 @@ describe.skip("radix sort", function () {
       1200,
       633
     ];
-    const ans = radixSort(nums);
-    expect(ans).toEqual([
+    const ans = radixSort( nums );
+    expect( ans ).toEqual( [
       1,
       3,
       4,
@@ -63,14 +70,14 @@ describe.skip("radix sort", function () {
       1244,
       3000,
       3001
-    ]);
-  });
-  it("should sort 99 random numbers correctly", () => {
+    ] );
+  } );
+  it( "should sort 99 random numbers correctly", () => {
     const fill = 99;
-    const nums = new Array(fill)
+    const nums = new Array( fill )
       .fill()
-      .map(() => Math.floor(Math.random() * 500000));
-    const ans = radixSort(nums);
-    expect(ans).toEqual(nums.sort());
-  });
-});
+      .map( () => Math.floor( Math.random() * 500000 ) );
+    const ans = radixSort( nums );
+    expect( ans ).toEqual( nums.sort() );
+  } );
+} );
