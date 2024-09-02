@@ -53,7 +53,7 @@ find_max(array), number_of_digits(number), get_digit_value(number, digit_positio
 
 //! Optimized
 
-function radixSort ( array ) {
+function radixSortOptimised ( array ) {
   if ( array.length === 0 ) return array;
 
   // Find the maximum number to determine the number of digits
