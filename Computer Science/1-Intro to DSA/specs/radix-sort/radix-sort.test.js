@@ -8,6 +8,98 @@
   it ends up being a lot more simple to implement.
 
 */
+/*
+//* Pseudo Code for Optimized Radix Sort
+
+RADIX_SORT(array):
+    ! Find the maximum number to determine the number of digits
+    max_number = find_max(array)
+    d = number_of_digits(max_number)
+
+    !  Perform counting sort for each digit from least to most significant
+    for i from 0 to d-1:
+        array = COUNTING_SORT_BY_DIGIT(array, i)
+
+    return array
+
+
+COUNTING_SORT_BY_DIGIT(array, digit_position):
+    ! Initialize count array for digits 0-9
+    count = new Array(10).fill(0)
+    output = new Array(array.length)
+
+    ! Store count of occurrences of each digit at the current position
+    for each number in array:
+        digit = get_digit_value(number, digit_position)
+        count[digit] += 1
+
+    ! Update count array to hold actual positions in output
+    for i from 1 to 9:
+        count[i] += count[i - 1]
+
+    ! Build the output array in reverse to maintain stable sorting
+    for each number in array (in reverse order):
+        digit = get_digit_value(number, digit_position)
+        output[count[digit] - 1] = number
+        count[digit] -= 1
+
+    return output
+
+
+!  Helper functions remain the same as previous explanation
+find_max(array), number_of_digits(number), get_digit_value(number, digit_position)
+
+*/
+
+//! Optimized
+
+function radixSort ( array ) {
+  if ( array.length === 0 ) return array;
+
+  // Find the maximum number to determine the number of digits
+  const maxNumber = Math.max( ...array );
+  const maxDigits = Math.floor( Math.log10( maxNumber ) ) + 1;
+
+  // Perform counting sort for each digit from least significant to most significant
+  for ( let digitPosition = 0; digitPosition < maxDigits; digitPosition++ ) {
+    array = countingSortByDigit( array, digitPosition );
+  }
+
+  return array;
+}
+
+function countingSortByDigit ( array, digitPosition ) {
+  const count = new Array( 10 ).fill( 0 );
+  const output = new Array( array.length );
+
+  // Store count of occurrences of each digit at the current digit position
+  for ( let i = 0; i < array.length; i++ ) {
+    const digit = getDigitValue( array[i], digitPosition );
+    count[digit]++;
+  }
+
+  // Update the count array to hold actual positions in output
+  for ( let i = 1; i < 10; i++ ) {
+    count[i] += count[i - 1];
+  }
+
+  // Build the output array in reverse order to maintain stable sorting
+  for ( let i = array.length - 1; i >= 0; i-- ) {
+    const digit = getDigitValue( array[i], digitPosition );
+    output[count[digit] - 1] = array[i];
+    count[digit]--;
+  }
+
+  return output;
+}
+
+function getDigitValue ( number, position ) {
+  // Get the digit at the specified position from right (0-indexed)
+  return Math.floor( Math.abs( number ) / Math.pow( 10, position ) ) % 10;
+}
+
+// Code implementation
+
 // number = 1391 , place = 0 , longestNumber = 4
 // returns 1
 function getDigit ( number, place, longestNumber ) {
