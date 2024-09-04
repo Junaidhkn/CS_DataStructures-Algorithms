@@ -41,4 +41,6 @@ export default function solve(
     wall: string,
     start: Point,
     end: Point,
-): Point[] {}
+): Point[] {
+    return [];
+}
