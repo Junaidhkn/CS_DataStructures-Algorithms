@@ -22,10 +22,42 @@ export default class DoublyLinkedList<T> {
         this.length = 1;
     }
 
-    prepend(item: T): void {}
+    prepend(item: T): DoublyLinkedList<T> {
+        const newNode = new Node(item);
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+            this.length++;
+            return this;
+        }
+        newNode.next = this.head;
+        this.head = newNode;
+        this.length++;
+        return this;
+    }
     insertAt(item: T, idx: number): void {}
-    append(item: T): void {}
+    append(item: T): DoublyLinkedList<T> {
+        const newNode = new Node(item);
+
+        if (this.length === 0) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else if (this.tail) {
+            this.tail.next = newNode;
+            this.tail = newNode;
+        }
+
+        this.length++;
+        return this;
+    }
     remove(item: T): T | undefined {}
-    get(idx: number): T | undefined {}
+    get(idx: number): T | undefined {
+        if (!this.head) return undefined;
+        let current: Node<T> | null = this.head;
+        for (let i = 0; i < idx && current !== null; i++) {
+            current = current.next;
+        }
+        return current?.value;
+    }
     removeAt(idx: number): T | undefined {}
 }
