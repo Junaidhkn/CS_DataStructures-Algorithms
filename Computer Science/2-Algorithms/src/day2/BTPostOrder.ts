@@ -6,11 +6,11 @@ function walk(curr: BinaryNode<number> | null, path: number[]): number[] {
     // recurse
 
     // pre
-    path.push(curr.value);
 
     // recurse
     walk(curr.left, path);
     walk(curr.right, path);
+    path.push(curr.value);
 
     // post
 
