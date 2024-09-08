@@ -23,9 +23,46 @@
 */
 export default class MinHeap {
     public length: number;
+    public data: number[];
 
-    constructor() {}
+    constructor() {
+        this.length = 0;
+        this.data = [];
+    }
 
     insert(value: number): void {}
     delete(): number {}
+
+    private heapifyDown(idx: number): void {
+        const leftIndex = this.leftChild(idx);
+        const rightChild = this.rightChild(idx);
+
+        if (idx >= this.length || leftIndex >= this.length) {
+            return;
+        }
+        const leftValue = this.data[]
+    }
+
+    private heapifyUp(idx: number): void {
+        if (idx === 0) return;
+        const parentIndex = this.parent(idx);
+        const parentValue = this.data[parentIndex];
+        const value = this.data[idx];
+
+        if (parentValue > value) {
+            this.data[idx] = parentValue;
+            this.data[parentIndex] = value;
+            this.heapifyUp(idx);
+        }
+    }
+
+    private parent(idx: number): number {
+        return Math.floor((idx - 1) / 2);
+    }
+    private leftChild(idx: number): number {
+        return idx * 2 + 1;
+    }
+    private rightChild(idx: number): number {
+        return idx * 2 + 2;
+    }
 }
