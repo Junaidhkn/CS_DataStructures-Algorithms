@@ -52,7 +52,8 @@ export default class MinHeap {
     private heapifyDown(idx: number): void {
         const leftIndex = this.leftChild(idx);
         const rightIndex = this.rightChild(idx);
-
+        // # leftIndex >= this.length
+        // Since leftIndex is calculated using 2 * idx + 1, it will always be larger than idx.If leftIndex is greater than or equal to this.length, it means the current node (idx) does not have any children because the left child is out of bounds.
         if (idx >= this.length || leftIndex >= this.length) {
             return;
         }
@@ -80,7 +81,7 @@ export default class MinHeap {
         if (parentValue > value) {
             this.data[idx] = parentValue;
             this.data[parentIndex] = value;
-            this.heapifyUp(idx);
+            this.heapifyUp(parentIndex);
         }
     }
 
