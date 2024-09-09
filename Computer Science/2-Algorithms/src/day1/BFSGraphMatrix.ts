@@ -1,3 +1,8 @@
+import {
+    convertTypeAcquisitionFromJson,
+    NamespaceDeclaration,
+} from "typescript";
+
 export default function bfs(
     graph: WeightedAdjacencyMatrix,
     source: number,
@@ -9,5 +14,36 @@ export default function bfs(
     seen[source] = true;
     const q: number[] = [source];
 
-    do {} while (q.length);
+    do {
+        const curr = q.shift() as number;
+        if (curr === needle) {
+            break;
+        }
+        const adjs = graph[curr];
+        for (let i = 0; i < adjs.length; ++i) {
+            if (adjs[i] === 0) {
+                continue;
+            }
+            if (seen[i]) {
+                continue;
+            }
+
+            seen[i] = true;
+            prev[i] = curr;
+            q.push(i);
+        }
+    } while (q.length);
+    // build it backwards
+
+    let curr = needle;
+    const out: number[] = [];
+
+    while (prev[curr] !== -1) {
+        out.push(curr);
+        curr = prev[curr];
+    }
+    if (out.length) {
+        return [source].concat(out.reverse());
+    }
+    return null;
 }
