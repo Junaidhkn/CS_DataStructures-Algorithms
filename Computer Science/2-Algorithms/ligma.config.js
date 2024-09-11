@@ -10,6 +10,7 @@ module.exports = {
         "DoublyLinkedList",
         "Queue",
         "Stack",
+        "DijkstraList",
         "ArrayList",
         "MazeSolver",
         "QuickSort",
