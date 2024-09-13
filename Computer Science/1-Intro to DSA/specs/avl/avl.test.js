@@ -22,51 +22,102 @@
 */
 
 class Tree {
-  // code goes here
+  constructor() {
+    this.root = null
+  }
+  add ( value ) {
+    if ( !this.root ) {
+      this.root = new Node( value )
+    } else {
+      this.root.add( value )
+    }
+  }
+
+  toObject () {
+    return this.root
+  }
 }
 
 class Node {
-  // code also goes here
+  constructor( value ) {
+    this.left = null
+    this.right = null
+    this.value = value
+    this.height = 1
+  }
+  add ( value ) {
+
+    // decide to go left or Right
+    // find the correct place to add
+    // make sure you're updating heights
+    this.balance()
+  }
+
+  balance () {
+    // ask is this node out of balance
+    // if no out of balance, do nothing
+    // if it is out of balance, do I need to single or double rotate
+    // if single, just call rotate on self
+    // if double, call rotate on child then on self
+  }
+
+  rotateRR () {
+    // Rotate
+    this.right.updateInNewLocation()
+    this.updateInNewLocation()
+  }
+
+  rotateLL () {
+    // Rotate
+    this.left.updateInNewLocation()
+    this.updateInNewLocation()
+  }
+
+  updateInNewLocation () {
+    // calculate the new height
+  }
+
+
 }
 
 // unit tests
 // do not modify the below code
-describe.skip("AVL Tree", function () {
-  test("creates a correct tree", () => {
+describe.skip( "AVL Tree", function () {
+  test( "creates a correct tree", () => {
     const nums = [3, 7, 4, 6, 5, 1, 10, 2, 9, 8];
     const tree = new Tree();
-    nums.map((num) => tree.add(num));
+    nums.map( ( num ) => tree.add( num ) );
     const objs = tree.toObject();
 
-    expect(objs.value).toEqual(4);
+    expect( objs.value ).toEqual( 4 );
 
-    expect(objs.left.value).toEqual(2);
+    expect( objs.left.value ).toEqual( 2 );
 
-    expect(objs.left.left.value).toEqual(1);
-    expect(objs.left.left.left).toBeNull();
-    expect(objs.left.left.right).toBeNull();
+    expect( objs.left.left.value ).toEqual( 1 );
+    expect( objs.left.left.left ).toBeNull();
+    expect( objs.left.left.right ).toBeNull();
 
-    expect(objs.left.right.value).toEqual(3);
-    expect(objs.left.right.left).toBeNull();
-    expect(objs.left.right.right).toBeNull();
+    expect( objs.left.right.value ).toEqual( 3 );
+    expect( objs.left.right.left ).toBeNull();
+    expect( objs.left.right.right ).toBeNull();
 
-    expect(objs.right.value).toEqual(7);
+    expect( objs.right.value ).toEqual( 7 );
 
-    expect(objs.right.left.value).toEqual(6);
-    expect(objs.right.left.right).toBeNull();
+    expect( objs.right.left.value ).toEqual( 6 );
+    expect( objs.right.left.right ).toBeNull();
 
-    expect(objs.right.left.left.value).toEqual(5);
-    expect(objs.right.left.left.left).toBeNull();
-    expect(objs.right.left.left.right).toBeNull();
+    expect( objs.right.left.left.value ).toEqual( 5 );
+    expect( objs.right.left.left.left ).toBeNull();
+    expect( objs.right.left.left.right ).toBeNull();
 
-    expect(objs.right.right.value).toEqual(9);
+    expect( objs.right.right.value ).toEqual( 9 );
 
-    expect(objs.right.right.left.value).toEqual(8);
-    expect(objs.right.right.left.left).toBeNull();
-    expect(objs.right.right.left.right).toBeNull();
+    expect( objs.right.right.left.value ).toEqual( 8 );
+    expect( objs.right.right.left.left ).toBeNull();
+    expect( objs.right.right.left.right ).toBeNull();
 
-    expect(objs.right.right.right.value).toEqual(10);
-    expect(objs.right.right.right.left).toBeNull();
-    expect(objs.right.right.right.right).toBeNull();
-  });
-});
+    expect( objs.right.right.right.value ).toEqual( 10 );
+    expect( objs.right.right.right.left ).toBeNull();
+    expect( objs.right.right.right.right ).toBeNull();
+  } );
+} );
