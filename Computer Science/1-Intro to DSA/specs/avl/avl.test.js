@@ -50,6 +50,28 @@ class Node {
     // decide to go left or Right
     // find the correct place to add
     // make sure you're updating heights
+    if ( value < this.value ) {
+      // go left
+      if ( this.left ) {
+        this.left.add( value )
+      } else {
+        this.left = new Node( value )
+      }
+      if ( !this.right || this.right.height < this.left.height ) {
+        this.height = this.left.height++
+      }
+    } else {
+      // go right
+      if ( this.right ) {
+        this.right.add( value )
+      } else {
+        this.right = new Node( value )
+      }
+      if ( !this.left || this.right.height > this.left.height ) {
+        this.height = this.right.height++
+      }
+    }
+
     this.balance()
   }
 
