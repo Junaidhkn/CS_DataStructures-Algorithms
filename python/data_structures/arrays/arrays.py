@@ -3,7 +3,7 @@
 def merge_lists(nums1, nums2):
     result = [None] * (len(nums1)+len(nums2))
     p1 = 0
-    p2 = 0
+    p2 = 0 
     p3 = 0
 
     # Traverse both lists until the end of either list is reached
