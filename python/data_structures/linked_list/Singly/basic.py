@@ -65,11 +65,11 @@ class LinkedList:
             self.tail = None
             self.length = 0
             return temp
-        first = self.head
-        temp = self.head.next
-        self.head.next = None
-        self.head = temp
-        return first
+        temp = self.head
+        self.head = self.head.next
+        temp.next = None
+        self.length -= 1
+        return temp.value
 
 
 
