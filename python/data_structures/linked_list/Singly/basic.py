@@ -71,6 +71,50 @@ class LinkedList:
         self.length -= 1
         return temp.value
 
+    def get(self,index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp= temp.next
+        return temp.value
+
+    def set_value(self,index,value):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        temp.value = value
+        return temp.value
+        # temp = self.get(index)
+        # if temp:
+        #     temp.value = value
+        #     return True
+        # return False
+
+    def insert(self,index,value):
+        node = Node(value)
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        pre = temp.next
+        temp.next = node
+        node.next = pre
+        self.length += 1
+        return node.value
+
+    def remove(self,index):
+        if index < 0 or index >= self.length:
+            return None
+        temp = self.head
+        for _ in range(index):
+            temp = temp.next
+        pre = temp.next
+        temp.next = None
+        temp.next = pre.next
 
 
 
@@ -83,12 +127,22 @@ myList.append(3)
 
 print('Printing all the nodes:')
 myList.print_list()
-print('After popping the last node :')
-myList.pop()
-myList.print_list()
+# print('After popping the last node :')
+# myList.pop()
+# myList.print_list()
 print('After prepending node :')
 myList.prepend(0)
 myList.print_list()
-print('After popleft node :')
-myList.popleft()
+# print('After popleft node :')
+# myList.popleft()
+# myList.print_list()
+print('After get node:')
+print(myList.get(2))
+
+print('After set node:')
+print(myList.set_value(2,89))
+
+myList.insert(2,69)
+
+print('Printing all the nodes:')
 myList.print_list()
