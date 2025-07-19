@@ -28,10 +28,36 @@ class LinkedList:
         self.length += 1
         return node
 
+    def pop(self):
+        temp = self.head
+        pre = self.head
+        if self.length == 0 or self.head is None:
+            return None
+        if self.length == 1:
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return temp
+        while temp.next:
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        pre.next = None
+        self.length -= 1
+        return temp.value
+
+
+
+
+
 
 myList = LinkedList(1)
 myList.append(2)
 myList.append(3)
-print(myList.head.value)
-print(myList.tail.value)
-print(myList.print_list())
+
+print('Printing all the nodes:')
+myList.print_list()
+print('After popping the last node :')
+myList.pop()
+myList.print_list()
