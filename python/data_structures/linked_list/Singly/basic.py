@@ -48,11 +48,29 @@ class LinkedList:
         return temp.value
 
     def prepend(self,value):
+        if self.length == 0:
+            self.append(value)
         node = Node(value)
         node.next = self.head
         self.head = node
         self.length += 1
         return node
+
+    def popleft(self):
+        if self.length == 0:
+            return None
+        if self.length == 1:
+            temp = self.head
+            self.head = None
+            self.tail = None
+            self.length = 0
+            return temp
+        first = self.head
+        temp = self.head.next
+        self.head.next = None
+        self.head = temp
+        return first
+
 
 
 
@@ -70,4 +88,7 @@ myList.pop()
 myList.print_list()
 print('After prepending node :')
 myList.prepend(0)
+myList.print_list()
+print('After popleft node :')
+myList.popleft()
 myList.print_list()
