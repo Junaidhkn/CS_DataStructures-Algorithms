@@ -47,6 +47,13 @@ class LinkedList:
         self.length -= 1
         return temp.value
 
+    def prepend(self,value):
+        node = Node(value)
+        node.next = self.head
+        self.head = node
+        self.length += 1
+        return node
+
 
 
 
@@ -60,4 +67,7 @@ print('Printing all the nodes:')
 myList.print_list()
 print('After popping the last node :')
 myList.pop()
+myList.print_list()
+print('After prepending node :')
+myList.prepend(0)
 myList.print_list()
