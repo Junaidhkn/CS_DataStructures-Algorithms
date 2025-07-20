@@ -124,8 +124,16 @@ class LinkedList:
         self.length -= 1
         return temp
 
-
-
+    def reverse(self):
+        temp = self.head
+        self.head = self.tail
+        self.tail = temp
+        before = None
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
 
 
 
@@ -156,5 +164,10 @@ myList.append(3)
 # myList.insert(4,100)
 # myList.append(300)
 
-print('Printing all nodes :\nWith Length equals to ',myList.length)
+print('Printing all nodes :\nWith Length equals to:',myList.length,'\nWith head equals:',myList.head.value,'\nWith tail equals:',myList.tail.value)
+myList.print_list()
+
+myList.reverse()
+
+print('Printing all nodes :\nWith Length equals to:',myList.length,'\nWith head equals:',myList.head.value,'\nWith tail equals:',myList.tail.value)
 myList.print_list()
