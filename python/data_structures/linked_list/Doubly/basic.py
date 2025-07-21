@@ -42,6 +42,7 @@ class DoubleLinkedList:
         temp = self.tail
         self.tail = self.tail.prev
         self.tail.next = None
+        temp.prev = None
         self.length -= 1
         return temp
 
@@ -75,23 +76,25 @@ class DoubleLinkedList:
         if index < 0 or index >= self.length:
             return None
         temp = self.head
-        for _ in range(index):
-            temp= temp.next
+        if index < self.length/2:
+            for _ in range(index):
+                temp= temp.next
+        else:
+            temp = self.tail
+            for _ in range(self.length - 1,index,-1):
+                temp= temp.prev
         return temp
 
+
+
     def set_value(self,index,value):
-        if index < 0 or index >= self.length:
-            return None
-        temp = self.head
-        for _ in range(index):
-            temp = temp.next
-        temp.value = value
-        return temp
-        # temp = self.get(index)
-        # if temp:
-        #     temp.value = value
-        #     return True
-        # return False
+        temp = self.get(index)
+        if temp is not None:
+            temp.value = value
+            return True
+        return False
+
+
 
     def insert(self,index,value):
         if index < 0 or index > self.length:
@@ -101,11 +104,12 @@ class DoubleLinkedList:
         if index == self.length:
             return self.append(value)
         node = Node(value)
-        temp = self.get(index - 1)
-        node.next = temp.next
-        temp.next.prev = node
-        node.prev = temp
-        temp.next = node
+        before = self.get(index - 1)
+        after = before.next
+        before.next = node
+        node.prev = before
+        node.next = after
+        after.prev = node
         self.length += 1
         return True
 
@@ -134,8 +138,10 @@ myList.append(1)
 myList.append(2)
 myList.append(3)
 myList.insert(4,4)
-
+myList.insert(5,5)
+myList.insert(6,6)
 
 
 print('Printing all nodes :\nWith Length equals to:',myList.length,'\nWith head equals:',myList.head.value,'\nWith tail equals:',myList.tail.value)
 myList.print_list()
+
