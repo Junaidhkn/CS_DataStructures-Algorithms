@@ -9,7 +9,6 @@ class BinarySearchTree:
     def __init__(self):
         self.root = None
 
-
     # Insert Pseudo Code
 
     #         create new Node
@@ -42,8 +41,9 @@ class BinarySearchTree:
 
 
     def contains(self, value):
-        if self.root is None:
-            return False
+        # No need to check for the root being none,as while loop has 'is not none as conditional statement'
+        # if self.root is None:
+        #     return False
         current = self.root
         while current is not None:
             if value < current.value:
