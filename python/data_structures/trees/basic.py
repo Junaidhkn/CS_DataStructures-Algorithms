@@ -25,7 +25,6 @@ class BinarySearchTree:
         if self.root is None:
             self.root = new_node
             return True
-
         current = self.root
         while True:
             if value < current.value:
@@ -40,6 +39,22 @@ class BinarySearchTree:
                 current = current.right
             else:
                 return False
+
+
+    def contains(self, value):
+        if self.root is None:
+            return False
+        current = self.root
+        while current is not None:
+            if value < current.value:
+                current = current.left
+            elif value > current.value:
+                current = current.right
+            elif value == current.value:
+                return True
+        #     else: return True
+        return False
+
 
     def print_tree(self):
         def _print_tree(node, prefix="", is_left=True):
@@ -74,6 +89,6 @@ myTree.print_tree()
 
 
 print('Root of the BST is:',myTree.root.value)
-
+# print(myTree.contains(242))
 
 # print('Printing all nodes :')
