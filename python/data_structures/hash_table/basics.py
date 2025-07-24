@@ -33,12 +33,32 @@ class HashTable:
     #     return None
 
 
+    def return_keys(self):
+        keys = []
+        for i in range(len(self.data_map)):
+            if self.data_map[i] is not None:
+                for j in range(len(self.data_map[i])):
+                    keys.append(self.data_map[i][j][0])
+        return keys
+
+
     def print_hash(self):
         for i,val in enumerate(self.data_map):
             print(i,":", val)
 
 
 
+# O(2n) lookup rather than O(n^2) for common items in lists
+def item_in_common(list1, list2):
+    my_dict = {}
+    for i in list1:
+        my_dict[i] = True
+
+    for j in list2:
+        if j in my_dict:
+            return True
+
+    return False
 
 
 my_hash_table = HashTable()
@@ -48,4 +68,7 @@ my_hash_table.insert('jeeps',3)
 my_hash_table.insert('employees',3)
 
 print('Get method:',my_hash_table.get_item('jobs'))
+
+
+print('Get keys method:',my_hash_table.return_keys())
 my_hash_table.print_hash()
