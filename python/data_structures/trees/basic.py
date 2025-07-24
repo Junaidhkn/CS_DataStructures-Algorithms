@@ -82,6 +82,7 @@ myTree.insert(24)
 myTree.insert(76)
 myTree.insert(52)
 myTree.insert(82)
+myTree.insert(100)
 
 myTree.print_tree()
 
