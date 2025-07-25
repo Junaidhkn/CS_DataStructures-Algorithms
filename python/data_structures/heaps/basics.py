@@ -75,6 +75,95 @@
 # Get Max/Min      | O(1)
 # Build Heap       | O(n)    <- Efficient method using "heapify" bottom-up
 
+# ------------------------ HEAPIFY OPERATION ------------------------
+
+# Heapify is a fundamental operation in heaps that restores the heap property.
+
+# There are two types of heapify:
+# 1. **Heapify Up** (a.k.a. bubble up / sift up):
+#    - Used after insertion.
+#    - Starts from the inserted node (bottom) and moves up toward the root,
+#      swapping elements if the heap property is violated.
+#    - Used in insert operations.
+
+# 2. **Heapify Down** (a.k.a. bubble down / sift down):
+#    - Used after deletion (usually of the root).
+#    - Starts from the root and moves downward,
+#      swapping with the appropriate child (larger in Max Heap, smaller in Min Heap)
+#      until the heap property is restored.
+#    - Used in delete and build_heap operations.
+
+# Example (Max Heapify Down from index i):
+# def max_heapify(arr, i, n):
+#     largest = i
+#     left = 2 * i + 1
+#     right = 2 * i + 2
+#     if left < n and arr[left] > arr[largest]:
+#         largest = left
+#     if right < n and arr[right] > arr[largest]:
+#         largest = right
+#     if largest != i:
+#         arr[i], arr[largest] = arr[largest], arr[i]
+#         max_heapify(arr, largest, n)
+
+# Time Complexity:
+# - Heapify Up: O(log n)
+# - Heapify Down: O(log n)
+
+# ------------------------ PRIORITY QUEUE USING HEAP ------------------------
+
+# A Priority Queue is a special type of queue in which elements are served
+# based on their priority (not just insertion order).
+
+# High priority elements are dequeued before low priority ones.
+
+# Python uses a **Min Heap** to implement a Priority Queue via the `heapq` module.
+
+# The `heapq` module:
+# - Built-in module in Python
+# - Implements a min-heap (lowest value has highest priority)
+# - Can be used to build priority queues efficiently
+
+# Example usage:
+# import heapq
+# pq = []
+# heapq.heappush(pq, 10)
+# heapq.heappush(pq, 1)
+# heapq.heappush(pq, 5)
+# print(heapq.heappop(pq))  # Output: 1 (smallest/highest priority)
+
+# For a Max Heap using `heapq`, invert the values:
+# heapq.heappush(pq, -value)
+# heapq.heappop(pq) * -1
+
+# For tuples (priority, task):
+# heapq.heappush(pq, (priority, "task_name"))
+
+# ------------------------ PRIORITY QUEUE APPLICATIONS ------------------------
+
+# Applications of Priority Queue:
+# - Task Scheduling (shortest job first, earliest deadline first)
+# - Dijkstra’s and A* pathfinding algorithms
+# - Huffman Coding (compression)
+# - Load Balancing Systems (process with highest priority gets executed first)
+# - Event-driven simulation systems
+
+# ------------------------ HEAP VS PRIORITY QUEUE ------------------------
+
+# Heap:
+# - A complete binary tree used to represent a priority queue.
+# - Provides the structure and rules (Min or Max) for efficient operations.
+
+# Priority Queue:
+# - A use-case or application built on top of a heap.
+# - Ensures that higher-priority elements are served before lower-priority ones.
+
+# In short: Heap is the **implementation**, Priority Queue is the **concept**.
+
+# -------------------------------------------------------------------------
+
+
+
 # -------------------------------------------------------------------------
 
 class MaxHeap:
