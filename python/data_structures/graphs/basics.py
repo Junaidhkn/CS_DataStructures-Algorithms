@@ -47,7 +47,13 @@ class Graph:
         for vertex in self.adjacency_list:
             print(vertex,":",self.adjacency_list[vertex])
 
-
+    def remove_vertex(self,vertex):
+        if vertex in self.adjacency_list:
+            for other_vertex in self.adjacency_list[vertex]:
+                self.adjacency_list[other_vertex].remove(vertex)
+            del self.adjacency_list[vertex]
+            return True
+        return False
 
 
 
@@ -57,12 +63,24 @@ my_graph = Graph()
 my_graph.add_vertex('a')
 my_graph.add_vertex('b')
 my_graph.add_vertex('c')
+my_graph.add_vertex('d')
+my_graph.add_vertex('e')
 my_graph.add_edge('a','b')
-my_graph.remove_edge('a','b')
-my_graph.add_edge('a','c')
+# my_graph.remove_edge('a','b')
+my_graph.add_edge('e','c')
+my_graph.add_edge('b','d')
 
 
+print('Before')
+my_graph.print_graph()
+
+print('After')
+
+my_graph.remove_vertex('b')
 
 my_graph.print_graph()
+
+
+
 
 
