@@ -28,10 +28,18 @@ class Graph:
             return True
         return False
 
+    def add_edge(self,vertex1,vertex2):
+        if vertex1 in self.adjacency_list.keys() and vertex2 in self.adjacency_list.keys():
+        # if all(v in self.adjacency_list for v in (vertex1, vertex2)):
+            self.adjacency_list[vertex1].append(vertex2)
+            self.adjacency_list[vertex2].append(vertex1)
+            return True
+        return False
 
     def print_graph(self):
         for vertex in self.adjacency_list:
-            print(vertex)
+            print(vertex,":",self.adjacency_list[vertex])
+
 
 
 
@@ -39,6 +47,9 @@ class Graph:
 my_graph = Graph()
 
 my_graph.add_vertex('a')
+my_graph.add_vertex('b')
+my_graph.add_vertex('c')
+my_graph.add_edge('a','b')
 
 my_graph.print_graph()
 
