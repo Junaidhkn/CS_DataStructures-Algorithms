@@ -36,9 +36,17 @@ class Graph:
             return True
         return False
 
+    def remove_edge(self,vertex1,vertex2):
+        if vertex1 in self.adjacency_list[vertex2] and vertex2 in self.adjacency_list[vertex1]:
+            self.adjacency_list[vertex1].remove(vertex2)
+            self.adjacency_list[vertex2].remove(vertex1)
+            return True
+        return False
+
     def print_graph(self):
         for vertex in self.adjacency_list:
             print(vertex,":",self.adjacency_list[vertex])
+
 
 
 
@@ -50,6 +58,10 @@ my_graph.add_vertex('a')
 my_graph.add_vertex('b')
 my_graph.add_vertex('c')
 my_graph.add_edge('a','b')
+my_graph.remove_edge('a','b')
+my_graph.add_edge('a','c')
+
+
 
 my_graph.print_graph()
 
