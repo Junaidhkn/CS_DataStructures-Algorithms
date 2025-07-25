@@ -160,7 +160,6 @@
 
 # In short: Heap is the **implementation**, Priority Queue is the **concept**.
 
-# -------------------------------------------------------------------------
 
 
 
@@ -181,6 +180,17 @@ class MaxHeap:
 
     def _swap(self,index1,index2):
         self.heap[index1],self.heap[index2] = self.heap[index2],self.heap[index1]
+
+    # def insert(self,value):
+
+
+
+
+
+
+
+
+
 
 
 
