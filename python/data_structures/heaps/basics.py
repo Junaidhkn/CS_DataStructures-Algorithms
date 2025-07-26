@@ -121,7 +121,7 @@
 
 # The `heapq` module:
 # - Built-in module in Python
-# - Implements a min-heap (lowest value has highest priority)
+# - Implements a min-heap (lowest value has the highest priority)
 # - Can be used to build priority queues efficiently
 
 # Example usage:
@@ -145,7 +145,7 @@
 # - Task Scheduling (shortest job first, earliest deadline first)
 # - Dijkstra’s and A* pathfinding algorithms
 # - Huffman Coding (compression)
-# - Load Balancing Systems (process with highest priority gets executed first)
+# - Load Balancing Systems (process with the highest priority gets executed first)
 # - Event-driven simulation systems
 
 # ------------------------ HEAP VS PRIORITY QUEUE ------------------------
@@ -181,17 +181,44 @@ class MaxHeap:
     def _swap(self,index1,index2):
         self.heap[index1],self.heap[index2] = self.heap[index2],self.heap[index1]
 
-    # def insert(self,value):
+    def insert(self,value):
+        self.heap.append(value)
+        current = len(self.heap) - 1
+        while current > 0 and self.heap[current] > self.heap[self._parent(current)]:
+            self._swap(current,self._parent(current))
+            current = self._parent(current)
+
+    def print_tree(self):
+        def _print_tree(index, prefix="", is_left=True):
+            if index >= len(self.heap):
+                return
+
+            right = self._right_child(index)
+            left = self._left_child(index)
+
+            # First print right child (visually top branch)
+            if right < len(self.heap):
+                _print_tree(right, prefix + ("│   " if is_left else "    "), False)
+
+            # Then print current node
+            print(prefix + ("└── " if is_left else "┌── ") + str(self.heap[index]))
+
+            # Then print left child (visually bottom branch)
+            if left < len(self.heap):
+                _print_tree(left, prefix + ("    " if is_left else "│   "), True)
+
+        _print_tree(0)
+
+myHeap = MaxHeap()
+myHeap.insert(99)
+myHeap.insert(72)
+myHeap.insert(61)
+myHeap.insert(58)
+myHeap.insert(99)
+myHeap.insert(75)
+myHeap.insert(47)
+myHeap.insert(147)
 
 
-
-
-
-
-
-
-
-
-
-
+myHeap.print_tree()
 
