@@ -219,6 +219,6 @@ myHeap.insert(75)
 myHeap.insert(47)
 myHeap.insert(147)
 
-
+print('\n\n','The heap array:\n',myHeap.heap,'\n\n')
 myHeap.print_tree()
 
