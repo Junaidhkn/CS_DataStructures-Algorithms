@@ -69,7 +69,7 @@
 # ------------------------ TIME COMPLEXITY SUMMARY ------------------------
 
 # Operation        | Time Complexity
-# ----------------|----------------
+# -----------------|----------------
 # Insertion        | O(log n)
 # Deletion (root)  | O(log n)
 # Get Max/Min      | O(1)
@@ -160,9 +160,6 @@
 
 # In short: Heap is the **implementation**, Priority Queue is the **concept**.
 
-
-
-
 # -------------------------------------------------------------------------
 
 class MaxHeap:
@@ -192,33 +189,32 @@ class MaxHeap:
         def _print_tree(index, prefix="", is_left=True):
             if index >= len(self.heap):
                 return
-
             right = self._right_child(index)
             left = self._left_child(index)
-
-            # First print right child (visually top branch)
             if right < len(self.heap):
                 _print_tree(right, prefix + ("│   " if is_left else "    "), False)
-
-            # Then print current node
             print(prefix + ("└── " if is_left else "┌── ") + str(self.heap[index]))
-
-            # Then print left child (visually bottom branch)
             if left < len(self.heap):
                 _print_tree(left, prefix + ("    " if is_left else "│   "), True)
-
         _print_tree(0)
+
+
+
+
+
+
 
 myHeap = MaxHeap()
 myHeap.insert(99)
 myHeap.insert(72)
 myHeap.insert(61)
 myHeap.insert(58)
-myHeap.insert(99)
 myHeap.insert(75)
 myHeap.insert(47)
-myHeap.insert(147)
+myHeap.insert(54)
 
-print('\n\n','The heap array:\n',myHeap.heap,'\n\n')
+
+print('\n','The heap array:\n',myHeap.heap,'\n')
+print('Heap Tree:\n')
 myHeap.print_tree()
 
