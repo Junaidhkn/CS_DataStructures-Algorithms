@@ -1,6 +1,6 @@
 # ------------------------ HEAP DATA STRUCTURE NOTES ------------------------
 
-# A Heap is a complete binary tree-based data structure, commonly used to implement Priority Queues.
+# A Heap is a complete binary tree_traversal-based data structure, commonly used to implement Priority Queues.
 
 # Heap has two types:
 # a) Max Heap - The parent node must always be greater than or equal to its child nodes.
@@ -29,7 +29,7 @@
 # ------------------------ INSERTION IN A HEAP ------------------------
 
 # Step-by-step process:
-# 1. Insert the new element at the bottom (i.e., the next available position, maintaining complete binary tree structure).
+# 1. Insert the new element at the bottom (i.e., the next available position, maintaining complete binary tree_traversal structure).
 # 2. Compare the inserted element with its parent.
 # 3. If the heap property is violated (i.e., in Max Heap: new > parent OR in Min Heap: new < parent),
 #    swap the new element with its parent.
@@ -151,7 +151,7 @@
 # ------------------------ HEAP VS PRIORITY QUEUE ------------------------
 
 # Heap:
-# - A complete binary tree used to represent a priority queue.
+# - A complete binary tree_traversal used to represent a priority queue.
 # - Provides the structure and rules (Min or Max) for efficient operations.
 
 # Priority Queue:
@@ -215,10 +215,6 @@ class MaxHeap:
         return max_value
 
 
-
-
-
-
     def print_tree(self):
         def _print_tree(index, prefix="", is_left=True):
             if index >= len(self.heap):
@@ -246,6 +242,7 @@ myHeap.insert(58)
 myHeap.insert(75)
 myHeap.insert(47)
 myHeap.insert(54)
+myHeap.insert(12)
 
 
 print('\n','The heap array:\n',myHeap.heap,'\n')

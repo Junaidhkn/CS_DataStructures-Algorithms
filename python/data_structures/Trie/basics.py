@@ -1,7 +1,6 @@
 # ------------------------ TRIE (PREFIX TREE) NOTES ------------------------
 
-# Trie (pronounced "try") is a tree-like data structure that stores a dynamic set
-# of strings, where keys are usually words composed of characters.
+# Trie (pronounced "try" also known as Retrieval or Prefix Tree) is a tree_traversal-like data structure that stores a dynamic set of strings, where keys are usually words composed of characters.
 
 # It is mainly used for:
 # - Efficient retrieval of strings
@@ -86,3 +85,34 @@
 # - Radix Tree / Compressed Trie: Reduces space by collapsing single-child chains
 
 # -------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
