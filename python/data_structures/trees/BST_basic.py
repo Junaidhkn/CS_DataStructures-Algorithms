@@ -56,6 +56,14 @@ class BinarySearchTree:
         return False
 
 
+    # def breath_first_search(self):
+    #     current_node = self.root
+    #     queue = []
+    #     results = []
+    #     queue.append(current_node)
+    #     while len(queue) > 0:
+    #         current_node = queue.pop(0)
+
     def print_tree(self):
         def _print_tree(node, prefix="", is_left=True):
             if node is not None:
