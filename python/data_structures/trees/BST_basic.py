@@ -121,7 +121,17 @@ class BinarySearchTree:
     # - O(h) for recursive (h = height of tree)
     # - O(n) worst-case for stack in skewed tree
 
-    # def depth_first_search_pre_order(self):
+    def depth_first_search_pre_order(self):
+        results = []
+        def traverse(current_node):
+            results.append(current_node.value)
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+        traverse(self.root)
+        return results
+
 
     # 📘 Postorder DFS visits children before their parent (useful for cleanup/deletion).
 
@@ -149,7 +159,18 @@ class BinarySearchTree:
     # 🕒 Time Complexity: O(n)
     # 💾 Space Complexity: O(h), or O(n) for iterative stack approach
 
-    # def depth_first_search_post_order(self):
+    def depth_first_search_post_order(self):
+        results = []
+
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            if current_node.right is not None:
+                traverse(current_node.right)
+            results.append(current_node.value)
+
+        traverse(self.root)
+        return results
 
     # 📘 Inorder DFS visits the left subtree, then root, then right subtree.
 
@@ -177,7 +198,18 @@ class BinarySearchTree:
     # 🕒 Time Complexity: O(n)
     # 💾 Space Complexity: O(h), or O(1) with Morris Traversal
 
-    # def depth_first_search_in_order(self):
+    def depth_first_search_in_order(self):
+        results = []
+
+        def traverse(current_node):
+            if current_node.left is not None:
+                traverse(current_node.left)
+            results.append(current_node.value)
+            if current_node.right is not None:
+                traverse(current_node.right)
+
+        traverse(self.root)
+        return results
 
     def print_tree(self):
         def _print_tree(node, prefix="", is_left=True):
@@ -198,7 +230,6 @@ myTree.insert(24)
 myTree.insert(76)
 myTree.insert(52)
 myTree.insert(82)
-myTree.insert(100)
 
 myTree.print_tree()
 
@@ -206,5 +237,9 @@ myTree.print_tree()
 print('Root of the BST is:',myTree.root.value)
 # print(myTree.contains(242))
 
-print('Printing Breath First Search:')
-print(myTree.breath_first_search())
+print('Printing Pre_Order DFS:')
+print(myTree.depth_first_search_pre_order())
+print('Printing Post_Order DFS:')
+print(myTree.depth_first_search_post_order())
+print('Printing in_Order DFS:')
+print(myTree.depth_first_search_in_order())
