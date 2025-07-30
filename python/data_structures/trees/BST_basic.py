@@ -55,14 +55,20 @@ class BinarySearchTree:
         #     else: return True
         return False
 
-
-    # def breath_first_search(self):
-    #     current_node = self.root
-    #     queue = []
-    #     results = []
-    #     queue.append(current_node)
-    #     while len(queue) > 0:
-    #         current_node = queue.pop(0)
+    # use of queue makes this algorithm efficient ie for pop(0) in list is O(n), whereas in queues its O(1)
+    def breath_first_search(self):
+        current_node = self.root
+        queue = []
+        results = []
+        queue.append(current_node)
+        while len(queue) > 0:
+            current_node = queue.pop(0)
+            results.append(current_node.value)
+            if current_node.left is not None:
+                queue.append(current_node.left)
+            if current_node.right is not None:
+                queue.append(current_node.right)
+        return results
 
     def print_tree(self):
         def _print_tree(node, prefix="", is_left=True):
@@ -88,9 +94,8 @@ myTree.insert(100)
 myTree.print_tree()
 
 
-
-
 print('Root of the BST is:',myTree.root.value)
 # print(myTree.contains(242))
 
-# print('Printing all nodes :')
+print('Printing Breath First Search:')
+print(myTree.breath_first_search())
