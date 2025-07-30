@@ -17,8 +17,13 @@
 def bubble_sort(my_list):
     for i in range(len(my_list) -1 ,0,-1):
         for j in range(i):
+            print('i :',i,'->\tj :',j, '\tj+1:',j+1)
+            print('List before:', my_list)
+            print('values under consideration:', my_list[j],'<->',my_list[j+1] )
             if my_list[j] > my_list[j+1]:
                 my_list[j], my_list[j + 1] = my_list[j + 1], my_list[j]
+                print('Values swapped!!!')
+                print(my_list)
     return my_list
 
 
