@@ -63,8 +63,19 @@ def merge(list1,list2):
         j += 1
     return combined
 
+def merge_sort(arr):
+    if len(arr) == 1:
+        return arr
+    mid_index= int(len(arr) / 2)
+    left = merge_sort(arr[:mid_index])
+    right = merge_sort(arr[mid_index:])
+    return merge(left,right)
 
-print(merge([2, 14, 15, 365], [3, 223, 442]))
+
+
+
+
+print(merge_sort([2, 14, 15, 365,3, 223, 442]))
 
 
 
