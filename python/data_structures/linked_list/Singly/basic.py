@@ -3,20 +3,21 @@ class Node:
         self.value = value
         self.next = None
 
+
 class LinkedList:
-    def __init__(self,value):
+    def __init__(self, value):
         node = Node(value)
         self.head = node
-        self.tail= node
+        self.tail = node
         self.length = 1
 
     def print_list(self):
-        temp =  self.head
+        temp = self.head
         while temp is not None:
             print(temp.value)
             temp = temp.next
 
-    def append(self,value):
+    def append(self, value):
         node = Node(value)
         if self.head is None or self.tail is None:
             self.head = node
@@ -47,7 +48,7 @@ class LinkedList:
         self.length -= 1
         return temp
 
-    def prepend(self,value):
+    def prepend(self, value):
         if self.length == 0:
             self.append(value)
         node = Node(value)
@@ -71,15 +72,15 @@ class LinkedList:
         self.length -= 1
         return temp
 
-    def get(self,index):
+    def get(self, index):
         if index < 0 or index >= self.length:
             return None
         temp = self.head
         for _ in range(index):
-            temp= temp.next
+            temp = temp.next
         return temp
 
-    def set_value(self,index,value):
+    def set_value(self, index, value):
         if index < 0 or index >= self.length:
             return None
         temp = self.head
@@ -93,7 +94,7 @@ class LinkedList:
         #     return True
         # return False
 
-    def insert(self,index,value):
+    def insert(self, index, value):
         if index < 0 or index > self.length:
             return False
         if index == 0:
@@ -107,7 +108,7 @@ class LinkedList:
         self.length += 1
         return True
 
-    def remove(self,index):
+    def remove(self, index):
         if index < 0 or index >= self.length:
             return None
         if index == 0:
@@ -134,7 +135,6 @@ class LinkedList:
             temp.next = before
             before = temp
             temp = after
-
 
 
 myList = LinkedList(0)
@@ -164,10 +164,24 @@ myList.append(3)
 # myList.insert(4,100)
 # myList.append(300)
 
-print('Printing all nodes :\nWith Length equals to:',myList.length,'\nWith head equals:',myList.head.value,'\nWith tail equals:',myList.tail.value)
+print(
+    "Printing all nodes :\nWith Length equals to:",
+    myList.length,
+    "\nWith head equals:",
+    myList.head.value,
+    "\nWith tail equals:",
+    myList.tail.value,
+)
 myList.print_list()
 
 myList.reverse()
 
-print('Printing all nodes :\nWith Length equals to:',myList.length,'\nWith head equals:',myList.head.value,'\nWith tail equals:',myList.tail.value)
+print(
+    "Printing all nodes :\nWith Length equals to:",
+    myList.length,
+    "\nWith head equals:",
+    myList.head.value,
+    "\nWith tail equals:",
+    myList.tail.value,
+)
 myList.print_list()
