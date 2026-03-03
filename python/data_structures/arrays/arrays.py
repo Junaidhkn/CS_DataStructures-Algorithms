@@ -9,16 +9,16 @@ import numpy as np
 import array
 
 my_array = array.array("I", [1, 2, 4, 54])
-print("Printing the array using the array package :\n", my_array)
+# print("Printing the array using the array package :\n", my_array)
 
 my_array1 = np.array([1, 34, 4, 5, 5, 6], dtype=int)
-print("Printing the array using the array package :\n", my_array1)
+# print("Printing the array using the array package :\n", my_array1)
 
 # When creating an empty array the time and space complexity is constant O(1), but when array is initialized with elements of size of n, its time and space complexity is O(n)
 
 # Insertion operation: When inserting an element in the end of the array its time and space complexity is O(1), where as at the start or any given index its time complexity is O(n) and space complexity is O(1)
 my_array.insert(0, 666)
-print(my_array)
+# print(my_array)
 
 
 # Searching an element in an Array - Time complexity is O(n) and space complexity is O(1)
@@ -30,14 +30,14 @@ def linear_Search(arr, target):
 
 
 my_array1 = np.array([1, 34, 4, 5, 6], dtype=int)
-print(linear_Search(my_array1, 6))
+# print(linear_Search(my_array1, 6))
 
 
 # Removing the last element from the array is O(1) time complexity, removing any other element from the array is the O(n) time complexity,space complexity would remain same and that is O(1)
 
 
-# List insertion
-def list_insert(lst, index, value):
+# array insertion
+def array_insert(lst, index, value):
     if index < 0:
         index = 0
     if index > len(lst):
@@ -48,10 +48,62 @@ def list_insert(lst, index, value):
     lst[index] = value
 
 
-lst = [10, 20, 30, 40]
-print("List Before the insertion", lst)
-list_insert(lst, 2, 99)
-print("list after the insertion", lst)
+arr = [10, 20, 30, 40]
+print("List Before the insertion", arr)
+array_insert(arr, 2, 99)
+print("list after the insertion", arr)
+
+# Array Reverse
+arr = [10, 20, 30, 40]
+
+for i in range(len(arr) // 2):
+    pre = arr[i]
+    temp = arr[len(arr) - 1 - i]
+    arr[i] = temp
+    arr[len(arr) - 1 - i] = pre
+
+print("array after reverse", arr)
+
+
+# Array slice
+def my_slice(lst, start, end):
+    if start < 0:
+        start = 0
+    if end > len(lst):
+        end = len(lst)
+
+    result = []
+    for i in range(start, end):
+        result.append(lst[i])
+    return result
+
+
+# remove item
+def remove_item_arr(lst, index):
+    if index < 0 or index >= len(lst):
+        raise IndexError("Index out of range")
+
+    removed_value = lst[index]
+
+    for i in range(index, len(lst) - 1):
+        lst[i] = lst[i + 1]
+
+    # manually shrink list
+    del lst[len(lst) - 1]
+
+    return removed_value
+
+
+# Pop item
+def my_pop_last(lst):
+    if len(lst) == 0:
+        raise IndexError("Pop from empty list")
+
+    last_value = lst[len(lst) - 1]
+    del lst[len(lst) - 1]
+    return last_value
+
+
 # ---------------------------------------------------------------------
 # ---------------------------------------------------------------------
 #                             Problems
