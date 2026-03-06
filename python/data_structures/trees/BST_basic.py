@@ -1,5 +1,5 @@
 class Node:
-    def __init__(self,value):
+    def __init__(self, value):
         self.value = value
         self.left = None
         self.right = None
@@ -39,7 +39,6 @@ class BinarySearchTree:
             else:
                 return False
 
-
     def contains(self, value):
         # No need to check for the root being none,as while loop has 'is not none as conditional statement'
         # if self.root is None:
@@ -52,7 +51,6 @@ class BinarySearchTree:
                 current = current.right
             elif value == current.value:
                 return True
-        #     else: return True
         return False
 
     # 📘 BFS visits nodes level-by-level, from top to bottom and left to right.
@@ -123,15 +121,16 @@ class BinarySearchTree:
 
     def depth_first_search_pre_order(self):
         results = []
+
         def traverse(current_node):
             results.append(current_node.value)
             if current_node.left is not None:
                 traverse(current_node.left)
             if current_node.right is not None:
                 traverse(current_node.right)
+
         traverse(self.root)
         return results
-
 
     # 📘 Postorder DFS visits children before their parent (useful for cleanup/deletion).
 
@@ -221,7 +220,6 @@ class BinarySearchTree:
         _print_tree(self.root)
 
 
-
 myTree = BinarySearchTree()
 myTree.insert(47)
 myTree.insert(21)
@@ -234,12 +232,12 @@ myTree.insert(82)
 myTree.print_tree()
 
 
-print('Root of the BST is:',myTree.root.value)
+print("Root of the BST is:", myTree.root.value)
 # print(myTree.contains(242))
 
-print('Printing Pre_Order DFS:')
+print("Printing Pre_Order DFS:")
 print(myTree.depth_first_search_pre_order())
-print('Printing Post_Order DFS:')
+print("Printing Post_Order DFS:")
 print(myTree.depth_first_search_post_order())
-print('Printing in_Order DFS:')
+print("Printing in_Order DFS:")
 print(myTree.depth_first_search_in_order())
