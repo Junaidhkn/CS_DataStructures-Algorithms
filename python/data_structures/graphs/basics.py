@@ -16,9 +16,29 @@
 # Adding an Edge:            O(1)                       O(1)
 # Remove the Edge:           O(1)                       O(|E|)
 # Remove a Vertex:          O(|V|^2)                    O(|V|+|E|)
+class GraphMatrix:
+
+    def __init__(self, num_vertices):
+        self.V = num_vertices
+        self.matrix = [[0] * num_vertices for _ in range(num_vertices)]
+
+    def add_edge(self, u, v):
+        self.matrix[u][v] = 1
+        self.matrix[v][u] = 1
+
+    def remove_edge(self, u, v):
+        self.matrix[u][v] = 0
+        self.matrix[v][u] = 0
+
+    def has_edge(self, u, v):
+        return self.matrix[u][v] == 1
+
+    def print_graph(self):
+        for row in self.matrix:
+            print(row)
 
 
-class Graph:
+class Graph_using_adjacency_list:
     def __init__(self):
         self.adjacency_list = {}
 
@@ -28,16 +48,22 @@ class Graph:
             return True
         return False
 
-    def add_edge(self,vertex1,vertex2):
-        if vertex1 in self.adjacency_list.keys() and vertex2 in self.adjacency_list.keys():
-        # if all(v in self.adjacency_list for v in (vertex1, vertex2)):
+    def add_edge(self, vertex1, vertex2):
+        if (
+            vertex1 in self.adjacency_list.keys()
+            and vertex2 in self.adjacency_list.keys()
+        ):
+            # if all(v in self.adjacency_list for v in (vertex1, vertex2)):
             self.adjacency_list[vertex1].append(vertex2)
             self.adjacency_list[vertex2].append(vertex1)
             return True
         return False
 
-    def remove_edge(self,vertex1,vertex2):
-        if vertex1 in self.adjacency_list[vertex2] and vertex2 in self.adjacency_list[vertex1]:
+    def remove_edge(self, vertex1, vertex2):
+        if (
+            vertex1 in self.adjacency_list[vertex2]
+            and vertex2 in self.adjacency_list[vertex1]
+        ):
             self.adjacency_list[vertex1].remove(vertex2)
             self.adjacency_list[vertex2].remove(vertex1)
             return True
@@ -45,9 +71,9 @@ class Graph:
 
     def print_graph(self):
         for vertex in self.adjacency_list:
-            print(vertex,":",self.adjacency_list[vertex])
+            print(vertex, ":", self.adjacency_list[vertex])
 
-    def remove_vertex(self,vertex):
+    def remove_vertex(self, vertex):
         if vertex in self.adjacency_list:
             for other_vertex in self.adjacency_list[vertex]:
                 self.adjacency_list[other_vertex].remove(vertex)
@@ -56,31 +82,24 @@ class Graph:
         return False
 
 
+my_graph = Graph_using_adjacency_list()
 
-
-my_graph = Graph()
-
-my_graph.add_vertex('a')
-my_graph.add_vertex('b')
-my_graph.add_vertex('c')
-my_graph.add_vertex('d')
-my_graph.add_vertex('e')
-my_graph.add_edge('a','b')
+my_graph.add_vertex("a")
+my_graph.add_vertex("b")
+my_graph.add_vertex("c")
+my_graph.add_vertex("d")
+my_graph.add_vertex("e")
+my_graph.add_edge("a", "b")
 # my_graph.remove_edge('a','b')
-my_graph.add_edge('e','c')
-my_graph.add_edge('b','d')
+my_graph.add_edge("e", "c")
+my_graph.add_edge("b", "d")
 
 
-print('Before')
+print("Before")
 my_graph.print_graph()
 
-print('After')
+print("After")
 
-my_graph.remove_vertex('b')
+my_graph.remove_vertex("b")
 
 my_graph.print_graph()
-
-
-
-
-
