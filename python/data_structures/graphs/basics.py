@@ -23,8 +23,11 @@ class GraphMatrix:
         self.matrix = [[0] * num_vertices for _ in range(num_vertices)]
 
     def add_edge(self, u, v):
-        self.matrix[u][v] = 1
-        self.matrix[v][u] = 1
+        if 0 <= u < self.V and 0 <= v < self.V and u != v:
+            self.matrix[u][v] = 1
+            self.matrix[v][u] = 1
+        else:
+            print("invalid Input")
 
     def remove_edge(self, u, v):
         self.matrix[u][v] = 0
