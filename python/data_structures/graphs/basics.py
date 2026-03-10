@@ -1,5 +1,6 @@
 # Graphs have vertex(or node),vertices or nodes in plural,and connection between them are called edge(or connection).
 
+# There are three types of graphs, Undirected Graph, directed graph, and weighted graph
 
 # Representation of Graphs:
 # 1) Adjacency Matrix-
