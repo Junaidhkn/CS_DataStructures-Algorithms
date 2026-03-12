@@ -1,7 +1,6 @@
 class HashTable:
-    def __init__(self, size = 7):
+    def __init__(self, size=7):
         self.data_map = [None] * 10
-
 
     def __hash(self, key):
         my_hash = 0
@@ -9,13 +8,13 @@ class HashTable:
             my_hash = (my_hash + ord(letter) * 23) % len(self.data_map)
         return my_hash
 
-    def insert(self, key,value):
+    def insert(self, key, value):
         index = self.__hash(key)
         if self.data_map[index] is None:
             self.data_map[index] = []
         self.data_map[index].append([key, value])
 
-    def get_item(self,key):
+    def get_item(self, key):
         index = self.__hash(key)
         if self.data_map[index] is not None:
             for i in range(len(self.data_map[index])):
@@ -32,7 +31,6 @@ class HashTable:
     #                 return v
     #     return None
 
-
     def return_keys(self):
         keys = []
         for i in range(len(self.data_map)):
@@ -41,11 +39,9 @@ class HashTable:
                     keys.append(self.data_map[i][j][0])
         return keys
 
-
     def print_hash(self):
-        for i,val in enumerate(self.data_map):
-            print(i,":", val)
-
+        for i, val in enumerate(self.data_map):
+            print(i, ":", val)
 
 
 # O(2n) lookup rather than O(n^2) for common items in lists
@@ -62,13 +58,13 @@ def item_in_common(list1, list2):
 
 
 my_hash_table = HashTable()
-my_hash_table.insert('jobs',1)
-my_hash_table.insert('cars',1)
-my_hash_table.insert('jeeps',3)
-my_hash_table.insert('employees',3)
+my_hash_table.insert("jobs", 1)
+my_hash_table.insert("cars", 1)
+my_hash_table.insert("jeeps", 3)
+my_hash_table.insert("employees", 3)
 
-print('Get method:',my_hash_table.get_item('jobs'))
+print("Get method:", my_hash_table.get_item("jobs"))
 
 
-print('Get keys method:',my_hash_table.return_keys())
+print("Get keys method:", my_hash_table.return_keys())
 my_hash_table.print_hash()
