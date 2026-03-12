@@ -42,3 +42,25 @@ Output: [1,2]
 Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1,2]
 
 """
+
+
+def twoSumII(lst, target):
+    left = 0
+    right = len(lst) - 1
+
+    while left < right:
+        num = lst[left] + lst[right]
+
+        if num == target:
+            return [left + 1, right + 1]
+        elif num > target:
+            right -= 1
+        else:
+            left += 1
+
+    return "not found"
+
+
+resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
+
+print("printing result for question 1:\n", resultTwoSumII)
