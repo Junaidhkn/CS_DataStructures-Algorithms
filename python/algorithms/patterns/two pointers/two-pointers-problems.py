@@ -65,6 +65,9 @@ resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
 
 print("printing result for question 1:\n", resultTwoSumII)
 
+# Time Complexity : O(n)
+# Space Complexity : O(1)
+
 
 # Question 2: Remove Duplicates from Sorted Array
 
@@ -120,4 +123,13 @@ def removeDuplicates(nums):
         if nums[fast] != nums[slow - 1]:
             nums[slow] = nums[fast]
             slow += 1
-    return slow, nums[:slow]
+    return slow, nums[:slow], nums
+
+
+result = removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
+
+print("Printing result for question 2:\n", result)
+
+
+# Time Complexity : O(n)
+# Space Complexity : O(1) but when returning array rather than length it would be O(n)
