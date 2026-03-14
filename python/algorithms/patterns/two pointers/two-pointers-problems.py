@@ -117,6 +117,25 @@ nums is sorted in non-decreasing order.
 """
 
 
+# Brute force approach for sorted array
+def removeDuplicates_bruteforce(nums):
+    unique = []
+    for num in nums:
+        found = True
+        for u in unique:
+            if u == num:
+                found = True
+                break
+        if not found:
+            unique.append(num)
+    return len(unique), unique
+
+
+# Time Complexity: O(n²)
+# Space Complexity : O(n) (if we store results in another list)
+
+
+# Optimal Solution for sorted array according to the question
 def removeDuplicates(nums):
     slow = 1
     for fast in range(1, len(nums)):
@@ -133,3 +152,25 @@ print("Printing result for question 2:\n", result)
 
 # Time Complexity : O(n)
 # Space Complexity : O(1) but when returning array rather than length it would be O(n)
+
+# If unsorted array is given: Optimal method is to use hash set
+
+
+def removeDuplicates_unsorted(nums):
+    seen = set()
+    k = 0
+
+    for num in nums:
+        if num not in seen:
+            seen.add(num)
+            nums[k] = num
+            k += 1
+
+    return k, nums[:k], nums
+
+
+print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
+
+
+# Time Complexity: O(n)
+# Space Complexity : O(n)
