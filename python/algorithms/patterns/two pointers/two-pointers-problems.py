@@ -63,7 +63,7 @@ def twoSumII(lst, target):
 
 resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
 
-print("printing result for question 1:\n", resultTwoSumII)
+# print("printing result for question 1:\n", resultTwoSumII)
 
 # Time Complexity : O(n)
 # Space Complexity : O(1)
@@ -147,7 +147,7 @@ def removeDuplicates(nums):
 
 result = removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
 
-print("Printing result for question 2:\n", result)
+# print("Printing result for question 2:\n", result)
 
 
 # Time Complexity : O(n)
@@ -169,8 +169,61 @@ def removeDuplicates_unsorted(nums):
     return k, nums[:k], nums
 
 
-print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
-
-
+# print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
 # Time Complexity: O(n)
 # Space Complexity : O(n)
+
+
+# Question 3: Valid Palindrome
+"""
+A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
+
+Given a string s, return true if it is a palindrome, or false otherwise.
+
+ 
+
+Example 1:
+
+Input: s = "A man, a plan, a canal: Panama"
+Output: true
+Explanation: "amanaplanacanalpanama" is a palindrome.
+Example 2:
+
+Input: s = "race a car"
+Output: false
+Explanation: "raceacar" is not a palindrome.
+Example 3:
+
+Input: s = " "
+Output: true
+Explanation: s is an empty string "" after removing non-alphanumeric characters.
+Since an empty string reads the same forward and backward, it is a palindrome.
+ 
+
+Constraints:
+
+1 <= s.length <= 2 * 105
+s consists only of printable ASCII characters.
+"""
+
+
+def isPalindrome(s):
+    left = 0
+    right = len(s) - 1
+    while left < right:
+        while left < right and not s[left].isalnum():
+            left += 1
+        while left < right and not s[right].isalnum():
+            right -= 1
+        if s[left].lower() != s[right].lower():
+            return False
+
+        left += 1
+        right -= 1
+
+    return True
+
+
+result = isPalindrome("m,,a.dam")
+
+print("Printing result from question 3:\n", result)
