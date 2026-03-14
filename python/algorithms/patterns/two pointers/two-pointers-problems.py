@@ -63,7 +63,7 @@ def twoSumII(lst, target):
 
 resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
 
-# print("printing result for question 1:\n", resultTwoSumII)
+print("printing result for question 1:\n", resultTwoSumII)
 
 # Time Complexity : O(n)
 # Space Complexity : O(1)
@@ -147,7 +147,7 @@ def removeDuplicates(nums):
 
 result = removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
 
-# print("Printing result for question 2:\n", result)
+print("Printing result for question 2:\n", result)
 
 
 # Time Complexity : O(n)
@@ -169,7 +169,7 @@ def removeDuplicates_unsorted(nums):
     return k, nums[:k], nums
 
 
-# print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
+print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
 # Time Complexity: O(n)
 # Space Complexity : O(n)
 
@@ -227,3 +227,71 @@ def isPalindrome(s):
 result = isPalindrome("m,,a.dam")
 
 print("Printing result from question 3:\n", result)
+
+
+# Question 4: Container with most water
+
+"""
+You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
+
+Find two lines that together with the x-axis form a container, such that the container contains the most water.
+
+Return the maximum amount of water a container can store.
+
+Notice that you may not slant the container.
+
+ 
+
+Example 1:
+
+Input: height = [1,8,6,2,5,4,8,3,7]
+Output: 49
+Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water the container can contain is 49.
+Example 2:
+
+Input: height = [1,1]
+Output: 1
+ 
+
+Constraints:
+
+n == height.length
+2 <= n <= 105
+0 <= height[i] <= 104
+"""
+
+
+"""
+Notes:
+a) left and right, there are two pointers
+b) Keep track of the items in the left and right indices, and store the area, and it can only be replaced with the next higher area
+c) Considering only the heights, the one with the smaller number between left and right, would only be moved, and it would cause the width to get less with each movement
+d) amoung the left and right only the height with the lower number would be considered in calculations
+
+"""
+
+
+def maxArea(height):
+    n = len(height)
+    left = 0
+    right = n - 1
+    max_area = 0
+    while left < right:
+        width = right - left
+        area = min(height[left], height[right]) * (width)
+        max_area = max(max_area, area)
+        if height[left] < height[right]:
+            left += 1
+        else:
+            right -= 1
+
+    return max_area
+
+
+result = maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])
+
+print("Printing result from question 4:\n", result)
+
+
+# Time Complexity: O(n)
+# Space Complexity : O(1)
