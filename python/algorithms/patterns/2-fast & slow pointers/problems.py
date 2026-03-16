@@ -109,8 +109,6 @@ def linkedListCycleDetection(head):
 
 
 # test code
-
-
 class node:
     def __init__(self, value):
         self.value = value
@@ -148,3 +146,43 @@ The number of the nodes in the list is in the range [0, 104].
 -105 <= Node.val <= 105
 pos is -1 or a valid index in the linked-list.
 """
+
+
+def detectCycle(head):
+    slow = head
+    fast = head
+
+    # Phase 1: Detect cycle
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+        if slow == fast:
+            # Phase 2: Find cycle start
+            slow = head
+            while slow != fast:
+                slow = slow.next
+                fast = fast.next
+            return slow  # start of cycle
+
+    return None
+
+
+# test code
+
+# creating nodes
+n1 = node(3)
+n2 = node(2)
+n3 = node(0)
+n4 = node(1)
+n5 = node(-4)
+
+# connecting nodes
+n1.next = n2
+n2.next = n3
+n3.next = n4
+n4.next = n5
+n5.next = n2
+
+head = n1
+print(detectCycle(head))
