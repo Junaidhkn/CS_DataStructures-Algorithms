@@ -62,14 +62,89 @@ Cycle detection: Elegant way to detect loop existence or entry point
 
 Example Use Case Patterns
 
-
 Detect cycle: Linked List : Traverse nodes, check if slow == fast
-
 Find loop start: Linked List : After meeting, reset slow to head
-
 Find middle : Linked List : Stop when fast == null
 Happy Number : Integer Problem : Apply next-transform function repeatedly
 Circular array loop : Array + Modulo : Move with (i + nums[i]) % n, apply cycle logic
 
+"""
 
+# Question 1 : Linked List Cycle
+
+"""
+Given head, the head of a linked list, determine if the linked list has a cycle in it.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to. Note that pos is not passed as a parameter.
+
+Return true if there is a cycle in the linked list. Otherwise, return false.
+
+Example 1:
+Input: head = [3,2,0,-4], pos = 1      => Here in this example -4 again points to 2
+Output: true
+Explanation: There is a cycle in the linked list, where the tail connects to the 1st node (0-indexed).
+
+Example 2:
+Input: head = [1], pos = -1     => Here in this example -1 denotes 1 points to null
+Output: false
+Explanation: There is no cycle in the linked list.
+ 
+Constraints:
+
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
+"""
+
+
+def linkedListCycleDetection(head):
+    slow = head
+    fast = head
+    while fast is not None and fast.next is not None:
+        slow = slow.next
+        fast = fast.next.next
+        if slow == fast:
+            return True
+    return False
+
+
+# test code
+
+
+class node:
+    def __init__(self, value):
+        self.value = value
+        self.next = None
+
+
+# creating nodes
+n1 = node(3)
+n2 = node(2)
+n3 = node(0)
+n4 = node(-4)
+
+# connecting nodes
+n1.next = n2
+n2.next = n3
+n3.next = n4
+n4.next = n1
+
+head = n4
+print(linkedListCycleDetection(head))
+
+
+# Question 2: Linked List cycle II
+
+"""
+Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
+
+There is a cycle in a linked list if there is some node in the list that can be reached again by continuously following the next pointer. Internally, pos is used to denote the index of the node that tail's next pointer is connected to (0-indexed). It is -1 if there is no cycle. Note that pos is not passed as a parameter.
+
+Do not modify the linked list.
+
+Constraints:
+
+The number of the nodes in the list is in the range [0, 104].
+-105 <= Node.val <= 105
+pos is -1 or a valid index in the linked-list.
 """
