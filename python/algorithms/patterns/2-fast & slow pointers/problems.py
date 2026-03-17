@@ -163,9 +163,13 @@ def detectCycle(head):
             while slow != fast:
                 slow = slow.next
                 fast = fast.next
-            return slow  # start of cycle
+        return slow.value  # start of cycle
 
     return None
+
+
+# Time complexity : O(n)
+# Space complexity : O(1)
 
 
 # test code
@@ -186,3 +190,137 @@ n5.next = n2
 
 head = n1
 print(detectCycle(head))
+
+
+# Question 3: Middle of linked list
+
+"""
+Given the head of a singly linked list, return the middle node of the linked list.
+
+If there are two middle nodes, return the second middle node.
+
+Example 1:
+Input: head = [1,2,3,4,5]
+Output: [3,4,5]
+Explanation: The middle node of the list is node 3.
+
+Example 2:
+Input: head = [1,2,3,4,5,6]
+Output: [4,5,6]
+Explanation: Since the list has two middle nodes with values 3 and 4, we return the second one.
+ 
+Constraints:
+
+The number of nodes in the list is in the range [1, 100].
+1 <= Node.val <= 100
+"""
+
+
+def middleNode(head):
+    slow = head
+    fast = head
+
+    while fast and fast.next:
+        slow = slow.next
+        fast = fast.next.next
+
+    return slow
+
+
+# test code
+
+# creating nodes
+n1 = node(3)
+n2 = node(2)
+n3 = node(0)
+n4 = node(1)
+n5 = node(-4)
+n6 = node(51)
+
+# connecting nodes
+n1.next = n2
+n2.next = n3
+n3.next = n4
+n4.next = n5
+n5.next = n6
+n6.next = None
+
+head = n1
+print(middleNode(head))
+
+
+# Question 4: Happy Number
+
+"""
+Write an algorithm to determine if a number n is happy.
+
+A happy number is a number defined by the following process:
+
+Starting with any positive integer, replace the number by the sum of the squares of its digits.
+Repeat the process until the number equals 1 (where it will stay), or it loops endlessly in a cycle which does not include 1.
+Those numbers for which this process ends in 1 are happy.
+Return true if n is a happy number, and false if not.
+
+Example 1:
+Input: n = 19
+Output: true
+Explanation:
+12 + 92 = 82
+82 + 22 = 68
+62 + 82 = 100
+12 + 02 + 02 = 1
+
+Example 2:
+Input: n = 2
+Output: false
+ 
+
+Constraints:
+
+1 <= n <= 231 - 1
+"""
+
+
+def isHappyUsingSet(n):
+    seen = set()
+
+    while n != 1:
+        if n in seen:
+            return False
+
+        seen.add(n)
+
+        n = sum(int(digit) ** 2 for digit in str(n))
+
+    return True
+
+
+print("Printing first solution for question 4:\n", isHappyUsingSet(2))
+
+
+# Time and space complexity using set = O(log n)
+
+
+# Second solution:two pointers
+
+
+def get_next(n):
+    return sum(int(digit) ** 2 for digit in str(n))
+
+
+def isHappy(n):
+    slow = n
+    fast = get_next(n)
+
+    while fast != 1 and slow != fast:
+        slow = get_next(slow)
+        fast = get_next(get_next(fast))
+
+    return fast == 1
+
+
+print("Printing second solution for question 4:\n", isHappy(19))
+
+
+# Time complexity = O(log n)
+# Space complexity = O(1)
