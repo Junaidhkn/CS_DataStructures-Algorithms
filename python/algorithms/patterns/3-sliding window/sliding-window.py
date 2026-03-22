@@ -103,22 +103,27 @@ Constraints:
 
 
 def maximumSubarraySum(nums, k):
-    seen = set()
+    window = set()
     left = 0
     current_sum = 0
     max_sum = 0
 
     for right in range(len(nums)):
-        while nums[right] in seen:
-            seen.remove(nums[left])
+        while nums[right] in window:
+            window.remove(nums[left])
             current_sum -= nums[left]
             left += 1
-        seen.add(nums[right])
+        window.add(nums[right])
         current_sum += nums[right]
         if right - left + 1 == k:
             max_sum = max(max_sum, current_sum)
-            seen.remove(nums[left])
+            window.remove(nums[left])
             current_sum -= nums[left]
             left += 1
 
     return max_sum
+
+
+print(
+    "Printing solution for Question 1: \n", maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3)
+)
