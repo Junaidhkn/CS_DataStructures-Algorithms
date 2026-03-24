@@ -220,6 +220,7 @@ print("solution for Question 1: \n", maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3
 
 # Question 2: Longest substring without repeating characters
 
+
 """
 Given a string s, find the length of the longest substring without duplicate characters.
 
@@ -250,7 +251,29 @@ s consists of English letters, digits, symbols and spaces.
 """
 
 
+def longestSubstring(s):
+    seen = set()
+    left = 0
+    max_length = 0
+
+    for right in range(len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        max_length = max(max_length, right - left + 1)
+
+    return max_length
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(min(n, charset))
+
+
+print("printing longest substring", longestSubstring("wpwqewkew"))
+
 # Question 3: Minimum size subarray sum
+
 
 """
 Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
@@ -281,3 +304,27 @@ Constraints:
 
 Follow up: If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log(n)).
 """
+
+
+def minSubArrayLen(target, nums):
+    left = 0
+    curr_sum = 0
+    min_len = float("inf")
+
+    for right in range(len(nums)):
+        curr_sum += nums[right]
+
+        # Shrink window while valid
+        while curr_sum >= target:
+            min_len = min(min_len, right - left + 1)
+            curr_sum -= nums[left]
+            left += 1
+
+    return 0 if min_len == float("inf") else min_len
+
+
+# Time Complexity : O(n)
+# Space Complexity : O(1)
+
+
+print("printing solution for minsubarraylen", minSubArrayLen(10, [2, 3, 1, 2, 4, 3]))
