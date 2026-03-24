@@ -108,6 +108,34 @@ def maximumSubarraySumBrute(nums, k):
     max_sum = 0
 
     for i in range(n - k + 1):
+        valid = True
+        for j in range(i, i + k):
+            for l in range(j + 1, i + k):
+                if nums[j] == nums[l]:
+                    valid = False
+                    break
+            if not valid:
+                break
+
+        if valid:
+            curr_sum = 0
+            for j in range(i, i + k):
+                curr_sum += nums[j]
+            max_sum = max(max_sum, curr_sum)
+
+    return max_sum
+
+
+# Time Complexity: O(n* k^2)
+# Space Complexity: O(1)
+
+
+# Brute force approach using set
+def maximumSubarraySumBruteSET(nums, k):
+    n = len(nums)
+    max_sum = 0
+
+    for i in range(n - k + 1):
         seen = set()
         curr_sum = 0
         valid = True
@@ -123,6 +151,13 @@ def maximumSubarraySumBrute(nums, k):
             max_sum = max(max_sum, curr_sum)
 
     return max_sum
+
+
+# time complexity: O(n * k)
+# Space complexity: O(k)
+
+result = maximumSubarraySumBrute([1, 5, 4, 4, 6, 7, 9, 9, 9], 3)
+print("priting brute force result", result)
 
 
 # Using Hash Map
