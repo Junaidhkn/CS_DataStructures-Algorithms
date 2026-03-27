@@ -8,7 +8,13 @@ When you need to find pairs, triplets, or subarrays meeting certain conditions.
 When the data is sorted or can be sorted.
 When you want to optimize brute force solutions that use nested loops (O(n2)) to linear or
 near-linear time (O(n)).
-
+{
+    array / linkedlist
+    sorted / sort
+    merge / remove duplicates / rearrange
+    detect cycle in linked list
+    finding pair / triplets / quadruple
+}
 
 How It Works?
 You maintain two pointers that move through the data structure according to certain rules:
@@ -44,6 +50,33 @@ Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We retu
 """
 
 
+# Brute force Approach:Problem is that its time complexity is O(n^2)
+def twoSumIIBruteForce(lst, target):
+    n = len(lst)
+    for i in range(n):
+        for j in range(i + 1, n):
+            if lst[i] + lst[j] == target:
+                return [i + 1, j + 1]
+
+
+resultTwoSumII = twoSumIIBruteForce([8, 7, 11, 15], 19)
+print("Bruteforce question 1:\n", resultTwoSumII)
+
+
+# HashMap Approach: Problem is that its takes alot of space: O(n)
+def twoSumIIHashmap(lst, target):
+    seen = {}
+
+    for i in range(len(lst)):
+        complement = target - lst[i]
+
+        if complement in seen:
+            return [seen[complement] + 1, i + 1]
+
+        seen[lst[i]] = i
+
+
+# Optimal approach -> two pointers
 def twoSumII(lst, target):
     left = 0
     right = len(lst) - 1
@@ -58,7 +91,7 @@ def twoSumII(lst, target):
         else:
             left += 1
 
-    return "not found"
+    return []
 
 
 resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
