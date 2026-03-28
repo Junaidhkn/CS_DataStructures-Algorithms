@@ -107,7 +107,7 @@ print("printing result for question 1:\n", resultTwoSumII)
 """
 Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
 
-Consider the number of unique elements in nums to be k​​​​​​​​​​​​​​. After removing duplicates, return the number of unique elements k.
+Consider the number of unique elements in nums to be k. After removing duplicates, return the number of unique elements k.
 
 The first k elements of nums should contain the unique numbers in sorted order. The remaining elements beyond index k - 1 can be ignored.
 
@@ -154,7 +154,7 @@ nums is sorted in non-decreasing order.
 def removeDuplicates_bruteforce(nums):
     unique = []
     for num in nums:
-        found = True
+        found = False
         for u in unique:
             if u == num:
                 found = True
@@ -168,7 +168,7 @@ def removeDuplicates_bruteforce(nums):
 # Space Complexity : O(n) (if we store results in another list)
 
 
-# Optimal Solution for sorted array according to the question
+# Optimal Solution for sorted array according to the question : Two pointers approach
 def removeDuplicates(nums):
     slow = 1
     for fast in range(1, len(nums)):
