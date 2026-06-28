@@ -6,8 +6,7 @@ The Two Pointers technique involves using two indices (pointers) to iterate over
 When to Use Two Pointers?
 When you need to find pairs, triplets, or subarrays meeting certain conditions.
 When the data is sorted or can be sorted.
-When you want to optimize brute force solutions that use nested loops (O(n2)) to linear or
-near-linear time (O(n)).
+When you want to optimize brute force solutions that use nested loops (On2)) to linear or near-linear time (O(n)).
 {
     array / linkedlist
     sorted / sort
@@ -18,8 +17,7 @@ near-linear time (O(n)).
 
 How It Works?
 You maintain two pointers that move through the data structure according to certain rules:
-One pointer starts at the beginning, the other at the end (common in problems like
-finding pairs with a sum).
+One pointer starts at the beginning, the other at the end (common in problems like finding pairs with a sum).
 Or, both pointers start at the beginning, with one moving faster than the other (useful for
 sliding window problems).
 Move pointers towards each other or forward depending on the problem condition.
@@ -60,7 +58,7 @@ def twoSumIIBruteForce(lst, target):
 
 
 resultTwoSumII = twoSumIIBruteForce([8, 7, 11, 15], 19)
-print("Bruteforce question 1:\n", resultTwoSumII)
+# print("Bruteforce question 1:\n", resultTwoSumII)
 
 
 # HashMap Approach: Problem is that its takes alot of space: O(n)
@@ -71,9 +69,14 @@ def twoSumIIHashmap(lst, target):
         complement = target - lst[i]
 
         if complement in seen:
+            print("printing seen[complement]", seen[complement])
             return [seen[complement] + 1, i + 1]
 
         seen[lst[i]] = i
+        print("printing seen:", seen[lst[i]])
+
+
+resultTwoSumII = twoSumIIHashmap([2, 7, 11, 15], 9)
 
 
 # Optimal approach -> two pointers
@@ -96,7 +99,7 @@ def twoSumII(lst, target):
 
 resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
 
-print("printing result for question 1:\n", resultTwoSumII)
+print("printing result for question 1: Optimal two pointers\n", resultTwoSumII)
 
 # Time Complexity : O(n)
 # Space Complexity : O(1)
@@ -328,3 +331,38 @@ print("Printing result from question 4:\n", result)
 
 # Time Complexity: O(n)
 # Space Complexity : O(1)
+
+
+# Question 5: Squares of a Sorted Array
+
+"""
+Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
+
+Example 1:
+
+Input: nums = [-4,-1,0,3,10]
+Output: [0,1,9,16,100]
+Explanation: After squaring, the array becomes [16,1,0,9,100].
+After sorting, it becomes [0,1,9,16,100].
+
+Example 2:
+
+Input: nums = [-7,-3,2,3,11]
+Output: [4,9,9,49,121]
+ 
+
+Constraints:
+
+1 <= nums.length <= 104
+-104 <= nums[i] <= 104
+nums is sorted in non-decreasing order.
+ 
+
+Follow up: Squaring each element and sorting the new array is very trivial, could you find an O(n) solution using a different approach?
+"""
+
+
+# Brute force approach
+
+
+# Two Pointers Optimal Solution
