@@ -64,14 +64,11 @@ resultTwoSumII = twoSumIIBruteForce([8, 7, 11, 15], 19)
 # HashMap Approach: Problem is that its takes alot of space: O(n)
 def twoSumIIHashmap(lst, target):
     seen = {}
-
     for i in range(len(lst)):
         complement = target - lst[i]
-
         if complement in seen:
             print("printing seen[complement]", seen[complement])
             return [seen[complement] + 1, i + 1]
-
         seen[lst[i]] = i
         print("printing seen:", seen[lst[i]])
 

@@ -110,8 +110,8 @@ def maximumSubarraySumBrute(nums, k):
     for i in range(n - k + 1):
         valid = True
         for j in range(i, i + k):
-            for l in range(j + 1, i + k):
-                if nums[j] == nums[l]:
+            for x in range(j + 1, i + k):
+                if nums[j] == nums[x]:
                     valid = False
                     break
             if not valid:
