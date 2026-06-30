@@ -31,7 +31,7 @@ If condition met, record the answer or move pointers to find more solutions.
 Repeat until pointers cross or reach the end.
 """
 
-# Question 1: Two sum II: Input Array is sorted
+#! Question 1: Two sum II: Input Array is sorted
 
 """
 Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1  <= index1 < index2 <= numbers.length.
@@ -102,7 +102,7 @@ print("printing result for question 1: Optimal two pointers\n", resultTwoSumII)
 # Space Complexity : O(1)
 
 
-# Question 2: Remove Duplicates from Sorted Array
+#! Question 2: Remove Duplicates from Sorted Array
 
 """
 Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
@@ -207,7 +207,7 @@ print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
 # Space Complexity : O(n)
 
 
-# Question 3: Valid Palindrome
+#! Question 3: Valid Palindrome
 """
 A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
@@ -262,7 +262,7 @@ result = isPalindrome("m,,a.dam")
 print("Printing result from question 3:\n", result)
 
 
-# Question 4: Container with most water
+#! Question 4: Container with most water
 
 """
 You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
@@ -330,7 +330,7 @@ print("Printing result from question 4:\n", result)
 # Space Complexity : O(1)
 
 
-# Question 5: Squares of a Sorted Array
+#! Question 5: Squares of a Sorted Array
 
 """
 Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
@@ -359,7 +359,34 @@ Follow up: Squaring each element and sorting the new array is very trivial, coul
 """
 
 
-# Brute force approach
+#  Brute force approach
+def sortedSquares(nums: list[int]) -> list[int]:
+    return sorted(x * x for x in nums)
 
 
 # Two Pointers Optimal Solution
+def sortedSquaresOptimal(nums: list[int]) -> list[int]:
+    n = len(nums)
+    result = [0] * n
+    left, right = 0, n - 1
+    pos = n - 1  # fill result from the back
+
+    while left <= right:
+        left_sq = nums[left] ** 2
+        right_sq = nums[right] ** 2
+
+        if left_sq > right_sq:
+            result[pos] = left_sq
+            left += 1
+        else:
+            result[pos] = right_sq
+            right -= 1
+
+        pos -= 1
+
+    return result
+
+
+result = sortedSquaresOptimal([-4, -1, 0, 3, 10])
+
+print("Printing result from question 5:\n", result)
