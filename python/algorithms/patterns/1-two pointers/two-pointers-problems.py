@@ -721,3 +721,53 @@ Constraints:
 0 <= k <= 106
 
 """
+
+
+#! Question 14:  Trapping Rain Water (Hard)
+
+"""
+
+Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+Example 1:
+Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
+Output: 6
+Explanation: The elevation map is represented by the array above.
+In this case, 6 units of rain water are being trapped.
+Example 2:
+Input: height = [4,2,0,3,2,5]
+Output: 9
+Constraints:
+n == height.length
+1 <= n <= 2 * 10^4
+0 <= height[i] <= 10^5
+
+"""
+
+
+#! Question 15:  Minimum Window Substring (Hard)
+
+
+"""
+
+Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
+The testcases will be generated such that the answer is unique.
+Example 1:
+Input: s = "ADOBECODEBANC", t = "ABC"
+Output: "BANC"
+Explanation: The substring "BANC" includes 'A', 'B', and 'C' from string t.
+Example 2:
+Input: s = "a", t = "a"
+Output: "a"
+Explanation: The entire string s is the minimum window.
+Example 3:
+Input: s = "a", t = "aa"
+Output: ""
+Explanation: Both 'a's from t must be included in the window.
+Since the largest window of s only has one 'a', return empty string.
+Constraints:
+m == s.length
+n == t.length
+1 <= m, n <= 10^5
+s and t consist of uppercase and lowercase English letters.
+
+"""
