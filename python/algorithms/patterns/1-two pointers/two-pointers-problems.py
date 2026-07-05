@@ -461,11 +461,8 @@ def tripletSumZeroOptimized(nums: list[int]) -> list[int]:
     n = len(nums)
 
     for i in range(n):
-        # skip duplicate values for i — avoids duplicate triplets
         if i > 0 and nums[i] == nums[i - 1]:
             continue
-
-        # early exit: if the smallest number is already > 0, no triplet can sum to 0
         if nums[i] > 0:
             break
 
@@ -479,11 +476,8 @@ def tripletSumZeroOptimized(nums: list[int]) -> list[int]:
                 triplets.append([nums[i], nums[left], nums[right]])
                 left += 1
                 right -= 1
-
-                # skip duplicates for left
                 while left < right and nums[left] == nums[left - 1]:
                     left += 1
-                # skip duplicates for right
                 while left < right and nums[right] == nums[right + 1]:
                     right -= 1
 
@@ -553,5 +547,177 @@ Constraints:
 1 ≤ sum ≤ 105
 3 ≤ arr.size() ≤ 103
 -103 ≤ arr[i] ≤ 103
+
+"""
+
+
+#! Question 9: 	Sort Colors (medium)
+
+"""
+
+Given an array nums with n objects colored red, white, or blue, sort them in-place so that objects of the same color are adjacent, with the colors in the order red, white, and blue.
+
+We will use the integers 0, 1, and 2 to represent the color red, white, and blue, respectively.
+
+You must solve this problem without using the library's sort function.
+
+ 
+
+Example 1:
+
+Input: nums = [2,0,2,1,1,0]
+Output: [0,0,1,1,2,2]
+Example 2:
+
+Input: nums = [2,0,1]
+Output: [0,1,2]
+ 
+
+Constraints:
+
+n == nums.length
+1 <= n <= 300
+nums[i] is either 0, 1, or 2.
+ 
+
+Follow up: Could you come up with a one-pass algorithm using only constant extra space?
+
+"""
+
+
+#! Question 10:  4Sum (medium)
+
+
+"""
+
+Given an array nums of n integers, return an array of all the unique quadruplets [nums[a], nums[b], nums[c], nums[d]] such that:
+
+0 <= a, b, c, d < n
+a, b, c, and d are distinct.
+nums[a] + nums[b] + nums[c] + nums[d] == target
+You may return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [1,0,-1,0,-2,2], target = 0
+Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+Example 2:
+
+Input: nums = [2,2,2,2,2], target = 8
+Output: [[2,2,2,2]]
+ 
+
+Constraints:
+
+1 <= nums.length <= 200
+-109 <= nums[i] <= 109
+-109 <= target <= 109
+
+"""
+
+
+#! Question 11:  Backspace String Compare (Easy)
+
+"""
+
+Given two strings s and t, return true if they are equal when both are typed into empty text editors. '#' means a backspace character.
+
+Note that after backspacing an empty text, the text will continue empty.
+
+ 
+
+Example 1:
+
+Input: s = "ab#c", t = "ad#c"
+Output: true
+Explanation: Both s and t become "ac".
+Example 2:
+
+Input: s = "ab##", t = "c#d#"
+Output: true
+Explanation: Both s and t become "".
+Example 3:
+
+Input: s = "a#c", t = "b"
+Output: false
+Explanation: s becomes "c" while t becomes "b".
+ 
+
+Constraints:
+
+1 <= s.length, t.length <= 200
+s and t only contain lowercase letters and '#' characters.
+ 
+
+Follow up: Can you solve it in O(n) time and O(1) space?
+
+"""
+
+
+#! Question 12:  Shortest Unsorted Continuous Subarray (Medium)
+
+
+"""
+
+Given an integer array nums, you need to find one continuous subarray such that if you only sort this subarray in non-decreasing order, then the whole array will be sorted in non-decreasing order.
+
+Return the shortest such subarray and output its length.
+
+ 
+
+Example 1:
+
+Input: nums = [2,6,4,8,10,9,15]
+Output: 5
+Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+Example 2:
+
+Input: nums = [1,2,3,4]
+Output: 0
+Example 3:
+
+Input: nums = [1]
+Output: 0
+ 
+
+Constraints:
+
+1 <= nums.length <= 104
+-105 <= nums[i] <= 105
+ 
+
+Follow up: Can you solve it in O(n) time complexity?
+
+"""
+
+
+#! Question 13:  Subarray Product Less Than K (Medium)
+
+"""
+
+Given an array of integers nums and an integer k, return the number of contiguous subarrays where the product of all the elements in the subarray is strictly less than k.
+
+ 
+
+Example 1:
+
+Input: nums = [10,5,2,6], k = 100
+Output: 8
+Explanation: The 8 subarrays that have product less than 100 are:
+[10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]
+Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+Example 2:
+
+Input: nums = [1,2,3], k = 0
+Output: 0
+ 
+
+Constraints:
+
+1 <= nums.length <= 3 * 104
+1 <= nums[i] <= 1000
+0 <= k <= 106
 
 """
