@@ -57,7 +57,7 @@ def twoSumIIBruteForce(lst, target):
                 return [i + 1, j + 1]
 
 
-resultTwoSumII = twoSumIIBruteForce([8, 7, 11, 15], 19)
+# resultTwoSumII = twoSumIIBruteForce([8, 7, 11, 15], 19)
 # print("Bruteforce question 1:\n", resultTwoSumII)
 
 
@@ -73,7 +73,7 @@ def twoSumIIHashmap(lst, target):
         print("printing seen:", seen[lst[i]])
 
 
-resultTwoSumII = twoSumIIHashmap([2, 7, 11, 15], 9)
+# resultTwoSumII = twoSumIIHashmap([2, 7, 11, 15], 9)
 
 
 # Optimal approach -> two pointers
@@ -94,9 +94,9 @@ def twoSumII(lst, target):
     return []
 
 
-resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
+# resultTwoSumII = twoSumII([2, 7, 11, 15], 9)
 
-print("printing result for question 1: Optimal two pointers\n", resultTwoSumII)
+# print("printing result for question 1: Optimal two pointers\n", resultTwoSumII)
 
 # Time Complexity : O(n)
 # Space Complexity : O(1)
@@ -178,9 +178,9 @@ def removeDuplicates(nums):
     return slow, nums[:slow], nums
 
 
-result = removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
+# result = removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
 
-print("Printing result for question 2:\n", result)
+# print("Printing result for question 2:\n", result)
 
 
 # Time Complexity : O(n)
@@ -202,7 +202,7 @@ def removeDuplicates_unsorted(nums):
     return k, nums[:k], nums
 
 
-print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
+# print(removeDuplicates_unsorted([3, 1, 3, 2, 4, 1, 5]))
 # Time Complexity: O(n)
 # Space Complexity : O(n)
 
@@ -257,9 +257,9 @@ def isPalindrome(s):
     return True
 
 
-result = isPalindrome("m,,a.dam")
+# result = isPalindrome("m,,a.dam")
 
-print("Printing result from question 3:\n", result)
+# print("Printing result from question 3:\n", result)
 
 
 #! Question 4: Container with most water
@@ -321,9 +321,9 @@ def maxArea(height):
     return max_area
 
 
-result = maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])
+# result = maxArea([1, 8, 6, 2, 5, 4, 8, 3, 7])
 
-print("Printing result from question 4:\n", result)
+# print("Printing result from question 4:\n", result)
 
 
 # Time Complexity: O(n)
@@ -383,9 +383,9 @@ def sortedSquaresOptimal(nums: list[int]) -> list[int]:
     return result
 
 
-result = sortedSquaresOptimal([-4, -1, 0, 3, 10])
+# result = sortedSquaresOptimal([-4, -1, 0, 3, 10])
 
-print("Printing result from question 5:\n", result)
+# print("Printing result from question 5:\n", result)
 
 
 #! Question 6: Triplet Sum to Zero (medium)
@@ -425,6 +425,81 @@ Constraints:
 
 """
 
+
+## Brute Force Solution
+
+
+# time complexity : O(n^3) , space complexity: O(n)
+def tripletSumZero(nums: list[int]) -> list[int]:
+    triplets = []
+    seen = set()
+    n = len(nums)
+    for i in range(n):
+        for j in range(i + 1, n):
+            for k in range(j + 1, n):
+                if nums[i] + nums[j] + nums[k] == 0:
+                    triplet = tuple(sorted([nums[i], nums[j], nums[k]]))
+                    if triplet not in seen:
+                        seen.add(triplet)
+                        triplets.append(list(triplet))
+
+    if len(triplet) != 0:
+        return triplets
+    else:
+        return []
+
+
+# result = tripletSumZero([-1, 0, 1, 2, -1, -4])
+
+# print("**********Brute Force for question 6:************\n", result)
+
+
+# Two Pointers: Optimized Solution
+def tripletSumZeroOptimized(nums: list[int]) -> list[int]:
+    nums.sort()
+    triplets = []
+    n = len(nums)
+
+    for i in range(n):
+        # skip duplicate values for i — avoids duplicate triplets
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+
+        # early exit: if the smallest number is already > 0, no triplet can sum to 0
+        if nums[i] > 0:
+            break
+
+        left, right = i + 1, n - 1
+        target = -nums[i]
+
+        while left < right:
+            current_sum = nums[left] + nums[right]
+
+            if current_sum == target:
+                triplets.append([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+
+                # skip duplicates for left
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+                # skip duplicates for right
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
+
+            elif current_sum < target:
+                left += 1
+            else:
+                right -= 1
+
+    return triplets
+
+
+result = tripletSumZeroOptimized([-1, 0, 1, 2, -1, -4])
+
+print("**********Optimal solution for question 6:************\n", result)
+
+### Optimal Two pointers Solution
 
 #! Question 7: 	Triplet Sum Close to Target (medium)
 
