@@ -493,7 +493,34 @@ result = tripletSumZeroOptimized([-1, 0, 1, 2, -1, -4])
 
 print("**********Optimal solution for question 6:************\n", result)
 
-### Optimal Two pointers Solution
+# Time Complexity : O(n^2)
+# Space Complexity : O(1)
+
+### Optimal Solution Without Sorting
+
+
+def tripletSumZeroWithoutSort(nums: list[int]) -> list[int]:
+    n = len(nums)
+    result = set()
+
+    for i in range(n):
+        seen = set()
+        target = -nums[i]
+
+        for j in range(i + 1, n):
+            complement = target - nums[j]
+
+            if complement in seen:
+                triplet = tuple(sorted([nums[i], nums[j], complement]))
+                result.add(triplet)
+
+            seen.add(nums[j])
+
+    return [list(t) for t in result]
+
+
+result = tripletSumZero([-1, 0, 1, 2, -1, -4])
+print(result)  # [[-1, -1, 2], [-1, 0, 1]]
 
 #! Question 7: 	Triplet Sum Close to Target (medium)
 
