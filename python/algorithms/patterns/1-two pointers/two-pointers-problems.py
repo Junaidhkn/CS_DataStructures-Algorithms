@@ -506,14 +506,11 @@ def tripletSumZeroWithoutSort(nums: list[int]) -> list[int]:
     for i in range(n):
         seen = set()
         target = -nums[i]
-
         for j in range(i + 1, n):
             complement = target - nums[j]
-
             if complement in seen:
                 triplet = tuple(sorted([nums[i], nums[j], complement]))
                 result.add(triplet)
-
             seen.add(nums[j])
 
     return [list(t) for t in result]
