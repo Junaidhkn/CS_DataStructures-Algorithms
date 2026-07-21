@@ -1,7 +1,6 @@
 """
 What is the Two Pointers Pattern?
-The Two Pointers technique involves using two indices (pointers) to iterate over a data structure
-(usually an array or a string) to solve problems efficiently by avoiding nested loops.
+The Two Pointers technique involves using two indices (pointers) to iterate over a data structure (usually an array or a string) to solve problems efficiently by avoiding nested loops.
 
 When to Use Two Pointers?
 When you need to find pairs, triplets, or subarrays meeting certain conditions.
@@ -18,8 +17,7 @@ When you want to optimize brute force solutions that use nested loops (On2)) to 
 How It Works?
 You maintain two pointers that move through the data structure according to certain rules:
 One pointer starts at the beginning, the other at the end (common in problems like finding pairs with a sum).
-Or, both pointers start at the beginning, with one moving faster than the other (useful for
-sliding window problems).
+Or, both pointers start at the beginning, with one moving faster than the other (useful for sliding window problems).
 Move pointers towards each other or forward depending on the problem condition.
 
 Typical Approach:
@@ -134,6 +132,7 @@ Input: nums = [1,1,2]
 Output: 2, nums = [1,2,_]
 Explanation: Your function should return k = 2, with the first two elements of nums being 1 and 2 respectively.
 It does not matter what you leave beyond the returned k (hence they are underscores).
+
 Example 2:
 
 Input: nums = [0,0,1,1,1,2,2,3,3,4]
@@ -178,6 +177,7 @@ def removeDuplicates(nums):
     return slow, nums[:slow], nums
 
 
+# here we are starting with slow = 1, because the first one is not duplicate
 # result = removeDuplicates([0, 0, 1, 1, 1, 2, 2, 3, 3, 4])
 
 # print("Printing result for question 2:\n", result)
@@ -220,11 +220,13 @@ Example 1:
 Input: s = "A man, a plan, a canal: Panama"
 Output: true
 Explanation: "amanaplanacanalpanama" is a palindrome.
+
 Example 2:
 
 Input: s = "race a car"
 Output: false
 Explanation: "raceacar" is not a palindrome.
+
 Example 3:
 
 Input: s = " "
@@ -280,6 +282,7 @@ Example 1:
 Input: height = [1,8,6,2,5,4,8,3,7]
 Output: 49
 Explanation: The above vertical lines are represented by array [1,8,6,2,5,4,8,3,7]. In this case, the max area of water the container can contain is 49.
+
 Example 2:
 
 Input: height = [1,1]
@@ -406,11 +409,13 @@ nums[1] + nums[2] + nums[4] = 0 + 1 + (-1) = 0.
 nums[0] + nums[3] + nums[4] = (-1) + 2 + (-1) = 0.
 The distinct triplets are [-1,0,1] and [-1,-1,2].
 Notice that the order of the output and the order of the triplets does not matter.
+
 Example 2:
 
 Input: nums = [0,1,1]
 Output: []
 Explanation: The only possible triplet does not sum up to 0.
+
 Example 3:
 
 Input: nums = [0,0,0]
@@ -434,8 +439,8 @@ def tripletSumZero(nums: list[int]) -> list[int]:
     triplets = []
     seen = set()
     n = len(nums)
-    for i in range(n):
-        for j in range(i + 1, n):
+    for i in range(n - 2):
+        for j in range(i + 1, n - 1):
             for k in range(j + 1, n):
                 if nums[i] + nums[j] + nums[k] == 0:
                     triplet = tuple(sorted([nums[i], nums[j], nums[k]]))
@@ -489,9 +494,9 @@ def tripletSumZeroOptimized(nums: list[int]) -> list[int]:
     return triplets
 
 
-result = tripletSumZeroOptimized([-1, 0, 1, 2, -1, -4])
+# result = tripletSumZeroOptimized([-1, 0, 1, 2, -1, -4])
 
-print("**********Optimal solution for question 6:************\n", result)
+# print("**********Optimal solution for question 6:************\n", result)
 
 # Time Complexity : O(n^2)
 # Space Complexity : O(1)
@@ -516,8 +521,8 @@ def tripletSumZeroWithoutSort(nums: list[int]) -> list[int]:
     return [list(t) for t in result]
 
 
-result = tripletSumZero([-1, 0, 1, 2, -1, -4])
-print(result)  # [[-1, -1, 2], [-1, 0, 1]]
+# result = tripletSumZero([-1, 0, 1, 2, -1, -4])
+# print("Printing result if input is unsorted \n", result)  # [[-1, -1, 2], [-1, 0, 1]]
 
 #! Question 7: 	Triplet Sum Close to Target (medium)
 
@@ -529,13 +534,12 @@ Return the sum of the three integers.
 
 You may assume that each input would have exactly one solution.
 
- 
-
 Example 1:
 
 Input: nums = [-1,2,1,-4], target = 1
 Output: 2
 Explanation: The sum that is closest to the target is 2. (-1 + 2 + 1 = 2).
+
 Example 2:
 
 Input: nums = [0,0,0], target = 1
@@ -567,6 +571,8 @@ Explanation: Triplets with sum less than 2 are (-2, 0, 1) and (-2, 0, 3).
 Input: sum = 12, arr[] = [5, 1, 3, 4, 7]
 Output: 4
 Explanation: Triplets with sum less than 12 are (1, 3, 4), (5, 1, 3), (1, 3, 7) and (5, 1, 4).
+
+
 Constraints:
 1 ≤ sum ≤ 105
 3 ≤ arr.size() ≤ 103
@@ -574,6 +580,66 @@ Constraints:
 
 """
 
+# Brute force solution
+
+
+def tripletSmallerSum(nums: list[int], target) -> list[int]:
+    triplets = []
+    seen = set()
+    n = len(nums)
+    for i in range(n - 2):
+        for j in range(i + 1, n - 1):
+            for k in range(j + 1, n):
+                if nums[i] + nums[j] + nums[k] < target:
+                    triplet = tuple(sorted([nums[i], nums[j], nums[k]]))
+                    if triplet not in seen:
+                        seen.add(triplet)
+                        triplets.append(list(triplet))
+
+    if len(triplet) != 0:
+        return triplets, len(triplets)
+    else:
+        return []
+
+
+result = tripletSmallerSum([5, 1, 3, 4, 7], 12)
+
+print("**********Brute Force for question 8:************\n", result)
+
+
+# Optimized Solution
+def tripletSmallerSumOptimized(nums: list[int], sum) -> list[int]:
+    nums.sort()
+    triplets = []
+    n = len(nums)
+
+    for i in range(n):
+        if i > 0 and nums[i] == nums[i - 1]:
+            continue
+        if nums[i] > sum:
+            break
+
+        left, right = i + 1, n - 1
+
+        while left < right:
+            current_sum = nums[left] + nums[right] + nums[i]
+            if current_sum < sum:
+                triplets.append([nums[i], nums[left], nums[right]])
+                left += 1
+                right -= 1
+                while left < right and nums[left] == nums[left - 1]:
+                    left += 1
+                while left < right and nums[right] == nums[right + 1]:
+                    right -= 1
+            elif current_sum >= sum:
+                right -= 1
+
+    return triplets, len(triplets)
+
+
+result = tripletSmallerSumOptimized([5, 1, 3, 4, 7], 12)
+
+print("***Optimized solution for question 8:************\n", result)
 
 #! Question 9: 	Sort Colors (medium)
 
@@ -591,6 +657,7 @@ Example 1:
 
 Input: nums = [2,0,2,1,1,0]
 Output: [0,0,1,1,2,2]
+
 Example 2:
 
 Input: nums = [2,0,1]
@@ -627,6 +694,7 @@ Example 1:
 
 Input: nums = [1,0,-1,0,-2,2], target = 0
 Output: [[-2,-1,1,2],[-2,0,0,2],[-1,0,0,1]]
+
 Example 2:
 
 Input: nums = [2,2,2,2,2], target = 8
@@ -657,11 +725,13 @@ Example 1:
 Input: s = "ab#c", t = "ad#c"
 Output: true
 Explanation: Both s and t become "ac".
+
 Example 2:
 
 Input: s = "ab##", t = "c#d#"
 Output: true
 Explanation: Both s and t become "".
+
 Example 3:
 
 Input: s = "a#c", t = "b"
@@ -696,10 +766,12 @@ Example 1:
 Input: nums = [2,6,4,8,10,9,15]
 Output: 5
 Explanation: You need to sort [6, 4, 8, 10, 9] in ascending order to make the whole array sorted in ascending order.
+
 Example 2:
 
 Input: nums = [1,2,3,4]
 Output: 0
+
 Example 3:
 
 Input: nums = [1]
@@ -732,6 +804,7 @@ Output: 8
 Explanation: The 8 subarrays that have product less than 100 are:
 [10], [5], [2], [6], [10, 5], [5, 2], [2, 6], [5, 2, 6]
 Note that [10, 5, 2] is not included as the product of 100 is not strictly less than k.
+
 Example 2:
 
 Input: nums = [1,2,3], k = 0
@@ -752,11 +825,13 @@ Constraints:
 """
 
 Given n non-negative integers representing an elevation map where the width of each bar is 1, compute how much water it can trap after raining.
+
 Example 1:
 Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
 Explanation: The elevation map is represented by the array above.
 In this case, 6 units of rain water are being trapped.
+
 Example 2:
 Input: height = [4,2,0,3,2,5]
 Output: 9
@@ -775,14 +850,17 @@ n == height.length
 
 Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
 The testcases will be generated such that the answer is unique.
+
 Example 1:
 Input: s = "ADOBECODEBANC", t = "ABC"
 Output: "BANC"
 Explanation: The substring "BANC" includes 'A', 'B', and 'C' from string t.
+
 Example 2:
 Input: s = "a", t = "a"
 Output: "a"
 Explanation: The entire string s is the minimum window.
+
 Example 3:
 Input: s = "a", t = "aa"
 Output: ""
