@@ -596,10 +596,7 @@ def tripletSmallerSum(nums: list[int], target) -> list[int]:
                         seen.add(triplet)
                         triplets.append(list(triplet))
 
-    if len(triplet) != 0:
-        return triplets, len(triplets)
-    else:
-        return []
+    return triplets, len(triplets)
 
 
 result = tripletSmallerSum([5, 1, 3, 4, 7], 12)
@@ -613,25 +610,18 @@ def tripletSmallerSumOptimized(nums: list[int], sum) -> list[int]:
     triplets = []
     n = len(nums)
 
-    for i in range(n):
-        if i > 0 and nums[i] == nums[i - 1]:
-            continue
-        if nums[i] > sum:
-            break
-
-        left, right = i + 1, n - 1
+    for i in range(n - 2):
+        left = i + 1
+        right = n - 1
 
         while left < right:
-            current_sum = nums[left] + nums[right] + nums[i]
-            if current_sum < sum:
-                triplets.append([nums[i], nums[left], nums[right]])
+            current = nums[i] + nums[left] + nums[right]
+
+            if current < sum:
+                for k in range(right, left, -1):
+                    triplets.append([nums[i], nums[left], nums[k]])
                 left += 1
-                right -= 1
-                while left < right and nums[left] == nums[left - 1]:
-                    left += 1
-                while left < right and nums[right] == nums[right + 1]:
-                    right -= 1
-            elif current_sum >= sum:
+            else:
                 right -= 1
 
     return triplets, len(triplets)
@@ -640,6 +630,30 @@ def tripletSmallerSumOptimized(nums: list[int], sum) -> list[int]:
 result = tripletSmallerSumOptimized([5, 1, 3, 4, 7], 12)
 
 print("***Optimized solution for question 8:************\n", result)
+
+
+def tripletSmallerSumOptimizedCountOnly(nums: list[int], sum) -> int:
+    nums.sort()
+    n = len(nums)
+    count = 0
+
+    for i in range(n - 2):
+
+        left = i + 1
+        right = n - 1
+
+        while left < right:
+
+            current = nums[i] + nums[left] + nums[right]
+
+            if current < sum:
+                count += right - left
+                left += 1
+            else:
+                right -= 1
+
+    return count
+
 
 #! Question 9: 	Sort Colors (medium)
 
