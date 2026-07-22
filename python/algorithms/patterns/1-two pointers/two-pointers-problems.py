@@ -599,9 +599,9 @@ def tripletSmallerSum(nums: list[int], target) -> list[int]:
     return triplets, len(triplets)
 
 
-result = tripletSmallerSum([5, 1, 3, 4, 7], 12)
+# result = tripletSmallerSum([5, 1, 3, 4, 7], 12)
 
-print("**********Brute Force for question 8:************\n", result)
+# print("**********Brute Force for question 8:************\n", result)
 
 
 # Optimized Solution
@@ -627,9 +627,9 @@ def tripletSmallerSumOptimized(nums: list[int], sum) -> list[int]:
     return triplets, len(triplets)
 
 
-result = tripletSmallerSumOptimized([5, 1, 3, 4, 7], 12)
+# result = tripletSmallerSumOptimized([5, 1, 3, 4, 7], 12)
 
-print("***Optimized solution for question 8:************\n", result)
+# print("***Optimized solution for question 8:************\n", result)
 
 
 def tripletSmallerSumOptimizedCountOnly(nums: list[int], sum) -> int:
@@ -638,14 +638,10 @@ def tripletSmallerSumOptimizedCountOnly(nums: list[int], sum) -> int:
     count = 0
 
     for i in range(n - 2):
-
         left = i + 1
         right = n - 1
-
         while left < right:
-
             current = nums[i] + nums[left] + nums[right]
-
             if current < sum:
                 count += right - left
                 left += 1
@@ -655,7 +651,7 @@ def tripletSmallerSumOptimizedCountOnly(nums: list[int], sum) -> int:
     return count
 
 
-#! Question 9: 	Sort Colors (medium)
+#! Question 9: 	Sort Colors{Dutch National Flag} (medium)
 
 """
 
@@ -687,6 +683,64 @@ nums[i] is either 0, 1, or 2.
 
 Follow up: Could you come up with a one-pass algorithm using only constant extra space?
 
+"""
+
+
+def sortColorsBruteForceI(nums: list[int]) -> list[int]:
+    n = len(nums)
+    zeros = []
+    ones = []
+    twos = []
+    for i in range(n):
+        if nums[i] == 0:
+            zeros.append(nums[i])
+        elif nums[i] == 1:
+            ones.append(nums[i])
+        else:
+            twos.append(nums[i])
+    return zeros + ones + twos
+
+
+result = sortColorsBruteForceI([2, 0, 2, 1, 1, 0])
+
+print("*** I solution for question 9:*******\n", result)
+# Here time and space complexity is O(n)
+
+
+### Optimized Solution: Two Pass
+def sortColorsI(nums: list[int]) -> list[int]:
+    count = [0, 0, 0]
+    for num in nums:
+        count[num] += 1
+    index = 0
+    for color in range(3):
+        while count[color] > 0:
+            nums[index] = color
+            index += 1
+            count[color] -= 1
+
+    return nums
+
+
+result = sortColorsI([2, 0, 2, 1, 1, 0])
+# Although its time complexity is O(n) and space complexity is O(1), but it needs two  full passes over nums array
+
+
+### Optimized Solution: Dutch National Flag Algorithm
+
+"""
+Dutch National Flag Algorithm:
+
+1. Initialize Low = 0, mid = 0, high = len(array) - 1
+2. Iterate while mid <= high:
+    a. If array[mid] == 0: swap array[low] & array[mid], increment low & mid
+    b. If array[mid] == 1: increment mid
+    c. If array[mid] == 2: swap array[mid] & array[high], decrement high
+3. Continue until mid > high
+4. Array is sorted
+
+
+It's time complexity is O(n) and space complexity is O(1), also it does sort in a single pass
 """
 
 
