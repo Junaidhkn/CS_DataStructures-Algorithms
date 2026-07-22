@@ -723,10 +723,12 @@ def sortColorsI(nums: list[int]) -> list[int]:
 
 
 result = sortColorsI([2, 0, 2, 1, 1, 0])
+print("*** I solution for question 9:*******\n", result)
 # Although its time complexity is O(n) and space complexity is O(1), but it needs two  full passes over nums array
 
 
 ### Optimized Solution: Dutch National Flag Algorithm
+
 
 """
 Dutch National Flag Algorithm:
@@ -743,6 +745,26 @@ Dutch National Flag Algorithm:
 It's time complexity is O(n) and space complexity is O(1), also it does sort in a single pass
 """
 
+
+def sortColorsDNF(nums):
+    low = 0
+    mid = 0
+    high = len(nums) - 1
+    while mid <= high:
+        if nums[mid] == 0:
+            nums[low], nums[mid] = nums[mid], nums[low]
+            low += 1
+            mid += 1
+        elif nums[mid] == 1:
+            mid += 1
+        else:
+            nums[mid], nums[high] = nums[high], nums[mid]
+            high -= 1
+    return nums
+
+
+result = sortColorsDNF([2, 0, 2, 1, 1, 0])
+print("*** DNF for question 9:*******\n", result)
 
 #! Question 10:  4Sum (medium)
 
