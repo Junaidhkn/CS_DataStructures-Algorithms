@@ -11,7 +11,7 @@ Instead of recalculating everything for every window, it efficiently updates res
 The sliding window pattern applies mainly when:
 You need to find something about subarrays or substrings of contiguous elements.
 You want to calculate or track a property over a range that moves forward step-by-step.
-Problems involving sums, counts, maximum/minimum, frequency of elements inside a window.
+Problems involving sums, counts, average, maximum/minimum,atmost k, atleast k or exactly k, frequency of elements inside a window.
 Fixed-size windows (e.g., "find max sum of subarray of size k")
 Variable-size windows where the window expands or shrinks based on some condition
 (e.g., "smallest subarray with sum >= target")
@@ -61,9 +61,83 @@ Memory: Uses constant or linear extra space, depending on implementation.
 Versatility: Works for fixed-size and variable-size problems.
 Ideal for real-time streaming data and online algorithms where data is processed
 sequentially.
+
+
+
+
 """
 
-# Question 1: Maximum sum of distinct subarrays with length K
+## ! Question 1: Max Sum Subarray of size K
+
+"""
+
+Given an array of integers arr[]  and a number k. Return the maximum sum of a subarray of size k.
+
+Note: A subarray is a contiguous part of any given array.
+
+Examples:
+
+Input: arr[] = [100, 200, 300, 400], k = 2
+Output: 700
+Explanation: arr2 + arr3 = 700, which is maximum.
+
+Input: arr[] = [1, 4, 2, 10, 23, 3, 1, 0, 20], k = 4
+Output: 39
+Explanation: arr1 + arr2 + arr3 + arr4 = 39, which is maximum.
+
+Input: arr[] = [100, 200, 300, 400], k = 1
+Output: 400
+Explanation: arr3 = 400, which is maximum.
+
+Constraints:
+1 ≤ arr.size() ≤ 106
+0 ≤ arr[i] ≤ 106
+1 ≤ k ≤ arr.size()
+
+"""
+# Brute Force
+
+
+def MaxSumSubarrayBruteForce(nums: list[int], k: int):
+    n = len(nums)
+    maximum = float("-inf")
+    for i in range(n - k + 1):
+        current_sum = 0
+        for j in range(i, i + k):
+            current_sum += nums[j]
+        maximum = max(maximum, current_sum)
+
+    return maximum
+
+
+result = MaxSumSubarrayBruteForce([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)
+print(" BF solution for question 1:\n", result)
+
+
+# Time complexity : O(n^2) Space Complexity : O(1)
+
+
+# Optimal Solution
+def MaxSumSubarray(nums, k):
+    n = len(nums)
+    current_sum = 0
+    for i in range(k):  # Or current_sum = sum(arr[:k])
+        current_sum += nums[i]
+    maximum = current_sum
+
+    for j in range(k, n):
+        current_sum = current_sum + nums[j] - nums[j - k]
+        maximum = max(current_sum, maximum)
+
+    return maximum
+
+
+result = MaxSumSubarray([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)
+print("Optimized solution for question 1:\n", result)
+
+# Time complexity : O(n) Space Complexity : O(1)
+
+## ! Question 1: Maximum sum of distinct subarrays with length K
 """
 You are given an integer array nums and an integer k. Find the maximum subarray sum of all the subarrays of nums that meet the following conditions:
 
@@ -156,8 +230,8 @@ def maximumSubarraySumBruteSET(nums, k):
 # time complexity: O(n * k)
 # Space complexity: O(k)
 
-result = maximumSubarraySumBrute([1, 5, 4, 4, 6, 7, 9, 9, 9], 3)
-print("priting brute force result", result)
+# result = maximumSubarraySumBrute([1, 5, 4, 4, 6, 7, 9, 9, 9], 3)
+# print("priting brute force result", result)
 
 
 # Using Hash Map
@@ -211,14 +285,14 @@ def maximumSubarraySum(nums, k):
     return max_sum
 
 
-print("solution for Question 1: \n", maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3))
+# print("solution for Question 1: \n", maximumSubarraySum([1, 5, 4, 2, 9, 9, 9], 3))
 
 
 # Time complexity : O(n)
 # Space Complexity : O(k)
 
 
-# Question 2: Longest substring without repeating characters
+## ! Question 2: Longest substring without repeating characters
 
 
 """
@@ -270,9 +344,9 @@ def longestSubstring(s):
 # Space Complexity: O(min(n, charset))
 
 
-print("printing longest substring", longestSubstring("wpwqewkew"))
+# print("printing longest substring", longestSubstring("wpwqewkew"))
 
-# Question 3: Minimum size subarray sum
+## ! Question 3: Minimum size subarray sum
 
 
 """
@@ -327,4 +401,4 @@ def minSubArrayLen(target, nums):
 # Space Complexity : O(1)
 
 
-print("printing solution for minsubarraylen", minSubArrayLen(10, [2, 3, 1, 2, 4, 3]))
+# print("printing solution for minsubarraylen", minSubArrayLen(10, [2, 3, 1, 2, 4, 3]))
