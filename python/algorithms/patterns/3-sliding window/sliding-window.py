@@ -176,21 +176,22 @@ Follow up: If you have figured out the O(n) solution, try coding another solutio
 
 def minSubArrayLenBF(target, nums):
     n = len(nums)
-    minimum = float("inf")
-
+    min_length = float("inf")
     for i in range(n):
-
         current_sum = 0
-
         for j in range(i, n):
-
             current_sum += nums[j]
-
             if current_sum >= target:
-                minimum = min(minimum, j - i + 1)
+                min_length = min(min_length, j - i + 1)
                 break
 
-    return 0 if minimum == float("inf") else minimum
+    return 0 if min_length == float("inf") else min_length
+
+
+print(
+    "printing BF solution for minsubarraylen:\n",
+    minSubArrayLenBF(7, [2, 3, 1, 2, 4, 3]),
+)
 
 
 # Sliding window : O(n) solution
@@ -198,11 +199,11 @@ def minSubArrayLen(target, nums):
     left = 0
     curr_sum = 0
     min_len = float("inf")
+    n = len(nums)
 
-    for right in range(len(nums)):
+    for right in range(n):
         curr_sum += nums[right]
 
-        # Shrink window while valid
         while curr_sum >= target:
             min_len = min(min_len, right - left + 1)
             curr_sum -= nums[left]
@@ -210,6 +211,11 @@ def minSubArrayLen(target, nums):
 
     return 0 if min_len == float("inf") else min_len
 
+
+print(
+    "printing SW solution for minsubarraylen:\n",
+    minSubArrayLen(7, [2, 3, 1, 2, 4, 3]),
+)
 
 # Time Complexity : O(n)
 # Space Complexity : O(1)
