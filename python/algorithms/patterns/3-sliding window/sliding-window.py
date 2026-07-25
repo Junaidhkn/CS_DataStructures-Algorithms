@@ -221,10 +221,131 @@ print(
 # Space Complexity : O(1)
 
 
-# print("printing solution for minsubarraylen", minSubArrayLen(10, [2, 3, 1, 2, 4, 3]))
+## ! Question 3: Longest Substring with K Uniques
+"""
+You are given a string s consisting only lowercase alphabets and an integer k. Your task is to find the length of the longest substring that contains exactly k distinct characters.
+
+Note : If no such substring exists, return -1. 
+
+Examples:
+
+Input: s = "aabacbebebe", k = 3
+Output: 7
+Explanation: The longest substring with exactly 3 distinct characters is "cbebebe", which includes 'c', 'b', and 'e'.
+
+Input: s = "aaaa", k = 2
+Output: -1
+Explanation: There's no substring with 2 distinct characters.
+
+Input: s = "aabaaab", k = 2
+Output: 7
+Explanation: The entire string "aabaaab" has exactly 2 unique characters 'a' and 'b', making it the longest valid substring.
+
+Constraints:
+1 ≤ s.size() ≤ 105
+1 ≤ k ≤ 26
+
+"""
 
 
-## ! Question 1: Maximum sum of distinct subarrays with length K
+## ! Question 4: Fruit Into Baskets
+"""
+You are visiting a farm that has a single row of fruit trees arranged from left to right. The trees are represented by an integer array fruits where fruits[i] is the type of fruit the ith tree produces.
+
+You want to collect as much fruit as possible. However, the owner has some strict rules that you must follow:
+
+You only have two baskets, and each basket can only hold a single type of fruit. There is no limit on the amount of fruit each basket can hold.
+Starting from any tree of your choice, you must pick exactly one fruit from every tree (including the start tree) while moving to the right. The picked fruits must fit in one of your baskets.
+Once you reach a tree with fruit that cannot fit in your baskets, you must stop.
+Given the integer array fruits, return the maximum number of fruits you can pick.
+
+ 
+
+Example 1:
+
+Input: fruits = [1,2,1]
+Output: 3
+Explanation: We can pick from all 3 trees.
+
+Example 2:
+
+Input: fruits = [0,1,2,2]
+Output: 3
+Explanation: We can pick from trees [1,2,2].
+If we had started at the first tree, we would only pick from trees [0,1].
+
+Example 3:
+
+Input: fruits = [1,2,3,2,2]
+Output: 4
+Explanation: We can pick from trees [2,3,2,2].
+If we had started at the first tree, we would only pick from trees [1,2].
+ 
+
+Constraints:
+
+1 <= fruits.length <= 105
+0 <= fruits[i] < fruits.length
+
+"""
+
+
+## ! Question 5: Longest substring without repeating characters
+
+
+"""
+Given a string s, find the length of the longest substring without duplicate characters.
+
+Example 1:
+
+Input: s = "abcabcbb"
+Output: 3
+Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
+
+Example 2:
+
+Input: s = "bbbbb"
+Output: 1
+Explanation: The answer is "b", with the length of 1.
+
+Example 3:
+
+Input: s = "pwwkew"
+Output: 3
+Explanation: The answer is "wke", with the length of 3.
+Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
+ 
+
+Constraints:
+
+0 <= s.length <= 5 * 104
+s consists of English letters, digits, symbols and spaces.
+"""
+
+
+def longestSubstring(s):
+    seen = set()
+    left = 0
+    max_length = 0
+
+    for right in range(len(s)):
+        while s[right] in seen:
+            seen.remove(s[left])
+            left += 1
+        seen.add(s[right])
+        max_length = max(max_length, right - left + 1)
+
+    return max_length
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(min(n, charset))
+
+
+# print("printing longest substring", longestSubstring("wpwqewkew"))
+
+
+## ! Question 6: Maximum sum of distinct subarrays with length K
 """
 You are given an integer array nums and an integer k. Find the maximum subarray sum of all the subarrays of nums that meet the following conditions:
 
@@ -377,115 +498,3 @@ def maximumSubarraySum(nums, k):
 
 # Time complexity : O(n)
 # Space Complexity : O(k)
-
-
-## ! Question 2: Longest substring without repeating characters
-
-
-"""
-Given a string s, find the length of the longest substring without duplicate characters.
-
-Example 1:
-
-Input: s = "abcabcbb"
-Output: 3
-Explanation: The answer is "abc", with the length of 3. Note that "bca" and "cab" are also correct answers.
-
-Example 2:
-
-Input: s = "bbbbb"
-Output: 1
-Explanation: The answer is "b", with the length of 1.
-
-Example 3:
-
-Input: s = "pwwkew"
-Output: 3
-Explanation: The answer is "wke", with the length of 3.
-Notice that the answer must be a substring, "pwke" is a subsequence and not a substring.
- 
-
-Constraints:
-
-0 <= s.length <= 5 * 104
-s consists of English letters, digits, symbols and spaces.
-"""
-
-
-def longestSubstring(s):
-    seen = set()
-    left = 0
-    max_length = 0
-
-    for right in range(len(s)):
-        while s[right] in seen:
-            seen.remove(s[left])
-            left += 1
-        seen.add(s[right])
-        max_length = max(max_length, right - left + 1)
-
-    return max_length
-
-
-# Time Complexity: O(n)
-# Space Complexity: O(min(n, charset))
-
-
-# print("printing longest substring", longestSubstring("wpwqewkew"))
-
-## ! Question 3: Minimum size subarray sum
-
-
-"""
-Given an array of positive integers nums and a positive integer target, return the minimal length of a subarray whose sum is greater than or equal to target. If there is no such subarray, return 0 instead.
-
-Example 1:
-
-Input: target = 7, nums = [2,3,1,2,4,3]
-Output: 2
-Explanation: The subarray [4,3] has the minimal length under the problem constraint.
-
-Example 2:
-
-Input: target = 4, nums = [1,4,4]
-Output: 1
-
-Example 3:
-
-Input: target = 11, nums = [1,1,1,1,1,1,1,1]
-Output: 0
- 
-
-Constraints:
-
-1 <= target <= 109
-1 <= nums.length <= 105
-1 <= nums[i] <= 104
- 
-
-Follow up: If you have figured out the O(n) solution, try coding another solution of which the time complexity is O(n log(n)).
-"""
-
-
-def minSubArrayLen(target, nums):
-    left = 0
-    curr_sum = 0
-    min_len = float("inf")
-
-    for right in range(len(nums)):
-        curr_sum += nums[right]
-
-        # Shrink window while valid
-        while curr_sum >= target:
-            min_len = min(min_len, right - left + 1)
-            curr_sum -= nums[left]
-            left += 1
-
-    return 0 if min_len == float("inf") else min_len
-
-
-# Time Complexity : O(n)
-# Space Complexity : O(1)
-
-
-# print("printing solution for minsubarraylen", minSubArrayLen(10, [2, 3, 1, 2, 4, 3]))
