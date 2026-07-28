@@ -62,17 +62,13 @@ Versatility: Works for fixed-size and variable-size problems.
 Ideal for real-time streaming data and online algorithms where data is processed
 sequentially.
 
-
-
-
 """
 
 ## ! Question 1: Max Sum Subarray of size K
 
 """
 
-Given an array of integers arr[]  and a number k. Return the maximum sum of a subarray of size k.
-
+Given an array of integers arr[] and a number k. Return the maximum sum of a subarray of size k.
 Note: A subarray is a contiguous part of any given array.
 
 Examples:
@@ -112,7 +108,6 @@ def MaxSumSubarrayBruteForce(nums: list[int], k: int):
 
 result = MaxSumSubarrayBruteForce([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)
 print(" BF solution for question 1:\n", result)
-
 
 # Time complexity : O(n^2) Space Complexity : O(1)
 
@@ -247,6 +242,54 @@ Constraints:
 
 """
 
+
+# Brute Force Approach
+def longestKSubstr(s, k):
+    n = len(s)
+    longest = -1
+
+    for i in range(n):
+        distinct = set()
+
+        for j in range(i, n):
+            distinct.add(s[j])
+
+            if len(distinct) == k:
+                longest = max(longest, j - i + 1)
+
+            elif len(distinct) > k:
+                break
+
+    return longest
+
+
+# Time Complexity : O(n^2) and Space Complexity : O(1)
+
+
+# Optimal Sliding Window Pattern
+def longestKSubstrOptimal(s, k):
+    left = 0
+    longest = -1
+    freq = {}
+
+    for right in range(len(s)):
+        freq[s[right]] = freq.get(s[right], 0) + 1
+
+        while len(freq) > k:
+            freq[s[left]] -= 1
+
+            if freq[s[left]] == 0:
+                del freq[s[left]]
+
+            left += 1
+
+        if len(freq) == k:
+            longest = max(longest, right - left + 1)
+
+    return longest
+
+
+# Time Complexity : O(n) and Space Complexity : O(1)
 
 ## ! Question 4: Fruit Into Baskets
 """
