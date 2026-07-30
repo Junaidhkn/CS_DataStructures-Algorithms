@@ -271,8 +271,9 @@ def longestKSubstrOptimal(s, k):
     left = 0
     longest = -1
     freq = {}
+    n = len(s)
 
-    for right in range(len(s)):
+    for right in range(n):
         freq[s[right]] = freq.get(s[right], 0) + 1
 
         while len(freq) > k:
@@ -290,6 +291,7 @@ def longestKSubstrOptimal(s, k):
 
 
 # Time Complexity : O(n) and Space Complexity : O(1)
+
 
 ## ! Question 4: Fruit Into Baskets
 """
@@ -333,6 +335,55 @@ Constraints:
 """
 
 
+# Brute Force
+def totalFruit(fruits):
+    n = len(fruits)
+    longest = 0
+
+    for i in range(n):
+        basket = set()
+
+        for j in range(i, n):
+            basket.add(fruits[j])
+
+            if len(basket) > 2:
+                break
+
+            longest = max(longest, j - i + 1)
+
+    return longest
+
+
+# Time Complexity : O(n^2) and Space Complexity : O(1)
+
+# Optimal Solution
+
+
+def totalFruitSW(fruits):
+    left = 0
+    longest = 0
+    freq = {}
+    n = len(fruits)
+
+    for right in range(n):
+        fruit = fruits[right]
+        freq[fruit] = freq.get(fruit, 0) + 1
+
+        while len(freq) > 2:
+            left_fruit = fruits[left]
+            freq[left_fruit] -= 1
+
+            if freq[left_fruit] == 0:
+                del freq[left_fruit]
+
+            left += 1
+
+        longest = max(longest, right - left + 1)
+
+    return longest
+
+
+# Time Complexity : O(n) and Space Complexity : O(1)
 ## ! Question 5: Longest substring without repeating characters
 
 
@@ -366,12 +417,35 @@ s consists of English letters, digits, symbols and spaces.
 """
 
 
+# Brute Force Solution
+def lengthOfLongestSubstring(s):
+    n = len(s)
+    longest = 0
+
+    for i in range(n):
+        seen = set()
+
+        for j in range(i, n):
+
+            if s[j] in seen:
+                break
+
+            seen.add(s[j])
+            longest = max(longest, j - i + 1)
+
+    return longest
+
+
+# Time Complexity : O(n^2) and Space Complexity : O(1)
+
+
 def longestSubstring(s):
     seen = set()
     left = 0
     max_length = 0
+    n = len(s)
 
-    for right in range(len(s)):
+    for right in range(n):
         while s[right] in seen:
             seen.remove(s[left])
             left += 1
@@ -384,6 +458,26 @@ def longestSubstring(s):
 # Time Complexity: O(n)
 # Space Complexity: O(min(n, charset))
 
+
+def lengthOfLongestSubstring_HM_SW(s):
+    last_seen = {}
+    left = 0
+    longest = 0
+    n = len(s)
+
+    for right in range(n):
+        if s[right] in last_seen:
+            left = max(left, last_seen[s[right]] + 1)
+
+        last_seen[s[right]] = right
+
+        longest = max(longest, right - left + 1)
+
+    return longest
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(min(n, charset))
 
 # print("printing longest substring", longestSubstring("wpwqewkew"))
 
