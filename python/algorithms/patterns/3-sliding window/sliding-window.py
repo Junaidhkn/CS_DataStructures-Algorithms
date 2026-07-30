@@ -670,6 +670,69 @@ s consists of only uppercase English letters.
 
 """
 
+"""
+###! Concept
+
+replacements needed(k) = window size − maxFreq
+If this value is <= k, then the window is valid.
+
+"""
+
+
+# Brute Force Approach
+def characterReplacement(s: str, k: int) -> int:
+    n = len(s)
+    ans = 0
+
+    for i in range(n):
+
+        freq = {}
+
+        for j in range(i, n):
+
+            freq[s[j]] = freq.get(s[j], 0) + 1
+
+            maxFreq = max(freq.values())
+
+            length = j - i + 1
+
+            if length - maxFreq <= k:
+                ans = max(ans, length)
+
+    return ans
+
+
+# Time complexity : O(n^2)
+# Space Complexity : O(1) as O(26) is max
+
+
+# Optimal sliding window approach
+def characterReplacementSW(s: str, k: int) -> int:
+    freq = {}
+
+    left = 0
+    maxFreq = 0
+    ans = 0
+
+    for right in range(len(s)):
+
+        freq[s[right]] = freq.get(s[right], 0) + 1
+
+        maxFreq = max(maxFreq, freq[s[right]])
+
+        while (right - left + 1) - maxFreq > k:
+
+            freq[s[left]] -= 1
+            left += 1
+
+        ans = max(ans, right - left + 1)
+
+    return ans
+
+
+# Time complexity : O(n)
+# Space Complexity : O(1) as O(26) is max
+
 ## ! Question 8: Max Consecutive Ones III
 
 """
@@ -705,18 +768,18 @@ Given two strings s and t of lengths m and n respectively, return the minimum wi
 
 The testcases will be generated such that the answer is unique.
 
- 
-
 Example 1:
 
 Input: s = "ADOBECODEBANC", t = "ABC"
 Output: "BANC"
 Explanation: The minimum window substring "BANC" includes 'A', 'B', and 'C' from string t.
+
 Example 2:
 
 Input: s = "a", t = "a"
 Output: "a"
 Explanation: The entire string s is the minimum window.
+
 Example 3:
 
 Input: s = "a", t = "aa"
