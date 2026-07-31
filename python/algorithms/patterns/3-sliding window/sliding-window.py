@@ -709,19 +709,16 @@ def characterReplacement(s: str, k: int) -> int:
 # Optimal sliding window approach
 def characterReplacementSW(s: str, k: int) -> int:
     freq = {}
-
     left = 0
     maxFreq = 0
     ans = 0
+    n = len(s)
 
-    for right in range(len(s)):
-
+    for right in range(n):
         freq[s[right]] = freq.get(s[right], 0) + 1
-
         maxFreq = max(maxFreq, freq[s[right]])
 
         while (right - left + 1) - maxFreq > k:
-
             freq[s[left]] -= 1
             left += 1
 
@@ -763,6 +760,7 @@ nums[i] is either 0 or 1.
 
 ## ! Question 9: Minimum Window Substring
 
+
 """
 Given two strings s and t of lengths m and n respectively, return the minimum window substring of s such that every character in t (including duplicates) is included in the window. If there is no such substring, return the empty string "".
 
@@ -799,3 +797,90 @@ s and t consist of uppercase and lowercase English letters.
 Follow up: Could you find an algorithm that runs in O(m + n) time?
 
 """
+
+
+##  Brute Force
+def min_window(s: str, t: str) -> str:
+    if len(t) > len(s):
+        return ""
+
+    target = {}
+
+    for char in t:
+        target[char] = target.get(char, 0) + 1
+
+    answer = ""
+    n = len(s)
+
+    for left in range(n):
+        window = {}
+
+        for right in range(left, n):
+            window[s[right]] = window.get(s[right], 0) + 1
+
+            valid = True
+
+            for char, required_count in target.items():
+                if window.get(char, 0) < required_count:
+                    valid = False
+                    break
+
+            if valid and (not answer or right - left + 1 < len(answer)):
+                answer = s[left : right + 1]
+
+    return answer
+
+
+# Time complexity : O(m² × n)
+# where m = len(s) nad n = len(t)-> Or number of distinct characters in t
+
+# Space Complexity : O(n) (for the frequency maps)
+
+
+## Optimal Sliding Window
+def min_window_Optimal(s: str, t: str) -> str:
+    if len(t) > len(s):
+        return ""
+
+    need = {}
+
+    for char in t:
+        need[char] = need.get(char, 0) + 1
+
+    window = {}
+
+    required = len(need)
+    formed = 0
+
+    left = 0
+    answer = (float("inf"), 0, 0)
+
+    for right, char in enumerate(s):
+        window[char] = window.get(char, 0) + 1
+
+        if char in need and window[char] == need[char]:
+            formed += 1
+
+        while formed == required:
+            if right - left + 1 < answer[0]:
+                answer = (right - left + 1, left, right)
+
+            left_char = s[left]
+            window[left_char] -= 1
+
+            if left_char in need and window[left_char] < need[left_char]:
+                formed -= 1
+
+            left += 1
+
+    if answer[0] == float("inf"):
+        return ""
+
+    _, start, end = answer
+    return s[start : end + 1]
+
+
+# Time complexity : O(m + n)
+# where m = len(s) nad n = len(t)-> Or number of distinct characters in t
+
+# Space Complexity : O(n) (where n is the number of distinct characters stored in the frequency maps)
