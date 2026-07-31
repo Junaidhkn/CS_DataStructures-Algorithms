@@ -275,7 +275,7 @@ head = n1
 print(middleNode(head))
 
 
-# Question 4: Happy Number
+##! Question 4: Happy Number
 
 """
 Write an algorithm to determine if a number n is happy.
@@ -349,4 +349,84 @@ print("Printing second solution for question 4:\n", isHappy(19))
 
 
 # Time complexity = O(log n)
+# Space complexity = O(1)
+
+
+##! Question 5: Find the duplicate number
+"""
+
+Given an array of integers nums containing n + 1 integers where each integer is in the range [1, n] inclusive.
+
+There is only one repeated number in nums, return this repeated number.
+
+You must solve the problem without modifying the array nums and using only constant extra space.
+
+Example 1:
+
+Input: nums = [1,3,4,2,2]
+Output: 2
+
+Example 2:
+
+Input: nums = [3,1,3,4,2]
+Output: 3
+
+Example 3:
+
+Input: nums = [3,3,3,3,3]
+Output: 3
+ 
+
+Constraints:
+
+1 <= n <= 105
+nums.length == n + 1
+1 <= nums[i] <= n
+All the integers in nums appear only once except for precisely one integer which appears two or more times.
+ 
+
+Follow up:
+
+How can we prove that at least one duplicate number must exist in nums?
+Can you solve the problem in linear runtime complexity?
+
+"""
+
+
+"""
+
+#? Explaination
+Starting form the zeroth position, zeroth position points to 1, first position points to 3, third position points to 2 etc
+
+nums = [1,3,4,2,2]
+
+0 → 1 → 3 → 2 → 4
+            ↑   ↓
+            └───┘
+"""
+
+
+def find_duplicate(nums: list[int]) -> int:
+    slow = nums[0]
+    fast = nums[0]
+
+    while True:
+        slow = nums[slow]
+        fast = nums[nums[fast]]
+
+        if slow == fast:
+            break
+
+    slow = nums[0]
+
+    while slow != fast:
+        slow = nums[slow]
+        fast = nums[fast]
+
+    return slow
+
+
+print("Finding duplicate:\n", find_duplicate([1, 3, 4, 2, 2]))
+
+# Time complexity = O(n)
 # Space complexity = O(1)
