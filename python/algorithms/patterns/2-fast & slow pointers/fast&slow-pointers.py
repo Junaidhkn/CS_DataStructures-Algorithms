@@ -70,7 +70,7 @@ Circular array loop : Array + Modulo : Move with (i + nums[i]) % n, apply cycle 
 
 """
 
-# Question 1 : Linked List Cycle
+##! Question 1 : Linked List Cycle
 
 """
 Given head, the head of a linked list, determine if the linked list has a cycle in it.
@@ -131,7 +131,7 @@ head = n4
 print(linkedListCycleDetection(head))
 
 
-# Question 2: Linked List cycle II
+##! Question 2: Linked List cycle II
 
 """
 Given the head of a linked list, return the node where the cycle begins. If there is no cycle, return null.
@@ -145,6 +145,32 @@ Constraints:
 The number of the nodes in the list is in the range [0, 104].
 -105 <= Node.val <= 105
 pos is -1 or a valid index in the linked-list.
+"""
+
+"""
+#? Explaination of the concept
+
+-let L1 be the distance from the starting point of linkedList
+-let L2 be the distance from the starting point of cycle, to the point where fast and slow pointers meet
+-let the total number of nodes cycle be C
+-let n be the number of times fast ran in cycle
+
+
+Therefore the total distance is;
+
+L1 + C = L1 + L2 + (C - L2)
+
+slow pointer travels until met -> ( L1 + L2 )
+fast pointer travels until met -> ( L1 + L2 + C ) or ( L1 + L2 + nC )
+
+if fast travels at twice the speed to the slow pointer
+
+L1 + nC + L2 = 2(L1 + L2 )
+therefore it would become    nC = L1 + L2 and L1 = nC - L2
+
+In conclusion, when both of these pointers meet, fast takes same steps to get to the starting node of the pointer as does the slow pointer starting form the start of the linked list.
+
+
 """
 
 
