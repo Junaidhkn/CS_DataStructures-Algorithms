@@ -291,14 +291,14 @@ Example 1:
 Input: n = 19
 Output: true
 Explanation:
-12 + 92 = 82
-82 + 22 = 68
-62 + 82 = 100
-12 + 02 + 02 = 1
+1 + 81 = 82
+64 + 4 = 68
+36 + 64 = 100
+1 + 0 + 0 = 1
 
 Example 2:
 Input: n = 2
-Output: false
+Output: false (its false because it always returns back, in this example 4 creates a cycle)
  
 
 Constraints:
