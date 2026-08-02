@@ -746,16 +746,47 @@ Constraints:
 
 
 # Brute Force Approach
+def max_absolute_sum_bruteforce(nums):
+    n = len(nums)
+    answer = 0
+
+    for start in range(n):
+        current_sum = 0
+
+        for end in range(start, n):
+            current_sum += nums[end]
+            answer = max(answer, abs(current_sum))
+
+    return answer
 
 
-# Time complexity :
-# Space Complexity :
+# Time complexity : O(n²)
+# Space Complexity :  O(1)
 
 # Optimal Approach
 
 
-# Time complexity :
-# Space Complexity :
+def max_absolute_sum_optimal(nums):
+    max_ending = nums[0]
+    min_ending = nums[0]
+
+    max_sum = nums[0]
+    min_sum = nums[0]
+
+    for i in range(1, len(nums)):
+
+        max_ending = max(nums[i], max_ending + nums[i])
+
+        min_ending = min(nums[i], min_ending + nums[i])
+
+        max_sum = max(max_sum, max_ending)
+        min_sum = min(min_sum, min_ending)
+
+    return max(max_sum, abs(min_sum))
+
+
+# Time complexity :  O(n)
+# Space Complexity :  O(1)
 
 ##! Question 6 :   Maximum Sum Circular Subarray
 """
