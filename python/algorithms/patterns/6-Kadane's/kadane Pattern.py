@@ -680,11 +680,30 @@ Constraints:
 
 """
 
+
 # Brute Force Approach
+def maximum_sum_bruteforce(arr):
+    n = len(arr)
+    answer = float("-inf")
+
+    for start in range(n):
+        current_sum = 0
+
+        for end in range(start, n):
+            current_sum += arr[end]
+            answer = max(answer, current_sum)
+
+            if start != end:
+                deleted_sum = current_sum
+
+                for k in range(start, end + 1):
+                    answer = max(answer, deleted_sum - arr[k])
+
+    return answer
 
 
-# Time complexity :
-# Space Complexity :
+# Time complexity : O(n³)
+# Space Complexity :  O(1)
 
 # Optimal Approach
 
