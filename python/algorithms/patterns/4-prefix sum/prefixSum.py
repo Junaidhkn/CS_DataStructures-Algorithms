@@ -143,7 +143,6 @@ def pivot_index_brute_force(nums):
 ## prefix Sum Array
 def pivot_index_prefix(nums):
     n = len(nums)
-
     prefix = [0] * n
     prefix[0] = nums[0]
 
@@ -153,10 +152,8 @@ def pivot_index_prefix(nums):
     total = prefix[-1]
 
     for i in range(n):
-
         left_sum = prefix[i - 1] if i > 0 else 0
         right_sum = total - prefix[i]
-
         if left_sum == right_sum:
             return i
 
@@ -212,7 +209,7 @@ Constraints:
 
 1 <= nums.length <= 2 * 104
 -1000 <= nums[i] <= 1000
--107 <= k <= 107
+-10^7 <= k <= 10^7
 """
 # brute force appraoch
 
@@ -236,19 +233,42 @@ print("subarraySumEqualsK()", subarraySumEqualsKBrute([-1, 2, 1, 2, -1], 5))
 # Space Complexity : O(1)
 
 
-def subarraySum(nums, k):
+## Prefix Sum Array
 
+
+def subarray_sum_prefix(nums, k):
+    n = len(nums)
+
+    prefix = [0] * (n + 1)
+
+    for i in range(n):
+        prefix[i + 1] = prefix[i] + nums[i]
+
+    count = 0
+
+    for start in range(n):
+        for end in range(start, n):
+
+            current_sum = prefix[end + 1] - prefix[start]
+
+            if current_sum == k:
+                count += 1
+
+    return count
+
+
+# Time Complexity : O(n²)
+# Space Complexity : O(n)
+
+
+def subarraySum(nums, k):
     prefix_sum = 0
     count = 0
     freq = {0: 1}
-
     for num in nums:
-
         prefix_sum += num
-
         if (prefix_sum - k) in freq:
             count += freq[prefix_sum - k]
-
         freq[prefix_sum] = freq.get(prefix_sum, 0) + 1
 
     return count
