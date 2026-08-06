@@ -261,152 +261,47 @@ def subarray_sum_prefix(nums, k):
 # Space Complexity : O(n)
 
 
-def subarraySum(nums, k):
+def subarray_sum(nums, k):
     prefix_sum = 0
     count = 0
-    freq = {0: 1}
+    prefix_freq = {0: 1}
     for num in nums:
         prefix_sum += num
-        if (prefix_sum - k) in freq:
-            count += freq[prefix_sum - k]
-        freq[prefix_sum] = freq.get(prefix_sum, 0) + 1
-
+        count += prefix_freq.get(prefix_sum - k, 0)
+        prefix_freq[prefix_sum] = prefix_freq.get(prefix_sum, 0) + 1
     return count
 
 
+print("subarraySumEqualsK()O", subarray_sum([3, 4, 7, 2, -3, 1, 4, 2], 7))
 # Time and space complexity : O(n)
 
 
-##! Question 3: Continuous Subarray Sum
-
-
-"""
-Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
-
-A good subarray is a subarray where:
-
-its length is at least two, and
-the sum of the elements of the subarray is a multiple of k.
-Note that:
-
-A subarray is a contiguous part of the array.
-An integer x is a multiple of k if there exists an integer n such that x = n * k. 0 is always a multiple of k.
- 
-
-Example 1:
-
-Input: nums = [23,2,4,6,7], k = 6
-Output: true
-Explanation: [2, 4] is a continuous subarray of size 2 whose elements sum up to 6.
-
-Example 2:
-
-Input: nums = [23,2,6,4,7], k = 6
-Output: true
-Explanation: [23, 2, 6, 4, 7] is an continuous subarray of size 5 whose elements sum up to 42.
-42 is a multiple of 6 because 42 = 7 * 6 and 7 is an integer.
-
-Example 3:
-
-Input: nums = [23,2,6,4,7], k = 13
-Output: false
- 
-
-Constraints:
-
-1 <= nums.length <= 105
-0 <= nums[i] <= 109
-0 <= sum(nums[i]) <= 231 - 1
-1 <= k <= 231 - 1
-"""
-
-
-def checkSubarraySum(nums, k):
-    prefix_sum = 0
-    remainder_map = {0: -1}  # remainder 0 at index -1
-
-    for i, num in enumerate(nums):
-        prefix_sum += num
-        remainder = prefix_sum % k
-
-        if remainder in remainder_map:
-            if i - remainder_map[remainder] >= 2:
-                return True
-        else:
-            remainder_map[remainder] = i
-
-    return False
-
-
-# Time Complexity: O(n)
-# Space Complexity: O(min(n, k))
-
-
-##! Question 4: Subarray Sums Divisible by K
-
+##! Question 3: Longest Subarray With Sum K
 
 """
 
-Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+Given an array arr[] of size n containing integers, the task is to find the length of the longest subarray having sum equal to the given value k.
 
-A subarray is a contiguous part of an array.
+Note: If there is no subarray with sum equal to k, return 0
 
-Example 1:
+Examples: 
 
-Input: nums = [4,5,0,-2,-3,1], k = 5
-Output: 7
-Explanation: There are 7 subarrays with a sum divisible by k = 5:
-[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
-
-Example 2:
-
-Input: nums = [5], k = 9
-Output: 0
- 
-
-Constraints:
-
-1 <= nums.length <= 3 * 10^4
--10^4 <= nums[i] <= 10^4
-2 <= k <= 10^4
-
-"""
-
-
-##! Question 5: Contiguous Array
-
-"""
-
-Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
-
-Example 1:
-
-Input: nums = [0,1]
-Output: 2
-Explanation: [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
-
-Example 2:
-
-Input: nums = [0,1,0]
-Output: 2
-Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
-
-Example 3:
-
-Input: nums = [0,1,1,1,1,1,0,0,0]
+Input: arr[] = [10, 5, 2, 7, 1, -10], k = 15
 Output: 6
-Explanation: [1,1,1,0,0,0] is the longest contiguous subarray with equal number of 0 and 1.
- 
+Explanation: Subarrays with sum = 15 are [5, 2, 7, 1], [10, 5] and [10, 5, 2, 7, 1, -10]. The length of the longest subarray with a sum of 15 is 6.
 
-Constraints:
+Input: arr[] = [-5, 8, -14, 2, 4, 12], k = -5
+Output: 5
+Explanation: Only subarray with sum = 15 is [-5, 8, -14, 2, 4] of length 5.
 
-1 <= nums.length <= 105
-nums[i] is either 0 or 1.
+Input: arr[] = [10, -10, 20, 30], k = 5
+Output: 0
+Explanation: No subarray with sum = 5 is present in arr[].
 
 """
 
 
-##! Question 6: Shortest Subarray with Sum at Least K
+##! Question 4: Shortest Subarray with Sum at Least K
 
 
 """
@@ -440,7 +335,139 @@ Constraints:
 """
 
 
-##! Question 7: Count of Range Sum
+##! Question 5: Continuous Subarray Sum
+
+
+"""
+
+Given an integer array nums and an integer k, return true if nums has a good subarray or false otherwise.
+
+A good subarray is a subarray where:
+
+its length is at least two, and
+the sum of the elements of the subarray is a multiple of k.
+
+Note that:
+
+A subarray is a contiguous part of the array.
+An integer x is a multiple of k if there exists an integer n such that x = n * k. 0 is always a multiple of k.
+ 
+
+Example 1:
+
+Input: nums = [23,2,4,6,7], k = 6
+Output: true
+Explanation: [2, 4] is a continuous subarray of size 2 whose elements sum up to 6.
+
+Example 2:
+
+Input: nums = [23,2,6,4,7], k = 6
+Output: true
+Explanation: [23, 2, 6, 4, 7] is an continuous subarray of size 5 whose elements sum up to 42.
+42 is a multiple of 6 because 42 = 7 * 6 and 7 is an integer.
+
+Example 3:
+
+Input: nums = [23,2,6,4,7], k = 13
+Output: false
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+0 <= nums[i] <= 109
+0 <= sum(nums[i]) <= 231 - 1
+1 <= k <= 231 - 1
+
+"""
+
+
+def checkSubarraySum(nums, k):
+    prefix_sum = 0
+    remainder_map = {0: -1}  # remainder 0 at index -1
+
+    for i, num in enumerate(nums):
+        prefix_sum += num
+        remainder = prefix_sum % k
+
+        if remainder in remainder_map:
+            if i - remainder_map[remainder] >= 2:
+                return True
+        else:
+            remainder_map[remainder] = i
+
+    return False
+
+
+# Time Complexity: O(n)
+# Space Complexity: O(min(n, k))
+
+
+##! Question 6: Subarray Sums Divisible by K
+
+
+"""
+
+Given an integer array nums and an integer k, return the number of non-empty subarrays that have a sum divisible by k.
+
+A subarray is a contiguous part of an array.
+
+Example 1:
+
+Input: nums = [4,5,0,-2,-3,1], k = 5
+Output: 7
+Explanation: There are 7 subarrays with a sum divisible by k = 5:
+[4, 5, 0, -2, -3, 1], [5], [5, 0], [5, 0, -2, -3], [0], [0, -2, -3], [-2, -3]
+
+Example 2:
+
+Input: nums = [5], k = 9
+Output: 0
+ 
+
+Constraints:
+
+1 <= nums.length <= 3 * 10^4
+-10^4 <= nums[i] <= 10^4
+2 <= k <= 10^4
+
+"""
+
+
+##! Question 7: Contiguous Array
+
+"""
+
+Given a binary array nums, return the maximum length of a contiguous subarray with an equal number of 0 and 1.
+
+Example 1:
+
+Input: nums = [0,1]
+Output: 2
+Explanation: [0, 1] is the longest contiguous subarray with an equal number of 0 and 1.
+
+Example 2:
+
+Input: nums = [0,1,0]
+Output: 2
+Explanation: [0, 1] (or [1, 0]) is a longest contiguous subarray with equal number of 0 and 1.
+
+Example 3:
+
+Input: nums = [0,1,1,1,1,1,0,0,0]
+Output: 6
+Explanation: [1,1,1,0,0,0] is the longest contiguous subarray with equal number of 0 and 1.
+ 
+
+Constraints:
+
+1 <= nums.length <= 105
+nums[i] is either 0 or 1.
+
+"""
+
+
+##! Question 8: Count of Range Sum
 
 """
 
