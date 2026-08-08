@@ -5,7 +5,7 @@ The Two Pointers technique involves using two indices (pointers) to iterate over
 When to Use Two Pointers?
 When you need to find pairs, triplets, or subarrays meeting certain conditions.
 When the data is sorted or can be sorted.
-When you want to optimize brute force solutions that use nested loops (On2)) to linear or near-linear time (O(n)).
+When you want to optimize brute force solutions that use nested loops O(n^2) to linear or near-linear time (O(n)).
 {
     array / linkedlist
     sorted / sort
@@ -29,7 +29,7 @@ If condition met, record the answer or move pointers to find more solutions.
 Repeat until pointers cross or reach the end.
 """
 
-#! Question 1: Two sum II: Input Array is sorted
+##! Question 1: Two sum II: Input Array is sorted
 
 """
 Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. Let these two numbers be numbers[index1] and numbers[index2] where 1  <= index1 < index2 <= numbers.length.
@@ -100,7 +100,7 @@ def twoSumII(lst, target):
 # Space Complexity : O(1)
 
 
-#! Question 2: Remove Duplicates from Sorted Array
+##! Question 2: Remove Duplicates from Sorted Array
 
 """
 Given an integer array nums sorted in non-decreasing order, remove the duplicates in-place such that each unique element appears only once. The relative order of the elements should be kept the same.
@@ -207,7 +207,7 @@ def removeDuplicates_unsorted(nums):
 # Space Complexity : O(n)
 
 
-#! Question 3: Valid Palindrome
+##! Question 3: Valid Palindrome
 """
 A phrase is a palindrome if, after converting all uppercase letters into lowercase letters and removing all non-alphanumeric characters, it reads the same forward and backward. Alphanumeric characters include letters and numbers.
 
@@ -264,7 +264,7 @@ def isPalindrome(s):
 # print("Printing result from question 3:\n", result)
 
 
-#! Question 4: Container with most water
+##! Question 4: Container with most water
 
 """
 You are given an integer array height of length n. There are n vertical lines drawn such that the two endpoints of the ith line are (i, 0) and (i, height[i]).
@@ -333,7 +333,7 @@ def maxArea(height):
 # Space Complexity : O(1)
 
 
-#! Question 5: Squares of a Sorted Array
+##! Question 5: Squares of a Sorted Array
 
 """
 Given an integer array nums sorted in non-decreasing order, return an array of the squares of each number sorted in non-decreasing order.
@@ -391,7 +391,7 @@ def sortedSquaresOptimal(nums: list[int]) -> list[int]:
 # print("Printing result from question 5:\n", result)
 
 
-#! Question 6: Triplet Sum to Zero (medium)
+##! Question 6: Triplet Sum to Zero (medium)
 
 """
 
@@ -524,7 +524,7 @@ def tripletSumZeroWithoutSort(nums: list[int]) -> list[int]:
 # result = tripletSumZero([-1, 0, 1, 2, -1, -4])
 # print("Printing result if input is unsorted \n", result)  # [[-1, -1, 2], [-1, 0, 1]]
 
-#! Question 7: 	Triplet Sum Close to Target (medium)
+##! Question 7: Triplet Sum Close to Target (medium)
 
 """
 
@@ -556,7 +556,7 @@ Constraints:
 """
 
 
-#! Question 8: 	Triplets with Smaller Sum (medium)
+##! Question 8: 	Triplets with Smaller Sum (medium)
 
 
 """
@@ -651,7 +651,7 @@ def tripletSmallerSumOptimizedCountOnly(nums: list[int], sum) -> int:
     return count
 
 
-#! Question 9: 	Sort Colors{Dutch National Flag} (medium)
+##! Question 9: 	Sort Colors{Dutch National Flag} (medium)
 
 """
 
@@ -766,7 +766,7 @@ def sortColorsDNF(nums):
 result = sortColorsDNF([2, 0, 2, 1, 1, 0])
 print("*** DNF for question 9:*******\n", result)
 
-#! Question 10:  4Sum (medium)
+##! Question 10:  4Sum (medium)
 
 
 """
@@ -800,7 +800,7 @@ Constraints:
 """
 
 
-#! Question 11:  Backspace String Compare (Easy)
+##! Question 11:  Backspace String Compare (Easy)
 
 """
 
@@ -840,7 +840,7 @@ Follow up: Can you solve it in O(n) time and O(1) space?
 """
 
 
-#! Question 12:  Shortest Unsorted Continuous Subarray (Medium)
+##! Question 12:  Shortest Unsorted Continuous Subarray (Medium)
 
 
 """
@@ -879,7 +879,7 @@ Follow up: Can you solve it in O(n) time complexity?
 """
 
 
-#! Question 13:  Subarray Product Less Than K (Medium)
+##! Question 13:  Subarray Product Less Than K (Medium)
 
 """
 
@@ -910,7 +910,7 @@ Constraints:
 """
 
 
-#! Question 14:  Trapping Rain Water (Hard)
+##! Question 14:  Trapping Rain Water (Hard)
 
 """
 
@@ -933,7 +933,7 @@ n == height.length
 """
 
 
-#! Question 15:  Minimum Window Substring (Hard)
+##! Question 15:  Minimum Window Substring (Hard)
 
 
 """
