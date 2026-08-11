@@ -2232,3 +2232,143 @@ And the most important recognition rule:
 
     by replacing repeated SEARCH with fast LOOKUP.
 """
+
+##! Question 1: First Unique Character in a String
+
+
+"""
+
+Given a string s, find the first non-repeating character in it and return its index. If it does not exist, return -1.
+
+ 
+
+Example 1:
+
+Input: s = "leetcode"
+
+Output: 0
+
+Explanation:
+
+The character 'l' at index 0 is the first character that does not occur at any other index.
+
+Example 2:
+
+Input: s = "loveleetcode"
+
+Output: 2
+
+Example 3:
+
+Input: s = "aabb"
+
+Output: -1
+
+ 
+
+Constraints:
+
+1 <= s.length <= 105
+s consists of only lowercase English letters.
+
+"""
+
+##! Question 2: Maximum Number of Balloons
+
+
+"""
+
+Given a string text, you want to use the characters of text to form as many instances of the word "balloon" as possible.
+
+You can use each character in text at most once. Return the maximum number of instances that can be formed.
+
+ 
+
+Example 1:
+
+
+
+Input: text = "nlaebolko"
+Output: 1
+Example 2:
+
+
+
+Input: text = "loonbalxballpoon"
+Output: 2
+Example 3:
+
+Input: text = "leetcode"
+Output: 0
+ 
+
+Constraints:
+
+1 <= text.length <= 104
+text consists of lower case English letters only.
+
+"""
+
+
+##! Question 3: Longest Palindrome
+
+
+"""
+
+Given a string s which consists of lowercase or uppercase letters, return the length of the longest palindrome that can be built with those letters.
+
+Letters are case sensitive, for example, "Aa" is not considered a palindrome.
+
+ 
+
+Example 1:
+
+Input: s = "abccccdd"
+Output: 7
+Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
+Example 2:
+
+Input: s = "a"
+Output: 1
+Explanation: The longest palindrome that can be built is "a", whose length is 1.
+ 
+
+Constraints:
+
+1 <= s.length <= 2000
+s consists of lowercase and/or uppercase English letters only.
+
+"""
+
+
+##! Question 4: Ransom Note
+
+
+"""
+
+Given two strings ransomNote and magazine, return true if ransomNote can be constructed by using the letters from magazine and false otherwise.
+
+Each letter in magazine can only be used once in ransomNote.
+
+ 
+
+Example 1:
+
+Input: ransomNote = "a", magazine = "b"
+Output: false
+Example 2:
+
+Input: ransomNote = "aa", magazine = "ab"
+Output: false
+Example 3:
+
+Input: ransomNote = "aa", magazine = "aab"
+Output: true
+ 
+
+Constraints:
+
+1 <= ransomNote.length, magazine.length <= 105
+ransomNote and magazine consist of lowercase English letters.
+
+"""
