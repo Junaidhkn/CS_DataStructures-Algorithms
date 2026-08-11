@@ -653,3 +653,788 @@ The strongest pattern to remember:
     "If I am repeatedly looking for the next or previous
      greater/smaller element, think MONOTONIC STACK."
 """
+
+"""
+============================================================
+STACK — TYPES
+============================================================
+
+A Stack follows:
+
+    LIFO = Last In, First Out
+
+The last element inserted is the first element removed.
+
+Example:
+
+    push(10)
+    push(20)
+    push(30)
+
+    Stack:
+        [10, 20, 30] <- TOP
+
+    pop() -> 30
+
+
+============================================================
+1. NORMAL / LINEAR STACK
+============================================================
+
+The basic stack.
+
+Operations:
+
+    push()  -> add element
+    pop()   -> remove top element
+    peek()  -> view top element
+
+Python:
+
+    stack = []
+
+    stack.append(10)     # push
+    stack.append(20)
+    stack.pop()           # removes 20
+    stack[-1]             # peek
+
+Time:
+
+    push -> O(1)
+    pop  -> O(1)
+    peek -> O(1)
+
+
+============================================================
+2. STATIC STACK
+============================================================
+
+A stack with a fixed maximum capacity.
+
+Example:
+
+    capacity = 5
+
+    [10, 20, 30, 40, 50]
+
+You cannot add another element once the capacity
+is reached.
+
+Commonly implemented using:
+
+    Fixed-size arrays
+
+Important concept:
+
+    Stack Overflow
+        -> trying to push into a full stack
+
+    Stack Underflow
+        -> trying to pop from an empty stack
+
+
+============================================================
+3. DYNAMIC STACK
+============================================================
+
+A stack that can grow/shrink dynamically.
+
+Python's list is commonly used as a dynamic stack:
+
+    stack = []
+
+    stack.append(10)
+    stack.append(20)
+    stack.append(30)
+
+The underlying storage can grow when necessary.
+
+In Python:
+
+    list + append() + pop()
+
+is the standard way to implement a stack.
+
+
+============================================================
+4. MONOTONIC STACK ⭐
+============================================================
+
+A stack that maintains elements in a particular order.
+
+There are two major types:
+
+    1. Monotonic Increasing Stack
+    2. Monotonic Decreasing Stack
+
+The purpose is NOT simply storing elements.
+
+The purpose is:
+
+    Remove elements that can no longer be useful.
+
+
+============================================================
+5. MONOTONIC INCREASING STACK
+============================================================
+
+Elements are maintained in increasing order.
+
+Example:
+
+    [1, 3, 5, 8]
+
+Whenever a new element violates the ordering,
+we pop elements.
+
+Usually useful for:
+
+    Next Smaller Element
+    Previous Smaller Element
+    Histogram problems
+    Finding boundaries
+
+
+Example:
+
+    nums = [2, 4, 1]
+
+    Process 2:
+        stack = [2]
+
+    Process 4:
+        stack = [2, 4]
+
+    Process 1:
+
+        1 < 4 -> pop 4
+        1 < 2 -> pop 2
+
+        stack = [1]
+
+
+============================================================
+6. MONOTONIC DECREASING STACK
+============================================================
+
+Elements are maintained in decreasing order.
+
+Example:
+
+    [9, 7, 5, 2]
+
+Usually useful for:
+
+    Next Greater Element
+    Previous Greater Element
+    Daily Temperatures
+    Stock Span
+
+
+Example:
+
+    nums = [5, 3, 7]
+
+    Process 5:
+        stack = [5]
+
+    Process 3:
+        stack = [5, 3]
+
+    Process 7:
+
+        7 > 3 -> pop 3
+        7 > 5 -> pop 5
+
+        stack = [7]
+
+
+============================================================
+7. TWO-STACK TECHNIQUE
+============================================================
+
+Sometimes one problem uses two stacks.
+
+Example:
+
+    Min Stack
+
+We can maintain:
+
+    stack      -> actual values
+    min_stack  -> minimum values
+
+Example:
+
+    push(5)
+    push(3)
+    push(7)
+
+    stack:
+        [5, 3, 7]
+
+    min_stack:
+        [5, 3, 3]
+
+Now the minimum can be obtained in:
+
+    O(1)
+
+
+============================================================
+8. STACK + HASHMAP
+============================================================
+
+A stack can be combined with a hashmap when we need:
+
+    Stack:
+        ordering / unresolved elements
+
+    HashMap:
+        fast lookup / frequency / mapping
+
+
+Example use cases:
+
+    Frequency-based problems
+    Decode String
+    Matching relationships
+    Some monotonic-stack problems
+
+
+============================================================
+IMPORTANT DSA STACK PATTERNS
+============================================================
+
+Normal Stack
+    ↓
+    Matching / nesting / reverse processing
+
+Monotonic Increasing Stack
+    ↓
+    Smaller-element relationships
+
+Monotonic Decreasing Stack
+    ↓
+    Greater-element relationships
+
+Two Stacks
+    ↓
+    Maintain two related states
+
+Stack + HashMap
+    ↓
+    Ordering + fast lookup
+
+
+============================================================
+HOW TO RECOGNIZE A MONOTONIC STACK
+============================================================
+
+Look for phrases such as:
+
+    "Next greater element"
+    "Next smaller element"
+    "Previous greater element"
+    "Previous smaller element"
+    "First greater element to the right"
+    "First smaller element to the left"
+    "Days until a warmer temperature"
+    "Nearest smaller/greater element"
+
+These are strong signals for:
+
+    MONOTONIC STACK
+
+
+============================================================
+TIME COMPLEXITY OF MONOTONIC STACK
+============================================================
+
+Usually:
+
+    Time  -> O(n)
+    Space -> O(n)
+
+Why O(n)?
+
+Each element is:
+
+    pushed at most once
+    popped at most once
+
+Therefore:
+
+    n pushes + n pops
+    = O(n)
+
+
+============================================================
+MOST IMPORTANT THING TO REMEMBER
+============================================================
+
+Do NOT memorize stacks only as:
+
+    "LIFO data structure"
+
+For DSA, think:
+
+    STACK
+      ↓
+    Remember unresolved elements
+      ↓
+    Process them when a useful future element appears
+      ↓
+    Remove elements that are no longer useful
+      ↓
+    Often converts O(n²) → O(n)
+
+
+============================================================
+INTERVIEW CHEAT SHEET
+============================================================
+
+Need matching / nesting?
+    → Normal Stack
+
+Need next/previous greater?
+    → Monotonic Stack
+
+Need next/previous smaller?
+    → Monotonic Stack
+
+Need nearest greater/smaller?
+    → Monotonic Stack
+
+Need to maintain minimum/maximum?
+    → Stack / Two Stacks
+
+Need ordering + frequency/lookup?
+    → Stack + HashMap
+
+Need reverse-order processing?
+    → Stack
+
+
+============================================================
+PRIORITY FOR DSA
+============================================================
+
+Learn in this order:
+
+    1. Normal Stack
+    2. Stack using Python list
+    3. Matching Parentheses
+    4. Monotonic Stack
+    5. Increasing Monotonic Stack
+    6. Decreasing Monotonic Stack
+    7. Stack + HashMap
+    8. Two-Stack problems
+    9. Advanced problems
+
+The MOST IMPORTANT stack pattern for array problems:
+
+    MONOTONIC STACK ⭐
+"""
+
+
+##! Question 1: Remove All Adjacent Duplicates In String
+
+"""
+
+You are given a string s consisting of lowercase English letters. A duplicate removal consists of choosing two adjacent and equal letters and removing them.
+
+We repeatedly make duplicate removals on s until we no longer can.
+
+Return the final string after all such duplicate removals have been made. It can be proven that the answer is unique.
+
+Example 1:
+
+Input: s = "abbaca"
+Output: "ca"
+Explanation: 
+For example, in "abbaca" we could remove "bb" since the letters are adjacent and equal, and this is the only possible move.  The result of this move is that the string is "aaca", of which only "aa" is possible, so the final string is "ca".
+Example 2:
+
+Input: s = "azxxzy"
+Output: "ay"
+ 
+
+Constraints:
+
+1 <= s.length <= 10^5
+s consists of lowercase English letters.
+
+"""
+
+
+##! Question 2: Valid Parentheses
+
+"""
+
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+Every close bracket has a corresponding open bracket of the same type.
+ 
+
+Example 1:
+
+Input: s = "()"
+
+Output: true
+
+Example 2:
+
+Input: s = "()[]{}"
+
+Output: true
+
+Example 3:
+
+Input: s = "(]"
+
+Output: false
+
+Example 4:
+
+Input: s = "([])"
+
+Output: true
+
+Example 5:
+
+Input: s = "([)]"
+
+Output: false
+
+ 
+
+Constraints:
+
+1 <= s.length <= 104
+s consists of parentheses only '()[]{}'.
+
+"""
+##! Question 3: Next Greater Element I
+
+"""
+
+The next greater element of some element x in an array is the first greater element that is to the right of x in the same array.
+
+You are given two distinct 0-indexed integer arrays nums1 and nums2, where nums1 is a subset of nums2.
+
+For each 0 <= i < nums1.length, find the index j such that nums1[i] == nums2[j] and determine the next greater element of nums2[j] in nums2. If there is no next greater element, then the answer for this query is -1.
+
+Return an array ans of length nums1.length such that ans[i] is the next greater element as described above.
+
+ 
+
+Example 1:
+
+Input: nums1 = [4,1,2], nums2 = [1,3,4,2]
+Output: [-1,3,-1]
+Explanation: The next greater element for each value of nums1 is as follows:
+- 4 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+- 1 is underlined in nums2 = [1,3,4,2]. The next greater element is 3.
+- 2 is underlined in nums2 = [1,3,4,2]. There is no next greater element, so the answer is -1.
+Example 2:
+
+Input: nums1 = [2,4], nums2 = [1,2,3,4]
+Output: [3,-1]
+Explanation: The next greater element for each value of nums1 is as follows:
+- 2 is underlined in nums2 = [1,2,3,4]. The next greater element is 3.
+- 4 is underlined in nums2 = [1,2,3,4]. There is no next greater element, so the answer is -1.
+ 
+
+Constraints:
+
+1 <= nums1.length <= nums2.length <= 1000
+0 <= nums1[i], nums2[i] <= 10^4
+All integers in nums1 and nums2 are unique.
+All the integers of nums1 also appear in nums2.
+ 
+
+Follow up: Could you find an O(nums1.length + nums2.length) solution?
+
+"""
+
+
+##! Question 4: Next Greater Element II
+
+"""
+
+Given a circular integer array nums (i.e., the next element of nums[nums.length - 1] is nums[0]), return the next greater number for every element in nums.
+
+The next greater number of a number x is the first greater number to its traversing-order next in the array, which means you could search circularly to find its next greater number. If it doesn't exist, return -1 for this number.
+
+ 
+
+Example 1:
+
+Input: nums = [1,2,1]
+Output: [2,-1,2]
+Explanation: The first 1's next greater number is 2; 
+The number 2 can't find next greater number. 
+The second 1's next greater number needs to search circularly, which is also 2.
+Example 2:
+
+Input: nums = [1,2,3,4,3]
+Output: [2,3,4,-1,4]
+ 
+
+Constraints:
+
+1 <= nums.length <= 10^4
+-10^9 <= nums[i] <= 10^9
+
+"""
+
+
+##! Question 5: Daily Temperatures
+
+
+"""
+
+Given an array of integers temperatures represents the daily temperatures, return an array answer such that answer[i] is the number of days you have to wait after the ith day to get a warmer temperature. If there is no future day for which this is possible, keep answer[i] == 0 instead.
+
+Example 1:
+
+Input: temperatures = [73,74,75,71,69,72,76,73]
+Output: [1,1,4,2,1,1,0,0]
+
+Example 2:
+
+Input: temperatures = [30,40,50,60]
+Output: [1,1,1,0]
+
+Example 3:
+
+Input: temperatures = [30,60,90]
+Output: [1,1,0]
+ 
+Constraints:
+
+1 <= temperatures.length <= 10^5
+30 <= temperatures[i] <= 100
+
+"""
+
+
+##! Question 6: Previous greater element
+
+"""
+
+Given an array arr[], find the Previous Greater Element (PGE) for every element in the array.
+
+The Previous Greater Element of an element x is defined as the first element to its left in the array that is greater than x.
+If no such element exists for a particular position, the PGE should be considered as -1.
+Examples: 
+
+Input: arr[] = [10, 4, 2, 20, 40, 12]
+Output: [-1, 10, 4, -1, -1, 40]
+Explanation:
+For 10 → No elements on the left → -1
+For 4 → Previous greater element is 10 → 10
+For 2 → Previous greater element is 4 → 4
+For 20 → No element on the left greater than 20 → -1
+For 40 → No element on the left greater than 40 → -1
+For 12 → Previous greater element is 40 → 40
+
+Input: arr[] = [10, 20, 30, 40]
+Output: [-1, -1, -1, -1]
+Explanation: Since the array is strictly increasing, no element has a greater element before it. Hence, all positions are assigned -1.
+
+"""
+
+
+##! Question 7: Remove Nodes From Linked List
+
+"""
+
+You are given the head of a linked list.
+
+Remove every node which has a node with a greater value anywhere to the right side of it.
+
+Return the head of the modified linked list.
+
+
+Example 1:
+
+Input: head = [5,2,13,3,8]
+Output: [13,8]
+Explanation: The nodes that should be removed are 5, 2 and 3.
+- Node 13 is to the right of node 5.
+- Node 13 is to the right of node 2.
+- Node 8 is to the right of node 3.
+Example 2:
+
+Input: head = [1,1,1,1]
+Output: [1,1,1,1]
+Explanation: Every node has value 1, so no nodes are removed.
+ 
+
+Constraints:
+
+The number of the nodes in the given list is in the range [1, 105].
+1 <= Node.val <= 10^5
+
+"""
+
+
+##! Question 8: Remove All Adjacent Duplicates in String II
+
+"""
+
+You are given a string s and an integer k, a k duplicate removal consists of choosing k adjacent and equal letters from s and removing them, causing the left and the right side of the deleted substring to concatenate together.
+
+We repeatedly make k duplicate removals on s until we no longer can.
+
+Return the final string after all such duplicate removals have been made. It is guaranteed that the answer is unique.
+
+ 
+
+Example 1:
+
+Input: s = "abcd", k = 2
+Output: "abcd"
+Explanation: There's nothing to delete.
+Example 2:
+
+Input: s = "deeedbbcccbdaa", k = 3
+Output: "aa"
+Explanation: 
+First delete "eee" and "ccc", get "ddbbbdaa"
+Then delete "bbb", get "dddaa"
+Finally delete "ddd", get "aa"
+Example 3:
+
+Input: s = "pbbcggttciiippooaais", k = 2
+Output: "ps"
+ 
+
+Constraints:
+
+1 <= s.length <= 10^5
+2 <= k <= 104
+s only contains lowercase English letters.
+
+"""
+
+##! Question 9: Simplify Path
+
+"""
+
+You are given an absolute path for a Unix-style file system, which always begins with a slash '/'. Your task is to transform this absolute path into its simplified canonical path.
+
+The rules of a Unix-style file system are as follows:
+
+A single period '.' represents the current directory.
+A double period '..' represents the previous/parent directory.
+Multiple consecutive slashes such as '//' and '///' are treated as a single slash '/'.
+Any sequence of periods that does not match the rules above should be treated as a valid directory or file name. For example, '...' and '....' are valid directory or file names.
+The simplified canonical path should follow these rules:
+
+The path must start with a single slash '/'.
+Directories within the path must be separated by exactly one slash '/'.
+The path must not end with a slash '/', unless it is the root directory.
+The path must not have any single or double periods ('.' and '..') used to denote current or parent directories.
+Return the simplified canonical path.
+
+ 
+
+Example 1:
+
+Input: path = "/home/"
+
+Output: "/home"
+
+Explanation:
+
+The trailing slash should be removed.
+
+Example 2:
+
+Input: path = "/home//foo/"
+
+Output: "/home/foo"
+
+Explanation:
+
+Multiple consecutive slashes are replaced by a single one.
+
+Example 3:
+
+Input: path = "/home/user/Documents/../Pictures"
+
+Output: "/home/user/Pictures"
+
+Explanation:
+
+A double period ".." refers to the directory up a level (the parent directory).
+
+Example 4:
+
+Input: path = "/../"
+
+Output: "/"
+
+Explanation:
+
+Going one level up from the root directory is not possible.
+
+Example 5:
+
+Input: path = "/.../a/../b/c/../d/./"
+
+Output: "/.../b/d"
+
+Explanation:
+
+"..." is a valid name for a directory in this problem.
+
+
+Constraints:
+
+1 <= path.length <= 3000
+path consists of English letters, digits, period '.', slash '/' or '_'.
+path is a valid absolute Unix path.
+
+"""
+
+
+##! Question 10: Remove K Digits
+
+"""
+
+Given string num representing a non-negative integer num, and an integer k, return the smallest possible integer after removing k digits from num.
+
+ 
+
+Example 1:
+
+Input: num = "1432219", k = 3
+Output: "1219"
+Explanation: Remove the three digits 4, 3, and 2 to form the new number 1219 which is the smallest.
+Example 2:
+
+Input: num = "10200", k = 1
+Output: "200"
+Explanation: Remove the leading 1 and the number is 200. Note that the output must not contain leading zeroes.
+Example 3:
+
+Input: num = "10", k = 2
+Output: "0"
+Explanation: Remove all the digits from the number and it is left with nothing which is 0.
+ 
+
+Constraints:
+
+1 <= k <= num.length <= 10^5
+num consists of only digits.
+num does not have any leading zeros except for the zero itself.
+
+"""
