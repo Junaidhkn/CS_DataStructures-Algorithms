@@ -2282,20 +2282,16 @@ Given a string text, you want to use the characters of text to form as many inst
 
 You can use each character in text at most once. Return the maximum number of instances that can be formed.
 
- 
-
 Example 1:
-
-
 
 Input: text = "nlaebolko"
 Output: 1
+
 Example 2:
-
-
 
 Input: text = "loonbalxballpoon"
 Output: 2
+
 Example 3:
 
 Input: text = "leetcode"
@@ -2326,6 +2322,7 @@ Example 1:
 Input: s = "abccccdd"
 Output: 7
 Explanation: One longest palindrome that can be built is "dccaccd", whose length is 7.
+
 Example 2:
 
 Input: s = "a"
@@ -2350,16 +2347,16 @@ Given two strings ransomNote and magazine, return true if ransomNote can be cons
 
 Each letter in magazine can only be used once in ransomNote.
 
- 
-
 Example 1:
 
 Input: ransomNote = "a", magazine = "b"
 Output: false
+
 Example 2:
 
 Input: ransomNote = "aa", magazine = "ab"
 Output: false
+
 Example 3:
 
 Input: ransomNote = "aa", magazine = "aab"
@@ -2368,7 +2365,7 @@ Output: true
 
 Constraints:
 
-1 <= ransomNote.length, magazine.length <= 105
+1 <= ransomNote.length, magazine.length <= 10^5
 ransomNote and magazine consist of lowercase English letters.
 
 """
